@@ -1,0 +1,20 @@
+.ex-card {
+    margin: 100px;
+    max-width: auto;
+    background-color: rgb(137, 120, 197);
+}
+
+.title {
+    padding-top:  35px;
+    padding-left: 60px;
+    padding-bottom: 100px;
+}
+
+.text {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.Debate {
+    padding-left: 20px;
+}
