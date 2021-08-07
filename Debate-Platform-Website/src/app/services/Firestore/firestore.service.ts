@@ -22,4 +22,8 @@ export class FirestoreService {
   updatePrepTime(courtId: string, minutes: number) {
     this.db.collection('courts').doc(courtId).update({'preptime': minutes}).then();
   }
+
+  updateDebateFormat(courtId: string, debate_format: string) {
+    this.db.collection('courts').doc(courtId).update({'debate_format': debate_format}).then()
+  }
 }
