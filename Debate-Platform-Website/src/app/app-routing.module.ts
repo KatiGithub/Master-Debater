@@ -19,7 +19,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'communal',
+    path: 'courts/:court_id',
     component: CommunalRoomComponent
   }
 ];

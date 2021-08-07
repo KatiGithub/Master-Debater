@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
+import { Court } from 'src/models/court';
 
 @Component({
   selector: 'app-home',
@@ -12,31 +13,36 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(private db: AngularFirestore, private router: Router) {
-    this.submitRoomId(5)
+    this.submitRoomId('uUYCKRTT2UrK5JJyBzL5')
+    // this.createRoom()
   }
+
+  clicked = false;
 
   roomId_formcontrol = new FormControl()
 
   ngOnInit(): void {
   }
 
-  submitRoomId(roomid: Number) {
+  submitRoomId(roomid: string) {
     let roomId = this.roomId_formcontrol.value;
-    let usersRef = this.db.collection('rooms', ref => ref.where('roomid', "==", roomid))
-    .valueChanges().subscribe((value: Array<any>) => {
-      console.log(value)
-      if(value.length == 1) {
-        this.router.navigate([String(roomId)])
+    let usersref = this.db.collection('courts').doc(roomid).get().subscribe((value) => {
+      if (value.exists == true) {
+        this.router.navigate(['communal/' + roomId])
       }
     })
   }
-  toCommunal(){
-    this.router.navigate(['communal']);
-  }
 
   createRoom() {
-    this.db.collection('rooms').add({
-      
+    let court = new Court()
+    console.log(court)
+    this.db.collection('courts').add(Object.assign({}, court)).
+    then((value) => {
+      this.router.navigate(['courts/' + value.id])
     })
+  }
+
+  clickToEnter() {
+    this.clicked = !this.clicked
   }
 }

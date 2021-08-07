@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule  } from '@angular/forms';
 
 // Material Form Controls
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -56,6 +56,10 @@ import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { CommunalRoomComponent } from './components/communal-room/communal-room.component';
+import { PrepRoomComponent } from './prep-room/prep-room.component';
+import { DebateRoomComponent } from './debate-room/debate-room.component';
+import { RoomRedirectComponent } from './room-redirect/room-redirect.component';
+import { JudgeComponent } from './judge/judge.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
@@ -71,9 +75,14 @@ const firebaseConfig = {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    CommunalRoomComponent
+    CommunalRoomComponent,
+    PrepRoomComponent,
+    DebateRoomComponent,
+    RoomRedirectComponent,
+    JudgeComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -115,8 +124,7 @@ const firebaseConfig = {
     FlexLayoutModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule,
-    FormsModule
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
