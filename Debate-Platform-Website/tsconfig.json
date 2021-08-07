@@ -20,7 +20,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "checkJs": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
