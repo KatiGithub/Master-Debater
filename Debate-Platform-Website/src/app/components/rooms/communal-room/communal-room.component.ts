@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore'
+import { ActivatedRoute, Params } from '@angular/router'
+import { FormatConstants } from '../../../constants/format_constants'
 
 interface Format {
   value: string;
@@ -11,18 +13,17 @@ interface Time {
   viewValue: string;
 }
 
-export interface PeriodicElement {
+export interface TableInterface {
   name: string;
   position: number;
-  weight: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079},
-  {position: 2, name: 'Helium', weight: 4.0026},
-  {position: 3, name: 'Lithium', weight: 6.941},
-  {position: 4, name: 'Beryllium', weight: 9.0122},
-  {position: 5, name: 'Boron', weight: 10.811}
+const ELEMENT_DATA: TableInterface[] = [
+  {position: 1, name: 'Hydrogen'},
+  {position: 2, name: 'Helium'},
+  {position: 3, name: 'Lithium'},
+  {position: 4, name: 'Beryllium'},
+  {position: 5, name: 'Boron'}
 ];
 
 @Component({
@@ -32,14 +33,31 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class CommunalRoomComponent implements OnInit {
-
-  constructor(private db: AngularFirestore){}
   
   selectedValue!: string;
   selectedTime!: string;
     
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+  
+  authorized: Boolean = false
+
+  constructor(private db: AngularFirestore,
+              private route: ActivatedRoute,
+              private courtId: Number,
+              private data: FormatConstants) {
+    this.route.params.subscribe((params: Params) => {
+      let courtId = params.court_id;
+      db.collection('courts').doc(courtId).get().toPromise().then((value) => {
+        let doc = value.data()
+        let current_host = JSON.parse(JSON.stringify(doc))['host']
+
+        if(current_host == localStorage.getItem('current_user')!['email']) {
+          this.authorized = true
+        }
+      })
+    })
+  }
   
   ngOnInit(): void {
   }
