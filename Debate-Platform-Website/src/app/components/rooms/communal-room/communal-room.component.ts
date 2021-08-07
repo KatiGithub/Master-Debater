@@ -37,7 +37,9 @@ export class CommunalRoomComponent implements OnInit {
   preptime = new FormControl('auto')
   format_control = new FormControl()
   public formatRef: string = ''
-  public POSITION_DATA: FormatPos[] = [];
+  public POSITION_DATA: FormatPos[] = [
+    
+  ];
   
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +62,7 @@ export class CommunalRoomComponent implements OnInit {
       console.log(value);
       firestore.updateDebateFormat(this.courtId, value);
 
+<<<<<<< HEAD
       this.POSITION_DATA = []
 
       for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
@@ -68,11 +71,26 @@ export class CommunalRoomComponent implements OnInit {
 
       // this.dataSource = this.POSITION_DATA;
       console.log(this.dataSource)
+=======
+      // for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
+      //   this.POSITION_DATA.push(new FormatPos(pos));
+      // }
+>>>>>>> b072029f14ace89cff495c874ca17aa6107357c4
     });
   }
 
+<<<<<<< HEAD
+  
+  
+  displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
+=======
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+<<<<<<< HEAD
   dataSource: FormatPos[] = []
+=======
+>>>>>>> b0e5084830c70fa643dcf16d690ae2e105db8ad2
+  dataSource = this.POSITION_DATA;
+>>>>>>> b072029f14ace89cff495c874ca17aa6107357c4
   
   authorized: Boolean = false;
   

@@ -33,21 +33,29 @@
     margin-left: 5%;
     margin-right: 3%;
     margin-top: 7%;
-    margin-bottom: 7%;
+    margin-bottom: 5%;
 } 
 
- .pic-card{
-     flex: 0.8;
-    /* width: 40%;
-    margin-left: 155%;
-    height: 60%; */
-    background-color: #E6E6E6;
-    border-radius: 40px;
+
+/* .pic-back{
+    flex: 0.8;
+    background-color: #E6E6E6;  
     margin-left: 7%;
     margin-right: 10%;
     margin-top: 7%;
-    margin-bottom: 7%;
+    margin-bottom: 5%;
+} */
+
+ .pic-card{
+    flex: 0.8;
+    background-image:url('../../../../src/assets/img/art.png'); 
+    background-size: 70%;
+    background-position: 80%;
+    background-repeat: no-repeat;
+    
 } 
+
+
 
  .title {
     padding-left: 2%;
