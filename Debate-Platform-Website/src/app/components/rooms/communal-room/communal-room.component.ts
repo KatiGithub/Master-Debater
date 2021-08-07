@@ -4,10 +4,8 @@ import { FirestoreService } from '../../../services/Firestore/firestore.service'
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
 
-
 class Format {
   constructor(public value: string) {}
-
 }
 
 interface Time {

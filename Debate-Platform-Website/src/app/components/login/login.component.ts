@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
 
   loginWithGoogle(){
+    console.log("Logging in with google")
     this.auth.doGoogleLogin()
   }
 }

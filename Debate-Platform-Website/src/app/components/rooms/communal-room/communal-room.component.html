@@ -8,7 +8,7 @@
       <h4>Select your debate format:</h4>
       <mat-form-field appearance="fill">
         <mat-label>Debate Format</mat-label>
-        <mat-select name="format" [formControl]="format_control">
+        <mat-select name="format" [formControl]="this.format_control">
           <mat-option *ngFor="let format of formats" [value]="format.value">
             {{format.value}}
           </mat-option>
