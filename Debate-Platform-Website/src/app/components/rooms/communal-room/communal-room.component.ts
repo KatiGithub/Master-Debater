@@ -19,13 +19,15 @@ export interface TableInterface {
   position: number;
 }
 
-const ELEMENT_DATA: TableInterface[] = [
-  {position: 1, name: 'Hydrogen'},
+const POSITION_DATA: TableInterface[] = [
+  {position: 1 , name: 'Hydrogen'},
   {position: 2, name: 'Helium'},
   {position: 3, name: 'Lithium'},
   {position: 4, name: 'Beryllium'},
   {position: 5, name: 'Boron'}
 ];
+
+
 
 @Component({
   selector: 'app-communal-room',
@@ -51,7 +53,7 @@ export class CommunalRoomComponent implements OnInit {
   selectedTime!: string;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  dataSource = POSITION_DATA;
 
   authorized: Boolean = false;
 
@@ -69,4 +71,8 @@ export class CommunalRoomComponent implements OnInit {
     { value: '3', viewValue: '45 minutes' },
     { value: '4', viewValue: '60 minutes' },
   ];
+
+  selectPosition() {
+    console.log('position selected');
+  }
 }
