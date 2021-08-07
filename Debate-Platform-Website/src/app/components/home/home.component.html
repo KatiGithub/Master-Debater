@@ -24,12 +24,13 @@
             <br> Secure Debate Meets
         </h1>
         <p class="text">Your next debate will be...</p>
-        <div style="margin-top: 8%;">
-            <button mat-raised-button style="background-color: #FBB03B; width: 20%; height: 50px; font-size: 20px;" (click)="createRoom()">Set up a debate</button>
-            <mat-form-field style="width: 30%; height: 60px;">
-                <input matInput type="text" placeholder="Enter room code here"/>
-            </mat-form-field>
-            <button mat-raised-button style="background-color: #F15A24; width: 20%; height: 50px; font-size: 20px;" (click)="clickToEnter()">Enter a room</button>
+        <mat-form-field style="width: 50%; padding-right: 2%; ">
+            <input matInput type="text" placeholder="Enter room code here"/>
+        </mat-form-field>
+        <button mat-raised-button style="background-color: #F15A24; width: 15%; height: 40px; font-size: 16px; margin-left: 0%;" (click)="clickToEnter()">Enter a room</button>
+        <div style="margin-top: 4%;">
+            <button mat-raised-button style="background-color: #FBB03B; width: 20%; height: 50px; font-size: 20px; " (click)="createRoom()">Set up a debate</button>
+
         </div>
     </mat-card-content>
 </mat-card>
