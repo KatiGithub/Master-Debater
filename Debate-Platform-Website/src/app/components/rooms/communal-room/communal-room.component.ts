@@ -19,10 +19,17 @@ interface Time {
 //   position: string;
 // }
 
-class FormatPos {
-  constructor(public pos: string) {}
-}
+// class FormatPos {
+//   constructor(public pos: string) {}
 
+//   getPos() {
+//     return this.pos;
+//   }
+// }
+
+interface FormatPos {
+  pos: string
+}
 
 @Component({
   selector: 'app-communal-room',
@@ -58,17 +65,23 @@ export class CommunalRoomComponent implements OnInit {
       this.formatRef = value;
       console.log(value);
       firestore.updateDebateFormat(this.courtId, value);
+
+      console.log(FormatConstants.formats[value]['positions'])
       
-      // for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
-      //   this.POSITION_DATA.push(new FormatPos(pos));
-      // }
+      for (let pos in FormatConstants.formats[value]['positions']) {
+        this.POSITION_DATA.push({'pos': FormatConstants.formats[value]['positions'][pos]});
+      }
+
+      console.log(this.POSITION_DATA)
+      this.dataSource = this.POSITION_DATA;
+      console.log(this.dataSource)
     });
   }
 
   
   
   displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
-  dataSource = this.POSITION_DATA;
+  dataSource: any[] = []
   
   authorized: Boolean = false;
   
