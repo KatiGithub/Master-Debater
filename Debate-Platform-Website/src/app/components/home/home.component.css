@@ -12,10 +12,14 @@
 }
 
 .titletext{
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    font-weight: 700;
     font-size: 50px;
 }
 
 .text {
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    font-weight: 300;
     font-size: 20px;
 }
 
