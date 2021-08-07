@@ -1,0 +1,29 @@
+.main-card {
+    max-width: fit-content;
+    height: fit-content;
+    animation: mainCardIn 2s;
+  }
+  
+  
+.parent {
+height: 100%;
+background-image: url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1347&q=80');
+background-size: cover;
+}
+
+.example-header-image {
+background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+background-size: cover;
+}
+
+@keyframes mainCardIn{
+from {
+    vertical-align: top;
+    transform: translateY(-100%);
+    opacity: 0;
+}
+to {
+    transform: translateY(0%);
+    opacity: 1;
+}
+}
