@@ -33,7 +33,7 @@
     margin-left: 5%;
     margin-right: 3%;
     margin-top: 7%;
-    margin-bottom: 7%;
+    margin-bottom: 5%;
 } 
 
  .pic-card{
@@ -46,19 +46,12 @@
     margin-left: 7%;
     margin-right: 10%;
     margin-top: 7%;
-<<<<<<< HEAD
     margin-bottom: 5%;
-    width: 100%;
-    height: 100%;
+    
 } 
 
 
 
-=======
-    margin-bottom: 7%;
-} 
-
->>>>>>> 865718e983d500bd2173d4bda22f1b63347ce229
  .title {
     padding-left: 2%;
     padding-top: 12%;
