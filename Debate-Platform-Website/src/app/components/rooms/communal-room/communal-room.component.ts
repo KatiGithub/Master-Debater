@@ -3,7 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
+import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { validateEventsArray } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 class Format {
   constructor(public value: string) {}
@@ -20,7 +22,8 @@ interface Time {
 // }
 
 class FormatPos {
-  constructor(public pos: string) {}
+  constructor(public pos: string) {
+  }
 }
 
 
@@ -57,14 +60,19 @@ export class CommunalRoomComponent implements OnInit {
       console.log(value);
       firestore.updateDebateFormat(this.courtId, value);
 
+      this.POSITION_DATA = []
+
       for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
         this.POSITION_DATA.push(new FormatPos(pos));
       }
+
+      // this.dataSource = this.POSITION_DATA;
+      console.log(this.dataSource)
     });
   }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = this.POSITION_DATA;
+  dataSource: FormatPos[] = []
   
   authorized: Boolean = false;
   
