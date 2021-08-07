@@ -18,6 +18,9 @@ class FormatPos {
   constructor(public pos: string) {}
 }
 
+interface FormatPos {
+  pos: string
+}
 
 @Component({
   selector: 'app-communal-room',
@@ -50,6 +53,8 @@ export class CommunalRoomComponent implements OnInit {
     this.format_control.valueChanges.subscribe((value: string) => {
       console.log(value);
       firestore.updateDebateFormat(this.courtId, value);
+
+      console.log(FormatConstants.formats[value]['positions'])
       
       this.POSITION_DATA = []
       this.OPPOSITION_DATA = []
