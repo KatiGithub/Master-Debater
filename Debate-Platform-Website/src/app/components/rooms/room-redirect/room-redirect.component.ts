@@ -19,13 +19,22 @@ export class RoomRedirectComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id
       this.db.collection('courts').doc(this.courtId)
-        .get().subscribe((value) => {
-          if (value) {
-            
+        .get().toPromise().then((value) => {
+          let returned_state = value.data()
+          let current_state = JSON.parse(JSON.stringify(returned_state))['state']
+
+          if(current_state == 0) {
+            this.router.navigate(['communal_room'])
+          } else if(current_state == 1) {
+            this.router.navigate(['prep_room'])
+          } else if(current_state == 2) {
+            this.router.navigate(['debate_room'])
+          } else if(current_state == 3) {
+            this.router.navigate(['judge_room'])
+          } else if(current_state == 4) {
+            this.router.navigate(['communal_room'])
           }
         })
-
-
     })
     
   }

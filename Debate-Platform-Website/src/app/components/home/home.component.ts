@@ -13,8 +13,6 @@ import { Court } from 'src/models/court';
 export class HomeComponent implements OnInit {
 
   constructor(private db: AngularFirestore, private router: Router) {
-    this.submitRoomId('uUYCKRTT2UrK5JJyBzL5')
-    // this.createRoom()
   }
 
   clicked = false;
@@ -26,10 +24,11 @@ export class HomeComponent implements OnInit {
 
   submitRoomId(roomid: string) {
     let roomId = this.roomId_formcontrol.value;
-    let usersref = this.db.collection('courts').doc(roomid).get().subscribe((value) => {
+    let usersref = this.db.collection('courts').doc(roomid).get()
+    .subscribe((value) => {
       console.log(value)
       if (value.exists == true) {
-        this.router.navigate(['communal/' + roomId])
+        this.router.navigate(['courts/' + roomid])
       }
     })
   }

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CommunalRoomComponent } from './communal-room.component';
 
 describe('CommunalRoomComponent', () => {
