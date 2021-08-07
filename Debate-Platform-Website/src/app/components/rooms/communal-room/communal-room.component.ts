@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
+import { format } from 'path';
+import { validateEventsArray } from '@angular/fire/firestore';
 
 class Format {
   constructor(public value: string) {}
@@ -33,7 +35,7 @@ export class CommunalRoomComponent implements OnInit {
   preptime = new FormControl('auto')
   format_control = new FormControl()
   public formatRef: string = ''
-  POSITION_DATA: FormatPos[] = [];
+  public POSITION_DATA: FormatPos[] = [];
   
   constructor(
     private route: ActivatedRoute,
@@ -56,8 +58,9 @@ export class CommunalRoomComponent implements OnInit {
       console.log(value);
       firestore.updateDebateFormat(this.courtId, value);
 
-      this.POSITION_DATA.
-      new 
+      for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
+        this.POSITION_DATA.push(new FormatPos(pos));
+      }
     });
 
     
@@ -66,7 +69,7 @@ export class CommunalRoomComponent implements OnInit {
   
   
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = POSITION_DATA;
+  dataSource = this.POSITION_DATA;
   
   authorized: Boolean = false;
   
@@ -75,16 +78,7 @@ export class CommunalRoomComponent implements OnInit {
       this.formats.push(new Format(x))
     }
 
-    switch (formatRef) {
-      case "Parliamentary Debates":
-        POSITION_DATA.push(new FormatPos(formatRef));
-        break;
-      case "WSDC":
-        POSITION_DATA.push(new FormatPos(formatRef));
-        break;
-      case ""
-          
-      }
+    
     
   }
   
