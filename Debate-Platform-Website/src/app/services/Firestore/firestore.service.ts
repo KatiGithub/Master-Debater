@@ -18,4 +18,8 @@ export class FirestoreService {
 
     return tmp;
   }
+
+  updatePrepTime(courtId: string, minutes: number) {
+    this.db.collection('courts').doc(courtId).update({'preptime': minutes}).then();
+  }
 }
