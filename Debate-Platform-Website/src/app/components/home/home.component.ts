@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   toLogIn(){
-    this.router.navigate(['login']);
+    this.router.navigate(['communal']);
   }
 
 

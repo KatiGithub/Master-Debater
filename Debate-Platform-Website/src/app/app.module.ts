@@ -53,6 +53,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
+import { CommunalRoomComponent } from './components/communal-room/communal-room.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
@@ -67,7 +68,8 @@ const firebaseConfig = {
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CommunalRoomComponent
   ],
   imports: [
     BrowserModule,
