@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
+import { FormControl } from '@angular/forms';
 
 
 interface Format {
@@ -10,7 +11,7 @@ interface Format {
 }
 
 interface Time {
-  value: string;
+  value: number;
   viewValue: string;
 }
 
@@ -34,7 +35,8 @@ const ELEMENT_DATA: TableInterface[] = [
 })
 export class CommunalRoomComponent implements OnInit {
   courtId: string = ''
-  
+  preptime = new FormControl('auto')
+
   constructor(
     private route: ActivatedRoute,
     private firestore: FirestoreService
@@ -45,6 +47,12 @@ export class CommunalRoomComponent implements OnInit {
         this.authorized = value;
       });
     });
+
+    this.preptime.valueChanges.subscribe((value: number) => {
+      console.log(value)
+      firestore.updatePrepTime(this.courtId, value)
+      
+    })
   }
 
   selectedValue!: string;
@@ -55,7 +63,8 @@ export class CommunalRoomComponent implements OnInit {
 
   authorized: Boolean = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   formats: Format[] = [
     { value: '1', viewValue: 'Asian Parliament' },
@@ -64,9 +73,9 @@ export class CommunalRoomComponent implements OnInit {
   ];
 
   times: Time[] = [
-    { value: '1', viewValue: '15 minutes' },
-    { value: '2', viewValue: '30 minutes' },
-    { value: '3', viewValue: '45 minutes' },
-    { value: '4', viewValue: '60 minutes' },
+    { value: 15, viewValue: '15 minutes' },
+    { value: 30, viewValue: '30 minutes' },
+    { value: 45, viewValue: '45 minutes' },
+    { value: 60, viewValue: '60 minutes' },
   ];
 }
