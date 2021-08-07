@@ -1,6 +1,7 @@
 .ex-card {
     width: 80%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     height: 60%;
     background-color: #E6E6E6;
     border-radius: 40px;
@@ -43,7 +44,7 @@
 }
 
 .midbox{
-    margin-bottom: 10%;
+    margin-bottom: 0%;
     height: 100%;
 }
 
@@ -75,7 +76,8 @@
 #cssmenu {
   width: 100%;
   border-bottom: 3px solid #F15A24;
-  font-family: Raleway, sans-serif;
+  font-family: 'Roboto', sans-serif;
+    font-weight: 100;
   line-height: 1;
 }
 #cssmenu ul {
@@ -102,8 +104,9 @@
 #cssmenu > ul > li > a {
   z-index: 2;
   padding: 20px 28px 14px 28px;
+  font-family: 'Roboto', sans-serif;
+    font-weight: 100;
   font-size: 15px;
-  font-weight: 400;
   text-decoration: none;
   color: #F15A24;
   -webkit-transition: all .2s ease;
@@ -147,7 +150,7 @@
 
 .container{
     min-width: 100%;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
 }
 
 
