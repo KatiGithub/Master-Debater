@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
+import { format } from 'path';
 
 class Format {
   constructor(public value: string) {}
@@ -13,19 +14,14 @@ interface Time {
   viewValue: string;
 }
 
-export interface TableInterface {
-  name: string;
-  position: number;
+// export interface TableInterface {
+//   name: string;
+//   position: string;
+// }
+
+class FormatPos {
+  constructor(public pos: string) {}
 }
-
-const POSITION_DATA: TableInterface[] = [
-  {position: 1 , name: 'Hydrogen'},
-  {position: 2, name: 'Helium'},
-  {position: 3, name: 'Lithium'},
-  {position: 4, name: 'Beryllium'},
-  {position: 5, name: 'Boron'}
-];
-
 
 
 @Component({
@@ -37,7 +33,9 @@ export class CommunalRoomComponent implements OnInit {
   courtId: string = ''
   preptime = new FormControl('auto')
   format_control = new FormControl()
-
+  public formatRef: string = ''
+  POSITION_DATA: FormatPos[] = [];
+  
   constructor(
     private route: ActivatedRoute,
     private firestore: FirestoreService
@@ -52,29 +50,48 @@ export class CommunalRoomComponent implements OnInit {
     this.preptime.valueChanges.subscribe((value: number) => {
       console.log(value)
       firestore.updatePrepTime(this.courtId, value)
-    })
+    });
 
     this.format_control.valueChanges.subscribe((value: string) => {
-      console.log(value)
-      firestore.updateDebateFormat(this.courtId, value)
-    })
+      this.formatRef = value;
+      console.log(value);
+      firestore.updateDebateFormat(this.courtId, value);
+
+      this.POSITION_DATA.
+      new 
+    });
+
+    
   }
 
-  selectedValue!: string;
-  selectedTime!: string;
-
+  
+  
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = POSITION_DATA;
-
+  
   authorized: Boolean = false;
-
+  
   ngOnInit(): void {
     for (let x in FormatConstants.formats) {
       this.formats.push(new Format(x))
     }
-  }
 
+    switch (formatRef) {
+      case "Parliamentary Debates":
+        POSITION_DATA.push(new FormatPos(formatRef));
+        break;
+      case "WSDC":
+        POSITION_DATA.push(new FormatPos(formatRef));
+        break;
+      case ""
+          
+      }
+    
+  }
+  
   formats: Format[] =[];
+  
+
 
   times: Time[] = [
     { value: 15, viewValue: '15 minutes' },
