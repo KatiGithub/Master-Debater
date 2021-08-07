@@ -61,8 +61,6 @@ export class CommunalRoomComponent implements OnInit {
         this.POSITION_DATA.push(new FormatPos(pos));
       }
     });
-
-    
   }
 
   
@@ -80,6 +78,9 @@ export class CommunalRoomComponent implements OnInit {
   
   formats: Format[] =[];
   
+  joinTeam(team_number: number) {
+    this.firestore.joinTeam(this.courtId, team_number)
+  }
 
   times: Time[] = [
     { value: 15, viewValue: '15 minutes' },

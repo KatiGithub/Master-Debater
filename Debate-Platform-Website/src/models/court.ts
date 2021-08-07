@@ -16,5 +16,10 @@ export class Court {
     preproom2?: [] = [];
     startTime?: Date;
     state?: Number = 0;
-    participants?: [] = []
+    participants?: Object = {
+        'audience': [],
+        'judges': [],
+        'team1': [],
+        'team2': []
+    }
 }

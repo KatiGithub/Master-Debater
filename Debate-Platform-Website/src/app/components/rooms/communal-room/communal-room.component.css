@@ -6,7 +6,8 @@
 }
 
 .content {
-    display: inline-block;
+    display: flex;
+    align-content: center;
 }
 
 .table {
@@ -18,3 +19,4 @@
     width: 100%;
     align-content: center;
 }
+

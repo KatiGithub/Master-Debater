@@ -29,19 +29,24 @@
     }
 } */
 
-
+.icon{
+    background-image:url('../../../../src/assets/img/Debate_logo.png'); 
+    background-size: 60%;
+    background-position: 93%;
+    background-repeat: no-repeat;
+}
 
 body {
     background-color: #f2f7fb
 }
 
 .login-block {
-    margin: 30px auto;
-    min-height: 93.6vh
+    margin: 0%;
+    min-height: 93.6vh;
 }
 
 .login-block .auth-box {
-    margin: 20px auto 0;
+    margin:5%;
     max-width: 450px !important
 }
 
