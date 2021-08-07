@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { ActivatedRoute, Params } from '@angular/router'
+import { FirestoreService } from '../../../services/Firestore/firestore.service'
 
 interface Format {
   value: string;
@@ -41,18 +42,13 @@ export class CommunalRoomComponent implements OnInit {
   
   authorized: Boolean = false
 
-  constructor(private db: AngularFirestore,
-              private route: ActivatedRoute,
-              private courtId: Number) {
+  constructor(private route: ActivatedRoute,
+              private courtId: string,
+              private firestore: FirestoreService) {
     this.route.params.subscribe((params: Params) => {
-      let courtId = params.court_id;
-      db.collection('courts').doc(courtId).get().toPromise().then((value) => {
-        let doc = value.data()
-        let current_host = JSON.parse(JSON.stringify(doc))['host']
-
-        if(current_host == localStorage.getItem('current_user')!['email']) {
-          this.authorized = true
-        }
+      this.courtId = params.court_id;
+      firestore.checkIfHost(courtId).then((value) => {
+        this.authorized = value
       })
     })
   }
