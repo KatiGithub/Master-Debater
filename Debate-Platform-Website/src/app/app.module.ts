@@ -61,6 +61,7 @@ import { DebateRoomComponent } from './components/rooms/debate-room/debate-room.
 import { RoomRedirectComponent } from './components/rooms/room-redirect/room-redirect.component';
 import { JudgeComponent } from './components/rooms/judge/judge.component';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
   authDomain: "debate-platform-7bba7.firebaseapp.com",

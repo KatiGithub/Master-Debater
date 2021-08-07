@@ -3,7 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
-import { format } from 'path';
 import { validateEventsArray } from '@angular/fire/firestore';
 
 class Format {
@@ -68,7 +67,7 @@ export class CommunalRoomComponent implements OnInit {
 
   
   
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
   dataSource = this.POSITION_DATA;
   
   authorized: Boolean = false;
@@ -77,14 +76,10 @@ export class CommunalRoomComponent implements OnInit {
     for (let x in FormatConstants.formats) {
       this.formats.push(new Format(x))
     }
-
-    
-    
   }
   
   formats: Format[] =[];
   
-
 
   times: Time[] = [
     { value: 15, viewValue: '15 minutes' },
