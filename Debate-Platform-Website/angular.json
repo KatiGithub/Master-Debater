@@ -122,6 +122,10 @@
               "devServerTarget": "Debate-Platform-Website:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

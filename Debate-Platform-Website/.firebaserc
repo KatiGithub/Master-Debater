@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "debate-platform-7bba7": {
+      "hosting": {
+        "Debate-Platform-Website": [
+          "debate-platform-7bba7"
+        ]
+      }
+    }
+  }
+}

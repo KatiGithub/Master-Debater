@@ -45,10 +45,22 @@ import { MatTableModule } from '@angular/material/table';
 
 import { FlexLayoutModule } from '@angular/flex-layout'; 
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
+  authDomain: "debate-platform-7bba7.firebaseapp.com",
+  projectId: "debate-platform-7bba7",
+  storageBucket: "debate-platform-7bba7.appspot.com",
+  messagingSenderId: "900108619027",
+  appId: "1:900108619027:web:2dbcfcff81701ff5aa9ee6"
+};
 
 @NgModule({
   declarations: [
@@ -94,7 +106,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
