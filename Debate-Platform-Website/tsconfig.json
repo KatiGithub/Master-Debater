@@ -21,7 +21,8 @@
       "es2018",
       "dom"
     ],
-    "checkJs": false
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

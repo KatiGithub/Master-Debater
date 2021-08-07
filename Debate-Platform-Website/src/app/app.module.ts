@@ -60,6 +60,7 @@ import { PrepRoomComponent } from './components/rooms/prep-room/prep-room.compon
 import { DebateRoomComponent } from './components/rooms/debate-room/debate-room.component';
 import { RoomRedirectComponent } from './components/rooms/room-redirect/room-redirect.component';
 import { JudgeComponent } from './components/rooms/judge/judge.component';
+import { VoiceCallComponent } from './components/voice-call/voice-call.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
@@ -79,7 +80,8 @@ const firebaseConfig = {
     PrepRoomComponent,
     DebateRoomComponent,
     RoomRedirectComponent,
-    JudgeComponent
+    JudgeComponent,
+    VoiceCallComponent
   ],
   imports: [
     ReactiveFormsModule,
