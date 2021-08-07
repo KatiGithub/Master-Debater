@@ -29,18 +29,20 @@ export class FirestoreService {
 
   joinTeam(courtId: string, team_number) {
     this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
+      let email = JSON.parse(localStorage.getItem('current_user')!)['email']
+      let team_name = "team" + team_number
+
       let returned_value = value.data()
       let current_participants = JSON.parse(JSON.stringify(returned_value))['participants']
-      let current_team = current_participants['team' + team_number]
+      let current_team = current_participants[team_name]
       console.log(current_participants)
-      if (current_team.length <= 3) {
-        current_team.push(JSON.parse(localStorage.getItem('current_user')!)['email'])
-        current_participants['team' + JSON.stringify(team_number)] = current_team
+      if (current_team.length < 3) {
+        current_team.push(email)
+        current_participants[team_name] = current_team
 
         console.log(current_participants)
+        this.db.collection('courts').doc(courtId).update({'participants': current_participants}).then()
       }
-
-      this.db.collection('courts').doc(courtId).update({'participants': current_participants}).then()
     })
   }
 }
