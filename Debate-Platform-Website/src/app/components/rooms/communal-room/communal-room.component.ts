@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore'
-import { ActivatedRoute, Params } from '@angular/router'
-import { FormatConstants } from '../../../constants/format_constants'
+import { ActivatedRoute, Params } from '@angular/router';
+import { FirestoreService } from '../../../services/Firestore/firestore.service';
+import { FormatConstants } from '../../../constants/format_constants';
+
 
 interface Format {
   value: string;
@@ -29,50 +30,43 @@ const ELEMENT_DATA: TableInterface[] = [
 @Component({
   selector: 'app-communal-room',
   templateUrl: './communal-room.component.html',
-  styleUrls: ['./communal-room.component.css']
+  styleUrls: ['./communal-room.component.css'],
 })
-
 export class CommunalRoomComponent implements OnInit {
+  courtId: string = ''
   
+  constructor(
+    private route: ActivatedRoute,
+    private firestore: FirestoreService
+  ) {
+    this.route.params.subscribe((params: Params) => {
+      this.courtId = params.court_id;
+      firestore.checkIfHost(this.courtId).then((value) => {
+        this.authorized = value;
+      });
+    });
+  }
+
   selectedValue!: string;
   selectedTime!: string;
-    
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  
-  authorized: Boolean = false
 
-  constructor(private db: AngularFirestore,
-              private route: ActivatedRoute,
-              private courtId: Number,
-              private data: FormatConstants) {
-    this.route.params.subscribe((params: Params) => {
-      let courtId = params.court_id;
-      db.collection('courts').doc(courtId).get().toPromise().then((value) => {
-        let doc = value.data()
-        let current_host = JSON.parse(JSON.stringify(doc))['host']
+  authorized: Boolean = false;
 
-        if(current_host == localStorage.getItem('current_user')!['email']) {
-          this.authorized = true
-        }
-      })
-    })
-  }
-  
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   formats: Format[] = [
-    {value: '1', viewValue: 'Asian Parliament'},
-    {value: '2', viewValue: 'British'},
-    {value: '3', viewValue: ''}
+    { value: '1', viewValue: 'Asian Parliament' },
+    { value: '2', viewValue: 'British' },
+    { value: '3', viewValue: '' },
   ];
 
   times: Time[] = [
-    {value: '1', viewValue: '15 minutes'},
-    {value: '2', viewValue: '30 minutes'},
-    {value: '3', viewValue: '45 minutes'},
-    {value: '4', viewValue: '60 minutes'}
+    { value: '1', viewValue: '15 minutes' },
+    { value: '2', viewValue: '30 minutes' },
+    { value: '3', viewValue: '45 minutes' },
+    { value: '4', viewValue: '60 minutes' },
   ];
 }
-
