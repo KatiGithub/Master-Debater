@@ -27,19 +27,19 @@ const routes: Routes = [
     component: RoomRedirectComponent
   },
   {
-    path: 'communal_room',
+    path: 'communal_room/:court_id',
     component: CommunalRoomComponent
   },
   {
-    path: 'prep_room',
+    path: 'prep_room/:court_id',
     component: PrepRoomComponent
   },
   {
-    path: 'debate_room',
+    path: 'debate_room/:court_id',
     component: DebateRoomComponent,
   },
   {
-    path: 'judge-room',
+    path: 'judge-room/:court_id',
     component: JudgeComponent
   }
 ];

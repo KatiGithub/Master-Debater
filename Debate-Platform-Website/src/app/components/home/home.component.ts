@@ -22,13 +22,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitRoomId(roomid: string) {
+  submitRoomId() {
     let roomId = this.roomId_formcontrol.value;
-    let usersref = this.db.collection('courts').doc(roomid).get()
+    let usersref = this.db.collection('courts').doc(roomId).get()
     .subscribe((value) => {
       console.log(value)
       if (value.exists == true) {
-        this.router.navigate(['courts/' + roomid])
+        this.router.navigate(['courts/' + roomId])
       }
     })
   }

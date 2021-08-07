@@ -4,6 +4,7 @@
 
 <mat-card class="body">
   <mat-card-content>
+<<<<<<< HEAD
       <form>
           <h4>Select your debate format:</h4>
           <mat-form-field appearance="fill">
@@ -84,5 +85,62 @@
             </div>
           </div>
         </form>
+=======
+    <form>
+      <h4>Select your debate format:</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Debate Format</mat-label>
+        <mat-select name="format" [formControl]="format_control">
+          <mat-option *ngFor="let format of formats" [value]="format.value">
+            {{format.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h4>Preparation time:</h4>
+      <mat-form-field appearance="fill" >
+        <mat-label>Select time</mat-label>
+        <mat-select name="time" [formControl]="preptime">
+          <mat-option *ngFor="let time of times" [value]="time.value">
+            {{time.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </form>
+>>>>>>> 9c8c3f7c77c72ed5486395f921aca02cc201012e
   </mat-card-content>
 </mat-card>

@@ -24,15 +24,15 @@ export class RoomRedirectComponent implements OnInit {
           let current_state = JSON.parse(JSON.stringify(returned_state))['state']
 
           if(current_state == 0) {
-            this.router.navigate(['communal_room'])
+            this.router.navigate(['communal_room/' + this.courtId])
           } else if(current_state == 1) {
-            this.router.navigate(['prep_room'])
+            this.router.navigate(['prep_room/' + this.courtId])
           } else if(current_state == 2) {
-            this.router.navigate(['debate_room'])
+            this.router.navigate(['debate_room/' + this.courtId])
           } else if(current_state == 3) {
-            this.router.navigate(['judge_room'])
+            this.router.navigate(['judge_room/' + this.courtId])
           } else if(current_state == 4) {
-            this.router.navigate(['communal_room'])
+            this.router.navigate(['communal_room/' + this.courtId])
           }
         })
     })

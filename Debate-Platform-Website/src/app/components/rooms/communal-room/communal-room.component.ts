@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
+import { FormControl } from '@angular/forms';
 
 
-interface Format {
-  value: string;
-  viewValue: string;
+class Format {
+  constructor(public value: string) {}
+
 }
 
 interface Time {
-  value: string;
+  value: number;
   viewValue: string;
 }
 
@@ -36,7 +37,9 @@ const POSITION_DATA: TableInterface[] = [
 })
 export class CommunalRoomComponent implements OnInit {
   courtId: string = ''
-  
+  preptime = new FormControl('auto')
+  format_control = new FormControl()
+
   constructor(
     private route: ActivatedRoute,
     private firestore: FirestoreService
@@ -47,6 +50,16 @@ export class CommunalRoomComponent implements OnInit {
         this.authorized = value;
       });
     });
+
+    this.preptime.valueChanges.subscribe((value: number) => {
+      console.log(value)
+      firestore.updatePrepTime(this.courtId, value)
+    })
+
+    this.format_control.valueChanges.subscribe((value: string) => {
+      console.log(value)
+      firestore.updateDebateFormat(this.courtId, value)
+    })
   }
 
   selectedValue!: string;
@@ -57,19 +70,19 @@ export class CommunalRoomComponent implements OnInit {
 
   authorized: Boolean = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    for (let x in FormatConstants.formats) {
+      this.formats.push(new Format(x))
+    }
+  }
 
-  formats: Format[] = [
-    { value: '1', viewValue: 'Asian Parliament' },
-    { value: '2', viewValue: 'British' },
-    { value: '3', viewValue: '' },
-  ];
+  formats: Format[] =[];
 
   times: Time[] = [
-    { value: '1', viewValue: '15 minutes' },
-    { value: '2', viewValue: '30 minutes' },
-    { value: '3', viewValue: '45 minutes' },
-    { value: '4', viewValue: '60 minutes' },
+    { value: 15, viewValue: '15 minutes' },
+    { value: 30, viewValue: '30 minutes' },
+    { value: 45, viewValue: '45 minutes' },
+    { value: 60, viewValue: '60 minutes' },
   ];
 
   selectPosition() {
