@@ -34,7 +34,9 @@ export class CommunalRoomComponent implements OnInit {
   preptime = new FormControl('auto')
   format_control = new FormControl()
   public formatRef: string = ''
-  public POSITION_DATA: FormatPos[] = [];
+  public POSITION_DATA: FormatPos[] = [
+    
+  ];
   
   constructor(
     private route: ActivatedRoute,
@@ -57,19 +59,15 @@ export class CommunalRoomComponent implements OnInit {
       console.log(value);
       firestore.updateDebateFormat(this.courtId, value);
 
-      for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
-        this.POSITION_DATA.push(new FormatPos(pos));
-      }
+      // for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
+      //   this.POSITION_DATA.push(new FormatPos(pos));
+      // }
     });
   }
 
-<<<<<<< HEAD
   
   
   displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
-=======
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
->>>>>>> d4b5224a8ecad0d363bba930608fff6d3a25b7af
   dataSource = this.POSITION_DATA;
   
   authorized: Boolean = false;
