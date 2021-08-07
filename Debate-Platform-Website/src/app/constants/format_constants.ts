@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core"
 
 @Injectable()
 export class FormatConstants {
+    
     static formats = {
         'Parliamentary Debates': {
             'minutesperspeech': [7, 8, 8, 8, 4, 4],

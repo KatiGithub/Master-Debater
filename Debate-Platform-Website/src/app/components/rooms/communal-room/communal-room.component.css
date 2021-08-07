@@ -6,15 +6,17 @@
 }
 
 .content {
-    display: inline-block;
-    
+    display: flex;
+    align-content: center;
 }
+
 .table {
     margin: 40px;
-    
+
 }
 
 .card {
     width: 100%;
     align-content: center;
 }
+
