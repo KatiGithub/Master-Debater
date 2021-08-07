@@ -14,11 +14,6 @@ interface Time {
   viewValue: string;
 }
 
-// export interface TableInterface {
-//   name: string;
-//   position: string;
-// }
-
 class FormatPos {
   constructor(public pos: string) {}
 }
@@ -33,10 +28,8 @@ export class CommunalRoomComponent implements OnInit {
   courtId: string = ''
   preptime = new FormControl('auto')
   format_control = new FormControl()
-  public formatRef: string = ''
-  public POSITION_DATA: FormatPos[] = [
-    
-  ];
+  public POSITION_DATA: FormatPos[] = [];
+  public OPPOSITION_DATA: FormatPos[] = [];
   
   constructor(
     private route: ActivatedRoute,
@@ -55,20 +48,30 @@ export class CommunalRoomComponent implements OnInit {
     });
 
     this.format_control.valueChanges.subscribe((value: string) => {
-      this.formatRef = value;
       console.log(value);
       firestore.updateDebateFormat(this.courtId, value);
       
-      // for (let pos in FormatConstants.formats[this.formatRef]['positions']) {
-      //   this.POSITION_DATA.push(new FormatPos(pos));
-      // }
+      this.POSITION_DATA = []
+      this.OPPOSITION_DATA = []
+      for (let pos in FormatConstants.formats[value]['positions']) {
+        this.POSITION_DATA.push({'pos': FormatConstants.formats[value]['positions'][pos]});
+      }
+      for (let opp in FormatConstants.formats[value]['positionsOpp']) {
+        this.OPPOSITION_DATA.push({'pos': FormatConstants.formats[value]['positionsOpp'][opp]});
+      }
+      
+      console.log(this.POSITION_DATA);
+      console.log(this.OPPOSITION_DATA);
+      this.Team1 = this.POSITION_DATA;
+      this.Team2 = this.OPPOSITION_DATA;
     });
   }
 
   
   
   displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
-  dataSource = this.POSITION_DATA;
+  Team1: any[] = [];
+  Team2: any[] = [];
   
   authorized: Boolean = false;
   
