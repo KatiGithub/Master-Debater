@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
+import { FormatConstants } from '../../../constants/format_constants';
+
 
 interface Format {
   value: string;
@@ -12,18 +14,17 @@ interface Time {
   viewValue: string;
 }
 
-export interface PeriodicElement {
+export interface TableInterface {
   name: string;
   position: number;
-  weight: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079 },
-  { position: 2, name: 'Helium', weight: 4.0026 },
-  { position: 3, name: 'Lithium', weight: 6.941 },
-  { position: 4, name: 'Beryllium', weight: 9.0122 },
-  { position: 5, name: 'Boron', weight: 10.811 },
+const ELEMENT_DATA: TableInterface[] = [
+  {position: 1, name: 'Hydrogen'},
+  {position: 2, name: 'Helium'},
+  {position: 3, name: 'Lithium'},
+  {position: 4, name: 'Beryllium'},
+  {position: 5, name: 'Boron'}
 ];
 
 @Component({
