@@ -1,0 +1,10 @@
+.body {
+    display: flex;
+    padding-left: 80px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.content {
+    display: inline-block;
+}

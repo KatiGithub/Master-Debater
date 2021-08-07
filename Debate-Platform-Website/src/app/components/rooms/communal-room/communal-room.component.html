@@ -4,11 +4,93 @@
 
 <mat-card class="body">
   <mat-card-content>
+<<<<<<< HEAD
+      <form>
+          <h4>Select your debate format:</h4>
+          <mat-form-field appearance="fill">
+            <mat-label>Debate Format</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="format">
+              <mat-option *ngFor="let format of formats" [value]="format.value">
+                {{format.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <h4>Preparation time:</h4>
+          <mat-form-field appearance="fill">
+            <mat-label>Select time</mat-label>
+            <mat-select [(ngModel)]="selectedTime" name="time">
+              <mat-option *ngFor="let time of times" [value]="time.value">
+                {{time.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <div class='content'>
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef> Weight </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+                
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef> Weight </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+          </div>
+        </form>
+=======
     <form>
       <h4>Select your debate format:</h4>
       <mat-form-field appearance="fill">
         <mat-label>Debate Format</mat-label>
-        <mat-select name="format" [formControl]="format_control">
+        <mat-select name="format" [formControl]="this.format_control">
           <mat-option *ngFor="let format of formats" [value]="format.value">
             {{format.value}}
           </mat-option>
@@ -59,5 +141,6 @@
       </table>
 
     </form>
+>>>>>>> 9c8c3f7c77c72ed5486395f921aca02cc201012e
   </mat-card-content>
 </mat-card>
