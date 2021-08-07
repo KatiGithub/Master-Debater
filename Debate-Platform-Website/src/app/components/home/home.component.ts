@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
       }
     })
   }
-  toLogIn(){
+  toCommunal(){
     this.router.navigate(['communal']);
   }
 
