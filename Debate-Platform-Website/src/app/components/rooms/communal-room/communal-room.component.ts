@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 interface Format {
   value: string;
@@ -31,6 +32,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class CommunalRoomComponent implements OnInit {
+
+  constructor(private db: AngularFirestore){}
+  
   selectedValue!: string;
   selectedTime!: string;
     
