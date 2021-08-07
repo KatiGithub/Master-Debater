@@ -3,7 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
-import { format } from 'path';
 
 class Format {
   constructor(public value: string) {}
