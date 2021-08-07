@@ -1,24 +1,41 @@
-<mat-toolbar>
-    <span class="Debate">Debate</span>
-</mat-toolbar>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
 
+
+<div class="container">
+	<div class="row">
+		<div id="cssmenu">
+            <ul>
+             <li class="active"><a href="#">Debate Rooms</a></li>
+             <li><a href="#">Formats</a></li>
+             <li><a href="#">Help</a></li>
+             <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+	</div>
+</div>
+
+<div class="midbox">
 <mat-card class="ex-card">
     <mat-card-content class="title">
         <h1 class="titletext">Debating is for Everyone
             <br> Secure Debate Meets
         </h1>
         <p class="text">Your next debate will be...</p>
-        <div style="margin-top: 8%;">
-            <button mat-raised-button style="background-color: #FBB03B; width: 20%; height: 50px; font-size: 20px;" (click)="createRoom()">Set up a debate</button>
-            <mat-form-field style="width: 30%; height: 60px;">
-                <input matInput type="text" placeholder="Enter room code here"/>
-            </mat-form-field>
-            <button mat-raised-button style="background-color: #F15A24; width: 20%; height: 50px; font-size: 20px;" (click)="submitRoomId()">Enter a room</button>
+        <mat-form-field style="width: 50%; padding-right: 2%; ">
+            <input matInput type="text" placeholder="Enter room code here"/>
+        </mat-form-field>
+        <button mat-raised-button style="background-color: #F15A24; width: 15%; height: 40px; font-size: 16px; margin-left: 0%;" (click)="clickToEnter()">Enter a room</button>
+        <div style="margin-top: 4%;">
+            <button mat-raised-button style="background-color: #FBB03B; width: 20%; height: 50px; font-size: 20px; " (click)="createRoom()">Set up a debate</button>
+
         </div>
     </mat-card-content>
 </mat-card>
+</div>
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
