@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore'
+import { ActivatedRoute, Params } from '@angular/router'
 
 interface Format {
   value: string;
@@ -36,6 +38,24 @@ export class CommunalRoomComponent implements OnInit {
     
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+  
+  authorized: Boolean = false
+
+  constructor(private db: AngularFirestore,
+              private route: ActivatedRoute,
+              private courtId: Number) {
+    this.route.params.subscribe((params: Params) => {
+      let courtId = params.court_id;
+      db.collection('courts').doc(courtId).get().toPromise().then((value) => {
+        let doc = value.data()
+        let current_host = JSON.parse(JSON.stringify(doc))['host']
+
+        if(current_host == localStorage.getItem('current_user')!['email']) {
+          this.authorized = true
+        }
+      })
+    })
+  }
   
   ngOnInit(): void {
   }
