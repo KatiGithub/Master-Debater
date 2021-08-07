@@ -63,13 +63,7 @@ export class CommunalRoomComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  
-  
-  displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
-=======
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
->>>>>>> d4b5224a8ecad0d363bba930608fff6d3a25b7af
   dataSource = this.POSITION_DATA;
   
   authorized: Boolean = false;
