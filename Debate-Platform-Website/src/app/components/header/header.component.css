@@ -26,7 +26,7 @@
   #cssmenu ul li,
   #cssmenu ul li a {
     margin: 0;
-    padding-top: 0.8%;
+    padding-top: 0.1%;
     border: 0;
     list-style: none;
     line-height: 1;
@@ -121,8 +121,8 @@
   }
   
   #cssmenu > ul > img{
-    width: 13%;
-    height: 13%;
+    width: 11%;
+    height: 11%;
     float: left;
     padding-bottom: 0%;
     padding-right: 0%;
