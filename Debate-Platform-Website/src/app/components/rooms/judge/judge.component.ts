@@ -1,5 +1,8 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FormatConstants } from 'src/app/constants/format_constants';
 import { FirestoreService } from 'src/app/services/Firestore/firestore.service';
 
 @Component({
@@ -9,7 +12,12 @@ import { FirestoreService } from 'src/app/services/Firestore/firestore.service';
 })
 export class JudgeComponent implements OnInit {
 
-  courtId: string = ''
+  courtId: string = '';
+  judgenotes!: FormGroup;
+  team1parts: string[] = [];
+  team2parts: string[] = [];
+
+  modules = {}
 
   constructor(
     private firestore: FirestoreService,
@@ -30,6 +38,19 @@ export class JudgeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.judgenotes = new FormGroup({
+      judgeNotes: new FormControl()
+    })
+
+    this.firestore.getFormat(this.courtId).then((value) =>{
+      let posit = value;
+      console.log(posit)
+      this.team1parts = FormatConstants.formats[posit].positions;
+      this.team2parts = FormatConstants.formats[posit].positionsOpp;
+      console.log(this.team1parts);
+      console.log(this.team2parts);
+    })
   }
+  
 
 }
