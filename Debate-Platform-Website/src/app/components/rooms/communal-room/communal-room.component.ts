@@ -15,7 +15,7 @@ interface Time {
 }
 
 class FormatPos {
-  constructor(public pos: string) {}
+  constructor(public pos: string, public team_member?: string) {}
 }
 
 interface FormatPos {
@@ -52,6 +52,16 @@ export class CommunalRoomComponent implements OnInit {
       if(current_document['state'] != 0) {
         this.router.navigate(['courts/' + this.courtId])
       }
+
+      for (let x in current_document['participants']['team1']) {
+        this.Team1[x].team_member = current_document['participants']['team1'][x]
+      }
+
+      for (let x in current_document['participants']['team2']) {
+        this.Team2[x].team_member = current_document['participants']['team2'][x]
+      }
+
+    
     })
   
     this.preptime.valueChanges.subscribe((value: number) => {
@@ -80,7 +90,7 @@ export class CommunalRoomComponent implements OnInit {
       this.Team2 = this.OPPOSITION_DATA;
     });
 
-    
+
   }
 
   displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
