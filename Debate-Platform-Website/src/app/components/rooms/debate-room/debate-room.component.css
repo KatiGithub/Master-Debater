@@ -5,10 +5,20 @@
     background-position: 93%;
 }
 
-/* .debate-room{
+.icon {
     background-image: url("../../../../assets/img/Debate.png");
-    background-repeat: no-repeat;
     background-size: 100%;
-    background-position: 93%;
-}  */
+    background-position: 0%;
+    background-repeat:no-repeat;
+    min-width: 100%;
+      min-height: 100%;
+  }
+
+  .transp{
+      min-width: 100%;
+      min-height: 100%;
+      opacity: 0;
+  }
+
+
 
