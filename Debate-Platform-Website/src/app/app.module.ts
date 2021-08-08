@@ -63,6 +63,7 @@ import { JudgeComponent } from './components/rooms/judge/judge.component';
 import { VoiceCallComponent } from './components/voice-call/voice-call.component';
 import * as Quill from "quill"
 import { QuillModule } from 'ngx-quill';
+import { ClipboardModule } from '@angular/cdk/clipboard'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
@@ -91,6 +92,7 @@ const firebaseConfig = {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ClipboardModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,
