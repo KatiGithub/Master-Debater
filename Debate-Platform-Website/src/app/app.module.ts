@@ -61,6 +61,7 @@ import { DebateRoomComponent } from './components/rooms/debate-room/debate-room.
 import { RoomRedirectComponent } from './components/rooms/room-redirect/room-redirect.component';
 import { JudgeComponent } from './components/rooms/judge/judge.component';
 import { VoiceCallComponent } from './components/voice-call/voice-call.component';
+import * as Quill from "quill"
 import { QuillModule } from 'ngx-quill';
 
 const firebaseConfig = {
@@ -129,7 +130,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    QuillModule
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

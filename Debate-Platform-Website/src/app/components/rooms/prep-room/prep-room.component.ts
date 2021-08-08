@@ -13,6 +13,8 @@ export class PrepRoomComponent implements OnInit {
   courtId: string = '';
   notesForm!: FormGroup;
 
+  modules = {}
+
   constructor(
     private firestore: FirestoreService,
     private route: ActivatedRoute,
