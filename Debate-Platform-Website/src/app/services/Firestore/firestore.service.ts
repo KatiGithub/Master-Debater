@@ -107,7 +107,8 @@ export class FirestoreService {
       .then((value) => {
         let current_value = JSON.parse(JSON.stringify(value.data()));
 
-        return current_value.format;
+        console.log(current_value)
+        return current_value.debate_format;
       });
   }
 

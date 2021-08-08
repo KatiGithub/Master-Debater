@@ -44,6 +44,7 @@ export class JudgeComponent implements OnInit {
 
     this.firestore.getFormat(this.courtId).then((value) =>{
       let posit = value;
+      console.log(posit)
       this.team1parts = FormatConstants.formats[posit].positions;
       this.team2parts = FormatConstants.formats[posit].positionsOpp;
       console.log(this.team1parts);
