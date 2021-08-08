@@ -40,8 +40,6 @@ export class PrepRoomComponent implements OnInit {
         this.firestore.getPrepTime(this.courtId).then((value: number) => {
           console.log(value)
           let timeObservable = new Observable<number>((observer) => {
-            
-            
             let count = 0
             setInterval(() => {
               let timeleft = value - (new Date().getTime() - this.startTime.getTime())/60000
@@ -58,7 +56,7 @@ export class PrepRoomComponent implements OnInit {
           }).subscribe((value) => {
             let seconds = value % 1
             seconds = Math.round(seconds * 60)
-            this.minutes_left = Math.round(value)
+            this.minutes_left = value - (value %1)
             this.seconds_left = seconds
           }) 
         })

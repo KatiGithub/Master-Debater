@@ -32,6 +32,7 @@ export class CommunalRoomComponent implements OnInit {
   preptime = new FormControl('auto')
   format_control = new FormControl()
   topic_control = new FormControl()
+  debate_link: string = ''
   public POSITION_DATA: FormatPos[] = [];
   public OPPOSITION_DATA: FormatPos[] = [];
   
@@ -42,11 +43,10 @@ export class CommunalRoomComponent implements OnInit {
   ) {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id;
+      this.debate_link = location.origin + "/court_id/" + this.courtId;
       firestore.checkIfHost(this.courtId).then((value) => {
         this.authorized = value;
       });
-
-
     });
 
     this.firestore.checkForChange(this.courtId).subscribe((value) => {
