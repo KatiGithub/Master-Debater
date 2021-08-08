@@ -51,17 +51,18 @@ export class CommunalRoomComponent implements OnInit {
     this.firestore.checkForChange(this.courtId).subscribe((value) => {
       let current_document = JSON.parse(JSON.stringify(value.payload.data()))
 
+      console.log(current_document)
+
       if(current_document['state'] != 0) {
         this.router.navigate(['courts/' + this.courtId])
       }
 
-      for (let x in current_document['participants']['team1']) {
-        this.Team1[x].team_member = current_document['participants']['team1'][x]
-      }
-
-      for (let x in current_document['participants']['team2']) {
-        this.Team2[x].team_member = current_document['participants']['team2'][x]
-      }
+      this.firestore.getCurrentTeams(this.courtId).then((value) => {
+        for(let x in this.Team1) {
+          this.Team1[x].team_member = value['team1'][x]
+          this.Team2[x].team_member = value['team2'][x]
+        }
+      })
     })
   
     this.preptime.valueChanges.subscribe((value: number) => {
@@ -105,6 +106,7 @@ export class CommunalRoomComponent implements OnInit {
     }
 
     this.firestore.getCurrentTeams(this.courtId).then((value: Object) => {
+      console.log(value)
       for(let x in this.Team1) {
         this.Team1[x].team_member = value['team1'][x]
         this.Team2[x].team_member = value['team2'][x]
@@ -131,5 +133,9 @@ export class CommunalRoomComponent implements OnInit {
 
   selectPosition() {
     console.log('position selected');
+  }
+
+  start() {
+    this.firestore.goToNextStage(this.courtId, 0)
   }
 }

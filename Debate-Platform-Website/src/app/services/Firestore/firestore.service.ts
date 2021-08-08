@@ -56,7 +56,8 @@ export class FirestoreService {
 
   getCurrentTeams(courtId: string) {
     return this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
-      let current_value = JSON.parse(JSON.stringify(value))
+      let current_value = JSON.parse(JSON.stringify(value.data()))
+      console.log(current_value)
 
       current_value = {
         'team1': current_value['participants']['team1'],
@@ -64,14 +65,20 @@ export class FirestoreService {
       }
 
       return current_value
+    }).catch((err) => {
+      console.log("error here")
     })
   }
 
   getFormat(courtId: string) {
     return this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
-      let current_value = JSON.parse(JSON.stringify(value))
+      let current_value = JSON.parse(JSON.stringify(value.data()))
 
       return current_value.format
     })
+  }
+
+  goToNextStage(courtId: string, current_stage: number) {
+    this.db.collection('courts').doc(courtId).update({'state': current_stage + 1}).then()
   }
 }
