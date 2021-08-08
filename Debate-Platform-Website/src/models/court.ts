@@ -25,6 +25,6 @@ export class Court {
 
     host?: Object = {
         'email': JSON.parse(localStorage.getItem('current_user')!)['email'],
-        'webrtc_token': undefined
+        'webrtc_token': ''
     }
 }

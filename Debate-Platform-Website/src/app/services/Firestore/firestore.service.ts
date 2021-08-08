@@ -15,7 +15,7 @@ export class FirestoreService {
   checkIfHost(courtId: string) {
     return this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
       let doc = value.data()
-      let current_host = JSON.parse(JSON.stringify(doc))['host']
+      let current_host = JSON.parse(JSON.stringify(doc))['host']['email']
 
       let user = JSON.parse(localStorage.getItem('current_user')!)['email']
 
