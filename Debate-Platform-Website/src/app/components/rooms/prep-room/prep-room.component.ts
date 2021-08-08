@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FirestoreService } from 'src/app/services/Firestore/firestore.service';
 
@@ -10,6 +11,7 @@ import { FirestoreService } from 'src/app/services/Firestore/firestore.service';
 export class PrepRoomComponent implements OnInit {
 
   courtId: string = '';
+  notesForm!: FormGroup;
 
   constructor(
     private firestore: FirestoreService,
@@ -34,7 +36,9 @@ export class PrepRoomComponent implements OnInit {
         }
       })
     });
-    
+    this.notesForm = new FormGroup({
+      'notes': new FormControl(null)
+    })
   }
 
 }

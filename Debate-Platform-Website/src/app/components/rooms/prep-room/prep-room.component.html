@@ -9,6 +9,12 @@
     <h1>timer here</h1>
 </mat-card>
 <mat-card class="Main-card">
+  <form [formGroup]="notesForm">
+    <div class="form-group">
+      <label for="notes"><h3>Editor</h3></label>
+      <quill-editor formControlName="notes"></quill-editor>
+    </div>
+  </form>
   <mat-card-content class="Main-content">
     <div class="top">
       <div class="Motion-box">
