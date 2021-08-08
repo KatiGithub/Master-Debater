@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) { }
 
-  home_page: Boolean = false;
+  home_page: Boolean = true;
 
   ngOnInit(): void {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)
