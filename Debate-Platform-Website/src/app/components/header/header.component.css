@@ -4,13 +4,17 @@
   }
   .or-container {
     align-items: center;
-    color: #ccc;
+    color: #ccc;;
     display: flex;
     margin: 4%;
   }
 
+  .Call-head {
+    background-color: white;
+  }
+
   .line-separator {
-    background-color: #ccc;
+    background-color:#ccc;
     flex-grow: 5;
     height: 1px;
   }
@@ -26,7 +30,7 @@
   #cssmenu ul li,
   #cssmenu ul li a {
     margin: 0;
-    padding-top: 0.8%;
+    padding-top: 0.1%;
     border: 0;
     list-style: none;
     line-height: 1;
@@ -121,8 +125,8 @@
   }
   
   #cssmenu > ul > img{
-    width: 13%;
-    height: 13%;
+    width: 11%;
+    height: 11%;
     float: left;
     padding-bottom: 0%;
     padding-right: 0%;
