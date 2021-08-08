@@ -223,6 +223,15 @@
   background: #ff931e;
 }
 
+#cssmenu > ul > img{
+  width: 9%;
+  height: 9%;
+  float: left;
+}
+
+
+
+
 /*footer*/
 .col_white_amrc {
   color: #fff;
