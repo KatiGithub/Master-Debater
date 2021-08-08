@@ -6,17 +6,50 @@
     </div>
 </mat-toolbar>
 <mat-card>
+    <div class="block">
+        <form [formGroup]="scoringForm" (ngSubmit)="onSubmit()">  
+            <mat-card *ngFor="let participants1 of team1parts">
+                <mat-card-title>
+                    {{participants1}}
+                </mat-card-title>
+                <mat-card-content>
+                    <input type="number" matInput placeholder="scoreTeam1Individual" *ngFor="let tag1 of team1parts">
+                </mat-card-content>
+            </mat-card>
+            
+            <div>
+                <mat-card *ngFor="let participants2 of team2parts" class="smallcards">
+                    <mat-card-title>
+                        {{participants2}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        <input type="number" matInput placeholder="scoreTeam2Individual">
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </form>
+            <!-- <div>
+            <form [formGroup]="team1scorechart">
+                <table mat-table [dataSource]="team1score" class="mat-elevation-z8">
+                    <ng-container matColumnDef="PositionName">
+                        <th mat-header-cell *matHeaderCellDef>Position</th>
+                        <td mat-cell *matCellDef="let item">{{item['pos']}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="SelectionColumn">
+                        <th mat-header-cell *matHeaderCellDef>Scores</th>
+                        <td mat-cell *matCellDef="let item">
+                          <input type="number" matInput placeholder="scoreTeam1Individual">
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let emprow; columns: displayedColumns;">{{emprow.PositionName}}</tr>
+                </table>
+            </form>
+        </div> -->
+    </div>
+
     <div>
-        <mat-card *ngFor="let participants1 of team1parts">
-            <mat-card-title>
-                {{participants1}}
-            </mat-card-title>
-        </mat-card>
-        <mat-card *ngFor="let participants2 of team2parts">
-            <mat-card-title>
-                {{participants2}}
-            </mat-card-title>
-        </mat-card>
+        <button mat-raised-button color="accent" (click)="toFinishingSpeech">Go to Finishing Speeches</button>
     </div>
     <mat-card-content class="card">
         <form [formGroup]="judgenotes">

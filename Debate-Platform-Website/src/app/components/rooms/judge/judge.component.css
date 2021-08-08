@@ -15,3 +15,12 @@
 .card {
     align-items: center;
 }
+
+.block {
+    display: inline-block;
+}
+
+.smallcards {
+    width: 100px;
+    height: 300px;
+}

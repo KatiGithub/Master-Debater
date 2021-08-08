@@ -14,8 +14,10 @@ export class JudgeComponent implements OnInit {
 
   courtId: string = '';
   judgenotes!: FormGroup;
+  scoringForm!: FormGroup;
   team1parts: string[] = [];
   team2parts: string[] = [];
+
 
   modules = {}
 
@@ -50,7 +52,16 @@ export class JudgeComponent implements OnInit {
       console.log(this.team1parts);
       console.log(this.team2parts);
     })
+
+
   }
   
+  onSubmit(){
+    console.log(this.scoringForm.value)
+  }
+
+  toFinishingSpeech(): void{
+
+  }
 
 }
