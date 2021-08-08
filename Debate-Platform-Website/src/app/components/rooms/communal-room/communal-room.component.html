@@ -6,6 +6,8 @@
 <mat-card class="body">
 
   <mat-card-content class="card">
+    <app-voice-call *ngIf="authorized != undefined && this.courtId != undefined" [host]="authorized" [courtId]="this.courtId"></app-voice-call>
+
     <form>
       <div *ngIf="authorized">
         <div>
