@@ -10,37 +10,33 @@
     border-radius: 40px;
 }
 
+.form-group{
+  background-color: whitesmoke;
+}
+
 .Main-card {
   background-color: #e6e6e6;
   border-radius: 40px;
-  height: 70%;
+  min-height: 170%;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  
 }
 
-.top{
-    flex: 1;
-}
-.mid{
-    flex: 5;
-    display: flex;
+.Main-content{
+  display: flex;
   justify-content: center;
   flex-direction: row;
 }
-.bottom{
-    flex: 0;
-}
 
 .left{
-    flex: 1;
-    margin: 10%;
+    flex: 5;
 }
+
 .right{
-    flex: 1;
-    margin-left: 10%;
+    flex: 5;
 }
+
+
 
 .Motion-box {
   background-color: #e6e6e6;
