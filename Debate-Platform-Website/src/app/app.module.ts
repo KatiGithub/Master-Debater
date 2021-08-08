@@ -61,6 +61,7 @@ import { DebateRoomComponent } from './components/rooms/debate-room/debate-room.
 import { RoomRedirectComponent } from './components/rooms/room-redirect/room-redirect.component';
 import { JudgeComponent } from './components/rooms/judge/judge.component';
 import { VoiceCallComponent } from './components/voice-call/voice-call.component';
+import { QuillModule } from 'ngx-quill';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
@@ -127,7 +128,8 @@ const firebaseConfig = {
     FlexLayoutModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    QuillModule
   ],
   providers: [],
   bootstrap: [AppComponent]
