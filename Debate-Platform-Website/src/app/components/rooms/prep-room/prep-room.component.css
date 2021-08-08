@@ -1,17 +1,20 @@
 .timer{
-    margin: 0;
+  margin: 0;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   float: right;
-    width: 5%;
-    height: 5%;
-    background-color: #e6e6e6;
-    border-radius: 40px;
+  width: 8%;
+  height: 8%;
+  border-radius: 40px;
+  background-color: #F15A24;
+  z-index:1;
+  position:relative;
 }
 
 .form-group{
   background-color: whitesmoke;
+  flex: 8;
 }
 
 .Main-card {
@@ -29,16 +32,26 @@
 }
 
 .left{
-    flex: 5;
+    flex: 7;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .right{
-    flex: 5;
+    flex: 3;
+    background-color: #F15A24;
+    border-radius: 40px;
+    padding-left: 10%;
 }
 
-
+.mid{
+  flex: 2;
+}
 
 .Motion-box {
+  flex: 2;
   background-color: #e6e6e6;
   border-radius: 40px;
   margin-left: 5%;
