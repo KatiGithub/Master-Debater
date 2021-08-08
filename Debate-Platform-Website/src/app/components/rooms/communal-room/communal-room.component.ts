@@ -58,6 +58,7 @@ export class CommunalRoomComponent implements OnInit {
       }
 
       this.firestore.getCurrentTeams(this.courtId).then((value) => {
+        console.log(value)
         for(let x in this.Team1) {
           this.Team1[x].team_member = value['team1'][x]
           this.Team2[x].team_member = value['team2'][x]
