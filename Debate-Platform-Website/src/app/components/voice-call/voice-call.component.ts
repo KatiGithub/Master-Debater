@@ -22,8 +22,10 @@ export class VoiceCallComponent implements OnInit, OnDestroy, OnChanges {
   public isCallStarted$: Observable<Boolean>;
   private peerId: string;
 
-  @ViewChild('localVideo') localVideo!: ElementRef<HTMLVideoElement>;
-  @ViewChild('remoteVideo') remoteVideo!: ElementRef<HTMLVideoElement>;
+  @ViewChild('localVideo')
+  localVideo!: ElementRef<HTMLVideoElement>;
+  @ViewChild('remoteVideo')
+  remoteVideo!: ElementRef<HTMLVideoElement>;
 
   @Input('host') hostBool!: Boolean;
   @Input('courtId') courtId: string = '';
