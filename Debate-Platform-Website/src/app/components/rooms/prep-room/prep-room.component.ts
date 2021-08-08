@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/services/Firestore/firestore.service';
 
 @Component({
@@ -23,6 +24,10 @@ export class PrepRoomComponent implements OnInit {
 
   authorized: Boolean = false;
 
+  startTime = new Date()
+  minutes_left: number = 0;
+  seconds_left: number = 0;
+
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id;
@@ -30,13 +35,43 @@ export class PrepRoomComponent implements OnInit {
         this.authorized = value;
       });
 
+      this.firestore.getStartTime(this.courtId).then((value: Date) => {
+        this.startTime = new Date(value['seconds'] * 1000)
+        this.firestore.getPrepTime(this.courtId).then((value: number) => {
+          console.log(value)
+          let timeObservable = new Observable<number>((observer) => {
+            
+            
+            let count = 0
+            setInterval(() => {
+              let timeleft = value - (new Date().getTime() - this.startTime.getTime())/60000
+              // console.log(timeleft)
+              observer.next(timeleft)
+              if (timeleft <= 0) {
+                clearInterval()
+              }
+  
+            }, 1000)
+
+            // observer.complete()
+          }).subscribe((value) => {
+            let seconds = value % 1
+            seconds = Math.round(seconds * 60)
+            this.minutes_left = Math.round(value)
+            this.seconds_left = seconds
+          }) 
+        })
+      })
+
       this.firestore.checkForChange(this.courtId).subscribe((value) => {
         let current_document = JSON.parse(JSON.stringify(value.payload.data()))
   
         if(current_document['state'] != 1) {
           this.router.navigate(['courts/' + this.courtId])
-        }
+        }        
       })
+
+
     });
     this.notesForm = new FormGroup({
       'notes': new FormControl(null)

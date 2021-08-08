@@ -6,7 +6,7 @@
 </mat-toolbar>
 <div>
   <mat-card class="timer">
-    <h1>timer here</h1>
+    <h1>{{ this.minutes_left }} : {{ this.seconds_left }}</h1>
   </mat-card>
   <mat-card class="Main-card">
     <form [formGroup]="notesForm">
@@ -35,7 +35,7 @@
                 <div class="Script"></div>
                 <div class="body">
                   <mat-card class="timer">
-                    <h2>timer here</h2>
+                    <h2>{{ this.minutes_left }} : {{ this.seconds_left }}</h2>
                   </mat-card>
                   <mat-card class="Main-card">
                     <mat-card-content class="Main-content">
