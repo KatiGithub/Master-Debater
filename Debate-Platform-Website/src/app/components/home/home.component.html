@@ -1,151 +1,234 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-
-
-
 <div class="container">
-	<div class="row">
-		<div id="cssmenu">
-            <ul>
-             <li class="active"><a href="#">Debate Rooms</a></li>
-             <li><a href="#">Formats</a></li>
-             <li><a href="#">Help</a></li>
-             <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-	</div>
+  <div class="row">
+    <div id="cssmenu">
+      <ul>
+        <li class="active"><a href="#">Debate Rooms</a></li>
+        <li><a href="#">Formats</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <div class="midbox">
-    <mat-card class="ex-card">
-        <mat-card-content class="title">
-            <h1 class="titletext">Debating is for Everyone.
-                <h1 class="titletext" style="font-size: 40px; opacity:0.7;" >  Secure Debate Meets</h1>
-            </h1>
-            <p class="text">Your next debate will be...</p>
-            <div class="hspace">
-                <mat-form-field style="width: 50%; padding-right: 2%; ">
-                    <input matInput type="text" placeholder="Enter room code here"/>
-                </mat-form-field>
-                <button mat-raised-button style="color: aliceblue; font-family: 'Roboto', sans-serif; font-weight: 100; background-color: #F15A24; width: 25%; height: 40px; font-size: 16px; margin-left: 0%; border-radius: 10px;" (click)="clickToEnter()">Enter a room</button>
-                <div class="or-container">
-                    <div class="line-separator"></div>
-                    <div class="or-label">or</div>
-                    <div class="line-separator"></div>
-                </div>
-                <div style="margin-top: 2%;">
-                    <button mat-raised-button style="color: aliceblue; font-family: 'Roboto', sans-serif; font-weight: 100; background-color: #FBB03B; width: 35%; height: 60px; font-size: 20px;  margin-left: 32%; border-radius: 10px;" (click)="createRoom()">Set up a debate</button>
-    
-                </div>
-            </div>
-        </mat-card-content>
-    </mat-card >
-    
-        <div class="pic-card">
-
+  <mat-card class="ex-card">
+    <mat-card-content class="title">
+      <h1 class="titletext">
+        Debating is for Everyone.
+        <h1 class="titletext" style="font-size: 40px; opacity: 0.7">
+          Secure Debate Meets
+        </h1>
+      </h1>
+      <p class="text">Your next debate will be...</p>
+      <div class="hspace">
+        <mat-form-field style="width: 50%; padding-right: 2%">
+          <input matInput type="text" placeholder="Enter room code here" />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          style="
+            color: aliceblue;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 100;
+            background-color: #f15a24;
+            width: 25%;
+            height: 40px;
+            font-size: 16px;
+            margin-left: 0%;
+            border-radius: 10px;
+          "
+          (click)="clickToEnter()"
+        >
+          Enter a room
+        </button>
+        <div class="or-container">
+          <div class="line-separator"></div>
+          <div class="or-label">or</div>
+          <div class="line-separator"></div>
         </div>
-    
-    
+        <div style="margin-top: 2%">
+          <button
+            mat-raised-button
+            style="
+              color: aliceblue;
+              font-family: 'Roboto', sans-serif;
+              font-weight: 100;
+              background-color: #fbb03b;
+              width: 35%;
+              height: 60px;
+              font-size: 20px;
+              margin-left: 32%;
+              border-radius: 10px;
+            "
+            (click)="createRoom()"
+          >
+            Set up a debate
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="pic-card"></div>
 </div>
 
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+  crossorigin="anonymous"
+/>
 
 <!--footer starts from here-->
 <footer class="footer">
-<div class="container bottom_border">
-<div class="row">
-<div class=" col-sm-4 col-md col-sm-4  col-12 col">
-<h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
-<!--headin5_amrc-->
-<p class="mb10">How fitting is this for a hackathon team consisting of debate members.</p>
-<p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 Bangkok 35 </p>
-<p><i class="fa fa-phone"></i>  +91-9999878398  </p>
-<p><i class="fa fa fa-envelope"></i> info@example.com  </p>
+  <div class="container bottom_border">
+    <div class="row">
+      <div class="col-sm-4 col-md col-sm-4 col-12 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+        <!--headin5_amrc-->
+        <p class="mb10">
+          How fitting is this for a hackathon team consisting of debate members.
+        </p>
+        <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 Bangkok 35</p>
+        <p><i class="fa fa-phone"></i> +91-9999878398</p>
+        <p><i class="fa fa fa-envelope"></i> info@example.com</p>
+      </div>
 
+      <div class="col-sm-4 col-md col-6 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+        <!--headin5_amrc-->
+        <ul class="footer_ul_amrc">
+          <li><a href="http://webenlance.com">Image Rectoucing</a></li>
+          <li><a href="http://webenlance.com">Clipping Path</a></li>
+          <li><a href="http://webenlance.com">Hollow Man Montage</a></li>
+          <li><a href="http://webenlance.com">Ebay & Amazon</a></li>
+          <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
+          <li><a href="http://webenlance.com">Image Cropping</a></li>
+        </ul>
+        <!--footer_ul_amrc ends here-->
+      </div>
 
-</div>
+      <div class="col-sm-4 col-md col-6 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+        <!--headin5_amrc-->
+        <ul class="footer_ul_amrc">
+          <li><a href="http://webenlance.com">Remove Background</a></li>
+          <li>
+            <a href="http://webenlance.com">Shadows & Mirror Reflection</a>
+          </li>
+          <li><a href="http://webenlance.com">Logo Design</a></li>
+          <li><a href="http://webenlance.com">Vectorization</a></li>
+          <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
+          <li><a href="http://webenlance.com">Image Cropping</a></li>
+        </ul>
+        <!--footer_ul_amrc ends here-->
+      </div>
 
+      <div class="col-sm-4 col-md col-12 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
+        <!--headin5_amrc ends here-->
 
-<div class=" col-sm-4 col-md  col-6 col">
-<h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
-<!--headin5_amrc-->
-<ul class="footer_ul_amrc">
-<li><a href="http://webenlance.com">Image Rectoucing</a></li>
-<li><a href="http://webenlance.com">Clipping Path</a></li>
-<li><a href="http://webenlance.com">Hollow Man Montage</a></li>
-<li><a href="http://webenlance.com">Ebay & Amazon</a></li>
-<li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
-<li><a href="http://webenlance.com">Image Cropping</a></li>
-</ul>
-<!--footer_ul_amrc ends here-->
-</div>
+        <ul class="footer_ul2_amrc">
+          <li>
+            <a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing...<a href="#"
+                >https://www.lipsum.com/</a
+              >
+            </p>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing...<a href="#"
+                >https://www.lipsum.com/</a
+              >
+            </p>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing...<a href="#"
+                >https://www.lipsum.com/</a
+              >
+            </p>
+          </li>
+        </ul>
+        <!--footer_ul2_amrc ends here-->
+      </div>
+    </div>
+  </div>
 
+  <div class="container">
+    <ul class="foote_bottom_ul_amrc">
+      <li><a href="http://webenlance.com">Home</a></li>
+      <li><a href="http://webenlance.com">About</a></li>
+      <li><a href="http://webenlance.com">Services</a></li>
+      <li><a href="http://webenlance.com">Pricing</a></li>
+      <li><a href="http://webenlance.com">Blog</a></li>
+      <li><a href="http://webenlance.com">Contact</a></li>
+    </ul>
+    <!--foote_bottom_ul_amrc ends here-->
+    <p class="text-center">
+      Copyright @2017 | Designed With by <a href="#">Debate.com</a>
+    </p>
 
-<div class=" col-sm-4 col-md  col-6 col">
-<h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
-<!--headin5_amrc-->
-<ul class="footer_ul_amrc">
-<li><a href="http://webenlance.com">Remove Background</a></li>
-<li><a href="http://webenlance.com">Shadows & Mirror Reflection</a></li>
-<li><a href="http://webenlance.com">Logo Design</a></li>
-<li><a href="http://webenlance.com">Vectorization</a></li>
-<li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
-<li><a href="http://webenlance.com">Image Cropping</a></li>
-</ul>
-<!--footer_ul_amrc ends here-->
-</div>
-
-
-<div class=" col-sm-4 col-md  col-12 col">
-<h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
-<!--headin5_amrc ends here-->
-
-<ul class="footer_ul2_amrc">
-<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-</ul>
-<!--footer_ul2_amrc ends here-->
-</div>
-</div>
-</div>
-
-
-<div class="container">
-<ul class="foote_bottom_ul_amrc">
-<li><a href="http://webenlance.com">Home</a></li>
-<li><a href="http://webenlance.com">About</a></li>
-<li><a href="http://webenlance.com">Services</a></li>
-<li><a href="http://webenlance.com">Pricing</a></li>
-<li><a href="http://webenlance.com">Blog</a></li>
-<li><a href="http://webenlance.com">Contact</a></li>
-</ul>
-<!--foote_bottom_ul_amrc ends here-->
-<p class="text-center">Copyright @2017 | Designed With by <a href="#">Debate.com</a></p>
-
-<ul class="social_footer_ul">
-<li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
-<li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
-<li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
-<li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
-</ul>
-<!--social_footer_ul ends here-->
-</div>
-
+    <ul class="social_footer_ul">
+      <li>
+        <a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a>
+      </li>
+      <li>
+        <a href="http://webenlance.com"><i class="fab fa-twitter"></i></a>
+      </li>
+      <li>
+        <a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a>
+      </li>
+      <li>
+        <a href="http://webenlance.com"><i class="fab fa-instagram"></i></a>
+      </li>
+    </ul>
+    <!--social_footer_ul ends here-->
+  </div>
 </footer>
 
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
 
 <!-- Crédit to https://bootsnipp.com/snippets/bxDBA -->
