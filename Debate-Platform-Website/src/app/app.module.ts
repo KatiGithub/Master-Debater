@@ -65,6 +65,7 @@ import * as Quill from "quill"
 import { QuillModule } from 'ngx-quill';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { HeaderComponent } from './components/header/header.component'
+import { RouterModule } from '@angular/router';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
@@ -90,6 +91,7 @@ const firebaseConfig = {
   ],
   imports: [
     ReactiveFormsModule,
+    RouterModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
