@@ -7,6 +7,7 @@ import { RoomRedirectComponent } from './components/rooms/room-redirect/room-red
 import { PrepRoomComponent } from './components/rooms/prep-room/prep-room.component';
 import { DebateRoomComponent } from './components/rooms/debate-room/debate-room.component';
 import { JudgeComponent } from './components/rooms/judge/judge.component';
+import { VoiceCallComponent } from './components/voice-call/voice-call.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'judge_room/:court_id',
     component: JudgeComponent
+  },
+  {
+    path: 'vc_test',
+    component: VoiceCallComponent
   }
 ];
 

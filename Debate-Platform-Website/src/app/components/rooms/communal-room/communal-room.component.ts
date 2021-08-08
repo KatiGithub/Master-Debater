@@ -4,6 +4,7 @@ import { FirestoreService } from '../../../services/Firestore/firestore.service'
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
 import { validateEventsArray } from '@angular/fire/firestore';
+import { CallService } from 'src/app/services/CallService/call.service';
 
 class Format {
   constructor(public value: string) {}
@@ -39,7 +40,8 @@ export class CommunalRoomComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private firestore: FirestoreService,
-    private router: Router
+    private router: Router,
+    private callService: CallService
   ) {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id;
