@@ -1,5 +1,5 @@
 .timer{
-  margin: 0;
+  margin-right: 30px;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -17,14 +17,18 @@
 .form-group{
   background-color: whitesmoke;
   flex: 8;
+  width: 100%;
 }
 
 .Main-card {
   background-color: #e6e6e6;
   border-radius: 40px;
-  width: 100%;
+  width: 80%;
   height: max-content;
-  
+  justify-content: center;
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Main-content{
@@ -39,6 +43,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 70%;
 }
 
 .right{
