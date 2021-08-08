@@ -31,6 +31,7 @@ export class CommunalRoomComponent implements OnInit {
   courtId: string = ''
   preptime = new FormControl('auto')
   format_control = new FormControl()
+  topic_control = new FormControl()
   public POSITION_DATA: FormatPos[] = [];
   public OPPOSITION_DATA: FormatPos[] = [];
   
@@ -137,6 +138,7 @@ export class CommunalRoomComponent implements OnInit {
   }
 
   start() {
+    this.firestore.updateTopic(this.courtId, this.topic_control.value)
     this.firestore.goToNextStage(this.courtId, 0)
   }
 }

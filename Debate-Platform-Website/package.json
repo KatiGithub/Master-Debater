@@ -25,6 +25,7 @@
     "@angular/router": "~11.2.14",
     "firebase": "^7.0 || ^8.0",
     "ngx-quill": "^14.1.2",
+    "quill": "^1.3.7",
     "reinstall": "^2.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

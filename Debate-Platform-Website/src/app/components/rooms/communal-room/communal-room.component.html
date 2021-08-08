@@ -12,7 +12,7 @@
           <h1>Choose Topic:</h1>
           <mat-form-field class="textfield" appearance="fill">
             <mat-label>Topic:</mat-label>
-            <input matInput placeholder="Choose Topic..." class="inputTop">
+            <input matInput placeholder="Choose Topic..." class="inputTop" [formControl]="topic_control">
           </mat-form-field>
         </div>
         <div class="content">

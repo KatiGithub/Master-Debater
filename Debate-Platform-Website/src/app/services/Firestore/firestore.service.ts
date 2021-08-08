@@ -81,4 +81,16 @@ export class FirestoreService {
   goToNextStage(courtId: string, current_stage: number) {
     this.db.collection('courts').doc(courtId).update({'state': current_stage + 1}).then()
   }
+
+  updateTopic(courtId: string, topic: string) {
+    this.db.collection('courts').doc(courtId).update({'topic': topic}).then()
+  }
+
+  getStartTime(courtId: string) {
+    return this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
+      value = JSON.parse(JSON.stringify(value.data()))
+
+      return new Date(value['startTime'])
+    })
+  }
 }
