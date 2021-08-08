@@ -1,5 +1,42 @@
-<body class="debate-room">
-    <div class="background-pic">
-    
+<mat-toolbar>
+    <div class="navbar">
+        <span>Debate Room</span>
+        <span flex></span>
+        <span  class="exitButton"><button mat-raised-button color= "primary">Exit</button></span>
     </div>
-</body>
+</mat-toolbar>
+
+<mat-card class="Main-card">
+    <mat-card-content class="Main-content">
+      <div class="left">
+        <div class="Motion-box">
+          <h2 class="Motion-text" placeholder="Your Motion" id="Motion">TH -</h2>
+          <h1>{{topic}}</h1>
+          <h3 Class="Side">Your side - </h3>
+        </div>
+        <form [formGroup]="DebateForm">
+          <div class="form-group">
+            <label for="notes">
+              <h3 style="font-family:'Roboto', sans-serif; font-weight:100; margin-left: 15%;" >Script Editor</h3>
+            </label>
+            <quill-editor formControlName="notes" style="background-color: white"></quill-editor>
+          </div>
+        </form>
+      </div>
+      <div class="mid">
+        <div class="or-container">
+          <div class="line-separator"></div>
+        </div>
+      </div>
+      <mat-card class="right">
+          <div class="Call-box">
+            <div class="Call-screen"></div>
+          </div>
+      </mat-card>
+    </mat-card-content>
+        <h1>Speaker</h1>
+        <h1>Next Speaker</h1>
+    <mat-card-content>
+        <div></div>
+    </mat-card-content>
+  </mat-card>
