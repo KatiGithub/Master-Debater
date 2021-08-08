@@ -9,14 +9,15 @@
     <h1>{{ this.minutes_left }} : {{ this.seconds_left }}</h1>
   </mat-card>
 
-  <div class="Motion-box">
-    <h2 class="Motion-text" placeholder="Your Motion" id="Motion">TH -</h2>
-    <h3 Class="Side">Your side - </h3>
-  </div>
+
 
 <mat-card class="Main-card">
   <mat-card-content class="Main-content">
     <div class="left">
+      <div class="Motion-box">
+        <h2 class="Motion-text" placeholder="Your Motion" id="Motion">TH -</h2>
+        <h3 Class="Side">Your side - </h3>
+      </div>
       <form [formGroup]="notesForm">
         <div class="form-group">
           <label for="notes">
@@ -26,12 +27,15 @@
         </div>
       </form>
     </div>
-    <div class="right">
-      <div class="top">
+    <div class="mid">
+      <div class="or-container">
+        <div class="line-separator"></div>
+      </div>
+    </div>
+    <mat-card class="right">
         <div class="Script-box">
           <div class="Script"></div>
         </div>
-      </div>
-    </div>
+    </mat-card>
   </mat-card-content>
 </mat-card>
