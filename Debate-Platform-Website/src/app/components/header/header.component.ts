@@ -16,14 +16,25 @@ export class HeaderComponent implements OnInit {
   home_page: Boolean = true;
 
   ngOnInit(): void {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      if(this.router.url == '/login' || this.router.url == '/signup') {
+    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)
+    // ).subscribe(() => {
+    //   console.log(this.router.url)
+    //   if(this.router.url == '/home' || this.router.url == '/login') {
+    //     this.home_page = true;
+    //   } else {
+    //     this.home_page = false;
+    //   }
+    // });
+
+    this.router.events.subscribe((value) => {
+      if(this.router.url == '/home' || this.router.url == '/login') {
         this.home_page = true;
       } else {
         this.home_page = false;
       }
-    });
+
+      console.log(this.home_page)
+    })
   }
 
 }

@@ -2,13 +2,13 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container" *ngIf="home_page">
+<div class="container" *ngIf="this.home_page">
     <div class="row">
         <div id="cssmenu">
             <ul>
-                <img
-                    src="https://lh3.googleusercontent.com/C4CJRoUnnNs-nPHhgGc82O5aI2kQJB0EMuTEX5oyi8sEjtyWXEwKrwymEt5bYyED6JIm2hOmR5_YaVpdbay_4A9Ev_j9r5zH3lho05ExBidB7SJO5MY6u-VHLq925-5e8xJsjXvGz1qYBgPtmwXt62Zmtyjyg9MDsW2KTjt5KLnftYfkFyTmNB479vf-9PYzjo7_A6GL_nZ4-kBMIOFCNUg3Vup6kGz7SdhgTpEZqP3PVuoLJ9a4fV4WIVmm_qoP1aRPNpy_AlkfSVYoY0OTPVQLGscs9EPTizpsf3q_n7o-VSQLCuSVq7-SLSmJy68qgrrpvKbAs5zTHKdcIopkGVoLNuki2IK-XS_SYlPzP90M53IU4JdWt0Dg4NU24KLwkJivth373ARWGmQ3XaRct6sjewTbPW2b6iUZiy-SwQie_a-NPBNpC04IBa_8lfx14SNQc2DN9eGsbXaC6CZMY8VC_omkrahn04_7cCHcl03PzmqBLDH-0DI3Mkr1qkapfIGpAfpqnkvk0YTuamfKHC7LqC0RBTnfNZrvcysNLRRVLBddvkHy3_hP0-icFT-FgdoSAds0aeXmlllgn3oMcboQvCYMWeDGGWNw9jooe5U9wCXuSARDJLllXx9ShozypUXwQ-Eqko3OWUVM1C3OrR3enNQgyXUvIoOPu1c0-jWU9xh6ADwniTmPTzdz-AdKiOduYQo5FJmQVRGFNjbErIxf=w694-h237-no?authuser=0"
-                    >
+              <img
+                src="https://lh3.googleusercontent.com/C4CJRoUnnNs-nPHhgGc82O5aI2kQJB0EMuTEX5oyi8sEjtyWXEwKrwymEt5bYyED6JIm2hOmR5_YaVpdbay_4A9Ev_j9r5zH3lho05ExBidB7SJO5MY6u-VHLq925-5e8xJsjXvGz1qYBgPtmwXt62Zmtyjyg9MDsW2KTjt5KLnftYfkFyTmNB479vf-9PYzjo7_A6GL_nZ4-kBMIOFCNUg3Vup6kGz7SdhgTpEZqP3PVuoLJ9a4fV4WIVmm_qoP1aRPNpy_AlkfSVYoY0OTPVQLGscs9EPTizpsf3q_n7o-VSQLCuSVq7-SLSmJy68qgrrpvKbAs5zTHKdcIopkGVoLNuki2IK-XS_SYlPzP90M53IU4JdWt0Dg4NU24KLwkJivth373ARWGmQ3XaRct6sjewTbPW2b6iUZiy-SwQie_a-NPBNpC04IBa_8lfx14SNQc2DN9eGsbXaC6CZMY8VC_omkrahn04_7cCHcl03PzmqBLDH-0DI3Mkr1qkapfIGpAfpqnkvk0YTuamfKHC7LqC0RBTnfNZrvcysNLRRVLBddvkHy3_hP0-icFT-FgdoSAds0aeXmlllgn3oMcboQvCYMWeDGGWNw9jooe5U9wCXuSARDJLllXx9ShozypUXwQ-Eqko3OWUVM1C3OrR3enNQgyXUvIoOPu1c0-jWU9xh6ADwniTmPTzdz-AdKiOduYQo5FJmQVRGFNjbErIxf=w694-h237-no?authuser=0"
+            >
                 <li class="active"><a href="#">Debate Rooms</a></li>
                 <li><a href="#">Formats</a></li>
                 <li><a href="#">Help</a></li>
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<mat-toolbar class="Call-head" *ngIf="!home_page">
+<mat-toolbar class="Call-head" *ngIf="!this.home_page">
     <ul class="Call-head">
         <img class="icon"
         src="https://lh3.googleusercontent.com/C4CJRoUnnNs-nPHhgGc82O5aI2kQJB0EMuTEX5oyi8sEjtyWXEwKrwymEt5bYyED6JIm2hOmR5_YaVpdbay_4A9Ev_j9r5zH3lho05ExBidB7SJO5MY6u-VHLq925-5e8xJsjXvGz1qYBgPtmwXt62Zmtyjyg9MDsW2KTjt5KLnftYfkFyTmNB479vf-9PYzjo7_A6GL_nZ4-kBMIOFCNUg3Vup6kGz7SdhgTpEZqP3PVuoLJ9a4fV4WIVmm_qoP1aRPNpy_AlkfSVYoY0OTPVQLGscs9EPTizpsf3q_n7o-VSQLCuSVq7-SLSmJy68qgrrpvKbAs5zTHKdcIopkGVoLNuki2IK-XS_SYlPzP90M53IU4JdWt0Dg4NU24KLwkJivth373ARWGmQ3XaRct6sjewTbPW2b6iUZiy-SwQie_a-NPBNpC04IBa_8lfx14SNQc2DN9eGsbXaC6CZMY8VC_omkrahn04_7cCHcl03PzmqBLDH-0DI3Mkr1qkapfIGpAfpqnkvk0YTuamfKHC7LqC0RBTnfNZrvcysNLRRVLBddvkHy3_hP0-icFT-FgdoSAds0aeXmlllgn3oMcboQvCYMWeDGGWNw9jooe5U9wCXuSARDJLllXx9ShozypUXwQ-Eqko3OWUVM1C3OrR3enNQgyXUvIoOPu1c0-jWU9xh6ADwniTmPTzdz-AdKiOduYQo5FJmQVRGFNjbErIxf=w694-h237-no?authuser=0"

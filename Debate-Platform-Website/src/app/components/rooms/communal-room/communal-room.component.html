@@ -1,12 +1,12 @@
-<mat-toolbar>
+<!-- <mat-toolbar>
   <span>Communal Room</span>
   <button mat-raised-button color= "primary" class="exitButton">Exit</button>
-</mat-toolbar>
+</mat-toolbar> -->
 
 <mat-card class="body">
 
   <mat-card-content class="card">
-    <app-voice-call *ngIf="authorized != undefined && this.courtId != undefined" [host]="authorized" [courtId]="this.courtId"></app-voice-call>
+    <app-voice-call [host]="checkHost_subscription" [courtId]="this.courtId"></app-voice-call>
 
     <form>
       <div *ngIf="authorized">
