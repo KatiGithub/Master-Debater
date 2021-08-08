@@ -43,7 +43,7 @@ export class CommunalRoomComponent implements OnInit {
   ) {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id;
-      this.debate_link = location.origin + "/" + this.courtId
+      this.debate_link = location.origin + "/court_id/" + this.courtId;
       firestore.checkIfHost(this.courtId).then((value) => {
         this.authorized = value;
       });
