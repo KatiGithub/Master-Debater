@@ -48,6 +48,7 @@ export class PrepRoomComponent implements OnInit {
               // console.log(timeleft)
               observer.next(timeleft)
               if (timeleft <= 0) {
+                this.firestore.goToNextStage(this.courtId, 1)
                 clearInterval()
               }
   
