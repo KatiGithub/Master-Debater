@@ -1,1 +1,32 @@
-<p>judge works!</p>
+<mat-toolbar>
+    <div class="navbar">
+        <span>Judge Room</span>
+        <span flex></span>
+        <span  class="exitButton"><button mat-raised-button color= "primary">Exit</button></span>
+    </div>
+</mat-toolbar>
+<mat-card>
+    <div>
+        <mat-card *ngFor="let participants1 of team1parts">
+            <mat-card-title>
+                {{participants1}}
+            </mat-card-title>
+        </mat-card>
+        <mat-card *ngFor="let participants2 of team2parts">
+            <mat-card-title>
+                {{participants2}}
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <mat-card-content class="card">
+        <form [formGroup]="judgenotes">
+            <div class="form-group">
+                <label for="judgnotes">
+                    <h3>Editor</h3>
+                </label>
+                <quill-editor formControlName="judgeNotes" style="background-color: white" [modules]="modules"></quill-editor>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
