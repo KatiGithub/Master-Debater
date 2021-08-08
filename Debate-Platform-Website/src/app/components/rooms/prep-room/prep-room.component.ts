@@ -13,6 +13,7 @@ export class PrepRoomComponent implements OnInit {
 
   courtId: string = '';
   notesForm!: FormGroup;
+  topic: string ='this house will...';
 
   modules = {}
 
