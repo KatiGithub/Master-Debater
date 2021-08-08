@@ -1,8 +1,21 @@
-.Motion-box{
-    background-color: #E6E6E6;
-    border-radius: 40px;
-    margin-left: 5%;
-    margin-right: 3%;
-    margin-top: 7%;
-    margin-bottom: 5%;
+.Main-card {
+  background-color: #e6e6e6;
+  border-radius: 40px;
+  height: 70%;
+  width: max-content;
+}
+
+.Main-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Motion-box {
+  background-color: #e6e6e6;
+  border-radius: 40px;
+  margin-left: 5%;
+  margin-right: 3%;
+  margin-top: 7%;
+  margin-bottom: 5%;
 }
