@@ -63,7 +63,8 @@ import { JudgeComponent } from './components/rooms/judge/judge.component';
 import { VoiceCallComponent } from './components/voice-call/voice-call.component';
 import * as Quill from "quill"
 import { QuillModule } from 'ngx-quill';
-import { ClipboardModule } from '@angular/cdk/clipboard'
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { HeaderComponent } from './components/header/header.component'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
@@ -84,7 +85,8 @@ const firebaseConfig = {
     DebateRoomComponent,
     RoomRedirectComponent,
     JudgeComponent,
-    VoiceCallComponent
+    VoiceCallComponent,
+    HeaderComponent
   ],
   imports: [
     ReactiveFormsModule,

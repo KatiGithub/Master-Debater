@@ -1,0 +1,233 @@
+/* .midbox{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .ex-card{
+        max-width: 500px;
+        .title {
+            padding-left: 2%;
+            padding-top: 2%;
+            .titletext{
+                font-family: 'Roboto', sans-serif;
+                font-weight: 100;
+                font-size: 50px;
+                .text {
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 100;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+} */
+
+.ex-card {
+    flex: 1;
+    /* margin-left: 10%;
+      margin-right: 50%;
+      height: 70%; */
+    background-color: #e6e6e6;
+    border-radius: 40px;
+    margin-left: 5%;
+    margin-right: 3%;
+    margin-top: 7%;
+    margin-bottom: 5%;
+  }
+  
+  /* .pic-back{
+      flex: 0.8;
+      background-color: #E6E6E6;  
+      margin-left: 7%;
+      margin-right: 10%;
+      margin-top: 7%;
+      margin-bottom: 5%;
+  } */
+  
+  .pic-card {
+    flex: 0.8;
+    background-image: url("../../../../src/assets/img/art.png");
+    background-size: 70%;
+    background-position: 80%;
+    background-repeat: no-repeat;
+  }
+  
+  .title {
+    padding-left: 2%;
+    padding-top: 7%;
+    padding-bottom: 10%;
+  }
+  
+  .titletext {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 50px;
+  }
+  
+  .hspace {
+    margin-top: 7%;
+  }
+  
+  .text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+  }
+  
+  .Debate {
+    padding-left: 20px;
+  }
+  .button {
+    background-color: #f15a24;
+    width: 10%;
+  }
+  
+  .sbox {
+    width: 30%;
+    height: 45px;
+  }
+  
+  .container {
+    min-width: 100%;
+    padding-bottom: 0%;
+    
+  }
+  
+  .boxes {
+    padding-top: 7%;
+    height: 50px;
+    border-radius: 16px;
+  }
+  
+  .midbox {
+    margin-bottom: 0%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 4%;
+  }
+  
+  .line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px;
+  }
+  
+  .or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center;
+  }
+  
+  #cssmenu,
+  #cssmenu ul,
+  #cssmenu ul li,
+  #cssmenu ul li a {
+    margin: 0;
+    padding-top: 0.8%;
+    border: 0;
+    list-style: none;
+    line-height: 1;
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  #cssmenu:after,
+  #cssmenu > ul:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+  }
+  #cssmenu {
+    width: 100%;
+    border-bottom: 6px solid #f15a24;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    line-height: 2;
+  }
+  #cssmenu ul {
+    background: #ffffff;
+  }
+  #cssmenu > ul > li {
+    float: left;
+  }
+  #cssmenu.align-center > ul {
+    font-size: 0;
+    text-align: center;
+  }
+  #cssmenu.align-center > ul > li {
+    display: inline-block;
+    float: none;
+  }
+  #cssmenu.align-right > ul > li {
+    float: right;
+  }
+  #cssmenu.align-right > ul > li > a {
+    margin-right: 0;
+    margin-left: -8px;
+  }
+  #cssmenu > ul > li > a {
+    z-index: 2;
+    padding: 20px 28px 14px 28px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 22px;
+    text-decoration: none;
+    color: #f15a24;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    margin-right: -4px;
+  }
+  #cssmenu > ul > li.active > a,
+  #cssmenu > ul > li:hover > a,
+  #cssmenu > ul > li > a:hover {
+    color: #e6e6e6;
+  }
+  #cssmenu > ul > li > a:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    width: 100%;
+    height: 120%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    content: "";
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-transform: perspective(5px) rotateX(2deg);
+    -webkit-transform-origin: bottom;
+    -moz-transform: perspective(5px) rotateX(2deg);
+    -moz-transform-origin: bottom;
+    transform: perspective(5px) rotateX(2deg);
+    transform-origin: bottom;
+  }
+  #cssmenu > ul > li.active > a:after,
+  #cssmenu > ul > li:hover > a:after,
+  #cssmenu > ul > li > a:hover:after {
+    background: #ff931e;
+  }
+  
+  #cssmenu > ul > img{
+    width: 13%;
+    height: 13%;
+    float: left;
+    padding-bottom: 0%;
+    padding-right: 0%;
+  }
