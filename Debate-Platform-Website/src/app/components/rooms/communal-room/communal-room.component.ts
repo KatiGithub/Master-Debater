@@ -44,6 +44,8 @@ export class CommunalRoomComponent implements OnInit {
       firestore.checkIfHost(this.courtId).then((value) => {
         this.authorized = value;
       });
+
+
     });
 
     this.firestore.checkForChange(this.courtId).subscribe((value) => {
@@ -103,6 +105,17 @@ export class CommunalRoomComponent implements OnInit {
     for (let x in FormatConstants.formats) {
       this.formats.push(new Format(x))
     }
+
+    this.firestore.getCurrentTeams(this.courtId).then((value: Object) => {
+      for(let x in this.Team1) {
+        this.Team1[x].team_member = value['team1'][x]
+        this.Team2[x].team_member = value['team2'][x]
+      }
+    })
+
+    // this.firestore.getFormat(this.courtId).then((value: string) => {
+    //   this.format_control.setValue(value)
+    // })
   }
   
   formats: Format[] =[];

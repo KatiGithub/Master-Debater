@@ -62,7 +62,6 @@ import { RoomRedirectComponent } from './components/rooms/room-redirect/room-red
 import { JudgeComponent } from './components/rooms/judge/judge.component';
 import { VoiceCallComponent } from './components/voice-call/voice-call.component';
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
   authDomain: "debate-platform-7bba7.firebaseapp.com",

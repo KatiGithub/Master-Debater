@@ -22,4 +22,9 @@ export class Court {
         'team1': [],
         'team2': []
     }
+
+    host?: Object = {
+        'email': JSON.parse(localStorage.getItem('current_user')!)['email'],
+        'webrtc_token': undefined
+    }
 }

@@ -8,7 +8,7 @@
   <mat-card-content class="card">
     <form>
       <div class="content">
-        <div>
+        <div *ngIf="authorized">
           <h4>Select your debate format:</h4>
           <mat-form-field appearance="fill">
             <mat-label>Debate Format</mat-label>
@@ -19,9 +19,9 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div>
+        <div *ngIf="authorized">
           <h4>Preparation time:</h4>
-          <mat-form-field appearance="fill" >
+          <mat-form-field appearance="fill">
             <mat-label>Select time</mat-label>
             <mat-select name="time" [formControl]="preptime">
               <mat-option *ngFor="let time of times" [value]="time.value">

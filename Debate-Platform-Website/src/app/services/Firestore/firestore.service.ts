@@ -13,14 +13,14 @@ export class FirestoreService {
     ) {}
 
   checkIfHost(courtId: string) {
-    let tmp = this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
+    return this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
       let doc = value.data()
       let current_host = JSON.parse(JSON.stringify(doc))['host']
 
-      return current_host == localStorage.getItem('current_user')!['email']
-    })
+      let user = JSON.parse(localStorage.getItem('current_user')!)['email']
 
-    return tmp;
+      return user == current_host ? true : false
+    })
   }
 
   updatePrepTime(courtId: string, minutes: number) {
@@ -52,5 +52,26 @@ export class FirestoreService {
 
   checkForChange(courtId: string) {
     return this.db.collection('courts').doc(courtId).snapshotChanges()
+  }
+
+  getCurrentTeams(courtId: string) {
+    return this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
+      let current_value = JSON.parse(JSON.stringify(value))
+
+      current_value = {
+        'team1': current_value['participants']['team1'],
+        'team2': current_value['participants']['team2']
+      }
+
+      return current_value
+    })
+  }
+
+  getFormat(courtId: string) {
+    return this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
+      let current_value = JSON.parse(JSON.stringify(value))
+
+      return current_value.format
+    })
   }
 }
