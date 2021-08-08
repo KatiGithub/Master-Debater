@@ -1,0 +1,17 @@
+.navbar {
+    display: inline-flex;
+    width: 100%;
+}
+
+.exitButton {
+    float: right;
+}
+
+.form-group {
+    width: 70%;
+    margin: auto;
+}
+
+.card {
+    align-items: center;
+}
