@@ -70,6 +70,8 @@ body {
 
 .f-80 {
   font-size: 80px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
 }
 
 .text-uppercase {
@@ -130,6 +132,8 @@ body {
 
 .heading {
   font-size: 21px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
 }
 
 #infoMessage p {
@@ -165,4 +169,6 @@ body {
   flex-grow: 1;
   margin: 0 15px;
   text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
 }
