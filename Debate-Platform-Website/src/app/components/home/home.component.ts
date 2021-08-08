@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   submitRoomId() {
     let roomId = this.roomId_formcontrol.value;
-    let usersref = this.db.collection('courts').doc(roomId).get()
+    this.db.collection('courts').doc(roomId).get()
     .subscribe((value) => {
       console.log(value)
       if (value.exists == true) {
@@ -40,9 +40,5 @@ export class HomeComponent implements OnInit {
     then((value) => {
       this.router.navigate(['courts/' + value.id])
     })
-  }
-
-  clickToEnter() {
-    this.clicked = !this.clicked
   }
 }

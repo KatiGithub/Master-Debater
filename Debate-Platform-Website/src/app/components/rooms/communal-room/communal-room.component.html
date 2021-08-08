@@ -7,35 +7,37 @@
 
   <mat-card-content class="card">
     <form>
-      <div>
-        <h1>Choose Topic:</h1>
-        <mat-form-field class="textfield" appearance="fill">
-          <mat-label>Topic:</mat-label>
-          <input matInput placeholder="Choose Topic..." class="inputTop">
-        </mat-form-field>
-      </div>
-      <div class="content">
-        <div *ngIf="authorized">
-          <h4>Select your debate format:</h4>
-          <mat-form-field appearance="fill">
-            <mat-label>Debate Format</mat-label>
-            <mat-select name="format" [formControl]="this.format_control">
-              <mat-option *ngFor="let format of formats" [value]="format.value">
-                {{format.value}}
-              </mat-option>
-            </mat-select>
+      <div *ngIf="authorized">
+        <div>
+          <h1>Choose Topic:</h1>
+          <mat-form-field class="textfield" appearance="fill">
+            <mat-label>Topic:</mat-label>
+            <input matInput placeholder="Choose Topic..." class="inputTop">
           </mat-form-field>
         </div>
-        <div *ngIf="authorized">
-          <h4>Preparation time:</h4>
-          <mat-form-field appearance="fill">
-            <mat-label>Select time</mat-label>
-            <mat-select name="time" [formControl]="preptime">
-              <mat-option *ngFor="let time of times" [value]="time.value">
-                {{time.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+        <div class="content">
+          <div>
+            <h4>Select your debate format:</h4>
+            <mat-form-field appearance="fill">
+              <mat-label>Debate Format</mat-label>
+              <mat-select name="format" [formControl]="this.format_control">
+                <mat-option *ngFor="let format of formats" [value]="format.value">
+                  {{format.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <h4>Preparation time:</h4>
+            <mat-form-field appearance="fill">
+              <mat-label>Select time</mat-label>
+              <mat-select name="time" [formControl]="preptime">
+                <mat-option *ngFor="let time of times" [value]="time.value">
+                  {{time.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </div>
 
@@ -80,6 +82,7 @@
         <button mat-button color="primary" (click)="joinTeam(1)">Join Team 1</button>
         <button mat-button color="primary"(click)="joinTeam(2)">Join Team 2</button>
         <button mat-raised-button color="primary" class="table">Join As Judge</button>
+        <button mat-raised-button color="danger" style="background-color: red;" *ngIf="authorized" (click)="start()">START</button>
 
       </div>
     </form>

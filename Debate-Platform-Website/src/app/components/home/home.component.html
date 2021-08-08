@@ -31,7 +31,7 @@
       <p class="text">Your next debate will be...</p>
       <div class="hspace">
         <mat-form-field style="width: 50%; padding-right: 2%">
-          <input matInput type="text" placeholder="Enter room code here" />
+          <input matInput type="text" placeholder="Enter room code here" [formControl]="roomId_formcontrol"/>
         </mat-form-field>
         <button
           mat-raised-button
@@ -46,7 +46,7 @@
             margin-left: 0%;
             border-radius: 10px;
           "
-          (click)="clickToEnter()"
+          (click)="submitRoomId()"
         >
           Enter a room
         </button>

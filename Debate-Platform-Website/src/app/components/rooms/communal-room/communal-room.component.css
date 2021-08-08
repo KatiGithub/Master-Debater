@@ -32,6 +32,7 @@
 
 .exitButton{
     float: right;
+    align-items: flex-end;
 }
 
 .textfield{
