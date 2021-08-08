@@ -1,12 +1,14 @@
 
-  
+  .container{
+    min-width: 100%;
+  }
   .or-container {
     align-items: center;
     color: #ccc;
     display: flex;
     margin: 4%;
   }
-  
+
   .line-separator {
     background-color: #ccc;
     flex-grow: 5;
