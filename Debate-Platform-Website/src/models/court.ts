@@ -14,7 +14,7 @@ export class Court {
     debate_format?: String =  '';
     preproom1?: [] = [];
     preproom2?: [] = [];
-    startTime?: Date;
+    startTime?: Date = new Date();
     state?: Number = 0;
     participants?: Object = {
         'audience': [],
