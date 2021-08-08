@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
 
-  constructor(private db: AngularFirestore) {}
+  constructor(
+    private db: AngularFirestore,
+    private router: Router
+    ) {}
 
   checkIfHost(courtId: string) {
     let tmp = this.db.collection('courts').doc(courtId).get().toPromise().then((value) => {
@@ -44,5 +48,9 @@ export class FirestoreService {
         this.db.collection('courts').doc(courtId).update({'participants': current_participants}).then()
       }
     })
+  }
+
+  checkForChange(courtId: string) {
+    return this.db.collection('courts').doc(courtId).snapshotChanges()
   }
 }

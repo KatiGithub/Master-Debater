@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FirestoreService } from '../../../services/Firestore/firestore.service';
 import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
@@ -36,7 +36,8 @@ export class CommunalRoomComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private router: Router
   ) {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id;
@@ -45,6 +46,14 @@ export class CommunalRoomComponent implements OnInit {
       });
     });
 
+    this.firestore.checkForChange(this.courtId).subscribe((value) => {
+      let current_document = JSON.parse(JSON.stringify(value.payload.data()))
+
+      if(current_document['state'] != 0) {
+        this.router.navigate(['courts/' + this.courtId])
+      }
+    })
+  
     this.preptime.valueChanges.subscribe((value: number) => {
       console.log(value)
       firestore.updatePrepTime(this.courtId, value)
@@ -70,10 +79,10 @@ export class CommunalRoomComponent implements OnInit {
       this.Team1 = this.POSITION_DATA;
       this.Team2 = this.OPPOSITION_DATA;
     });
+
+    
   }
 
-  
-  
   displayedColumns: string[] = ['PositionName', 'SelectionColumn'];
   Team1: any[] = [];
   Team2: any[] = [];

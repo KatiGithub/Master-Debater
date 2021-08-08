@@ -39,7 +39,7 @@ const routes: Routes = [
     component: DebateRoomComponent,
   },
   {
-    path: 'judge-room/:court_id',
+    path: 'judge_room/:court_id',
     component: JudgeComponent
   }
 ];
