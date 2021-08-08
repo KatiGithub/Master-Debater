@@ -60,8 +60,6 @@ export class CommunalRoomComponent implements OnInit {
       for (let x in current_document['participants']['team2']) {
         this.Team2[x].team_member = current_document['participants']['team2'][x]
       }
-
-    
     })
   
     this.preptime.valueChanges.subscribe((value: number) => {
