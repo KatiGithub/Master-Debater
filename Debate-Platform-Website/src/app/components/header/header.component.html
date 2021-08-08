@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<mat-toolbar>
-    <span *ngIf="!home_page">Communal Room</span>
+<mat-toolbar *ngIf="!home_page">
+    <span >Communal Room</span>
     <button mat-raised-button color="primary" class="exitButton">Exit</button>
 </mat-toolbar>
