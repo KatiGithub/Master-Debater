@@ -8,7 +8,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CallService } from 'src/app/services/CallService/call.service';
 import { filter } from 'rxjs/operators';
@@ -27,12 +27,14 @@ export class VoiceCallComponent implements OnInit, OnDestroy, OnChanges {
   @ViewChild('remoteVideo')
   remoteVideo!: ElementRef<HTMLVideoElement>;
 
-  @Input('host') hostBool!: Boolean;
+  @Input('host') hostBool!: Promise<Boolean>;
   @Input('courtId') courtId: string = '';
 
   constructor(private db: AngularFirestore, private callService: CallService) {
     this.isCallStarted$ = this.callService.isCallStarted$;
     this.peerId = this.callService.initPeer();
+
+    console.log(this.peerId)
   }
 
   ngOnInit() {
@@ -48,11 +50,9 @@ export class VoiceCallComponent implements OnInit, OnDestroy, OnChanges {
         (stream) => (this.remoteVideo.nativeElement.srcObject = stream)
       );
 
-    if (this.hostBool) {
-      this.startCall();
-    } else if(this.hostBool == false) {
-      this.joinCall();
-    }
+    this.hostBool.then((value) => {
+      value? this.startCall() : this.joinCall()
+    })
   }
 
   ngOnChanges() {}
@@ -69,6 +69,7 @@ export class VoiceCallComponent implements OnInit, OnDestroy, OnChanges {
       .toPromise()
       .then((value) => {
         let current_data = JSON.parse(JSON.stringify(value.data()));
+        console.log(current_data)
         let host = current_data['host'];
         host['webrtc_token'] = this.peerId;
 
@@ -79,7 +80,7 @@ export class VoiceCallComponent implements OnInit, OnDestroy, OnChanges {
           .then();
         console.log(this.peerId);
 
-        this.callService.enableCallAnswer();
+        of(this.callService.enableCallAnswer()).subscribe(_ => {})
         console.log(host)
       });
   }
@@ -94,7 +95,7 @@ export class VoiceCallComponent implements OnInit, OnDestroy, OnChanges {
         let current_value = JSON.parse(JSON.stringify(value.data()));
         let hosts_peerid = current_value['host']['webrtc_token'];
         console.log(hosts_peerid);
-        this.callService.establishMediaCall(hosts_peerid);
+        of(this.callService.establishMediaCall(hosts_peerid)).subscribe(_ => {})
       });
   }
 

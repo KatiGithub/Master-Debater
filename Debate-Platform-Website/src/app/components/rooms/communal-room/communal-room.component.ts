@@ -36,6 +36,8 @@ export class CommunalRoomComponent implements OnInit {
   debate_link: string = ''
   public POSITION_DATA: FormatPos[] = [];
   public OPPOSITION_DATA: FormatPos[] = [];
+
+  checkHost_subscription!: Promise<boolean>;
   
   constructor(
     private route: ActivatedRoute,
@@ -46,9 +48,12 @@ export class CommunalRoomComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id;
       this.debate_link = location.origin + "/court_id/" + this.courtId;
-      firestore.checkIfHost(this.courtId).then((value) => {
+      let checkHost = firestore.checkIfHost(this.courtId).then((value) => {
         this.authorized = value;
+        return value;
       });
+
+      this.checkHost_subscription = checkHost;
     });
 
     this.firestore.checkForChange(this.courtId).subscribe((value) => {

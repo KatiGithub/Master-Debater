@@ -4,13 +4,17 @@
   }
   .or-container {
     align-items: center;
-    color: #ccc;
+    color: #ccc;;
     display: flex;
     margin: 4%;
   }
 
+  .Call-head {
+    background-color: white;
+  }
+
   .line-separator {
-    background-color: #ccc;
+    background-color:#ccc;
     flex-grow: 5;
     height: 1px;
   }

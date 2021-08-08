@@ -24,6 +24,7 @@ export class CallService {
   constructor() {}
 
   public initPeer() {
+    let id: string = ''
     if (!this.peer || this.peer.disconnected) {
       const peerJsOptions: Peer.PeerJSOption = {
         debug: 3,
@@ -40,18 +41,20 @@ export class CallService {
       };
 
       try {
-        let id = uuidv4();
+        id = uuidv4();
+        console.log(id)
         this.peer = new Peer(id, peerJsOptions);
-        return id;
       } catch(error) {
         console.error(error)
       }
     }
+    return id;
   }
 
   public async establishMediaCall(peerId: string){
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true});
+      console.log("Connecting to: " + peerId)
 
       const connection = this.peer.connect(peerId);
       connection.on('error', err => {
@@ -65,6 +68,7 @@ export class CallService {
         throw new Error(errorMessage);
       }
 
+      console.log(stream)
       this.localStreamBs.next(stream);
       this.isCallStartedBs.next(true);
 
