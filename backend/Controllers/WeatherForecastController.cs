@@ -36,5 +36,15 @@ namespace backend.Controllers
             })
             .ToArray();
         }
+
+        [Route("test/{id}")]
+        public String test(int id) {
+            return id.ToString();
+        }
+
+        // [Route("watsa")]
+        // public String watsa() {
+        //     return "watsa";
+        // }
     }
 }
