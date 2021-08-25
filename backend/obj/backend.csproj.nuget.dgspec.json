@@ -39,6 +39,14 @@
             "Microsoft.AspNet.WebApi": {
               "target": "Package",
               "version": "[5.2.7, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Npgsql.Json.NET": {
+              "target": "Package",
+              "version": "[5.0.7, )"
             }
           },
           "imports": [
