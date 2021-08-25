@@ -13,5 +13,10 @@ namespace backend.Models
         public string firstname { get => firstname; set => firstname = value;}
 
         public string lastname { get => lastname; set => lastname = value;}
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+            
+
+        }
     }
 }
