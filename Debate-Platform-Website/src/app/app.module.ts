@@ -68,7 +68,14 @@ import { HeaderComponent } from './components/header/header.component'
 import { RouterModule } from '@angular/router';
 
 // Get firebase config from firebase console
-const firebaseConfig = {}
+const firebaseConfig = {
+  apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
+  authDomain: "debate-platform-7bba7.firebaseapp.com",
+  projectId: "debate-platform-7bba7",
+  storageBucket: "debate-platform-7bba7.appspot.com",
+  messagingSenderId: "900108619027",
+  appId: "1:900108619027:web:ad5c8a8cb094a1adaa9ee6"
+};
 
 @NgModule({
   declarations: [
