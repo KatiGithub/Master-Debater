@@ -54,7 +54,7 @@
             <ng-container matColumnDef="SelectionColumn">
               <th mat-header-cell *matHeaderCellDef>Select</th>
               <td mat-cell *matCellDef="let item">
-                <button mat-raised-button color= "primary">{{ item.team_member }}</button>
+                <button mat-raised-button color= "primary" (click)="joinTeam(1)">{{toggle ? 'Join':'Leave'}}</button>
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -71,7 +71,7 @@
             <ng-container matColumnDef="SelectionColumn">
               <th mat-header-cell *matHeaderCellDef>Select</th>
               <td mat-cell *matCellDef="let item" >
-                <button mat-raised-button color= "primary">{{item.team_member}}</button>
+                <button mat-raised-button color= "primary" (click)="joinTeam(2)">{{item.team_member}}</button>
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -81,8 +81,8 @@
       </div>
 
       <div class="buttons">
-        <button mat-button color="primary" (click)="joinTeam(1)">Join Team 1</button>
-        <button mat-button color="primary"(click)="joinTeam(2)">Join Team 2</button>
+        <!-- <button mat-button color="primary" (click)="joinTeam(1)">Join Team 1</button>
+        <button mat-button color="primary"(click)="joinTeam(2)">Join Team 2</button> -->
         <button mat-raised-button color="primary" class="table">Join As Judge</button>
         <button mat-raised-button color="danger" style="background-color: red;" *ngIf="authorized" (click)="start()">START</button>
 

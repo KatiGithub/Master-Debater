@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { validateEventsArray } from '@angular/fire/firestore';
 import { CallService } from 'src/app/services/CallService/call.service';
 
+
 class Format {
   constructor(public value: string) {}
 }
@@ -72,6 +73,7 @@ export class CommunalRoomComponent implements OnInit {
           this.Team2[x].team_member = value['team2'][x]
         }
       })
+      
     })
   
     this.preptime.valueChanges.subscribe((value: number) => {
@@ -148,4 +150,10 @@ export class CommunalRoomComponent implements OnInit {
     this.firestore.updateTopic(this.courtId, this.topic_control.value)
     this.firestore.goToNextStage(this.courtId, 0)
   }
+
+  toggle:boolean = false;
+
+  joinTeam1():void{
+   this.toggle = !this.toggle;
+ }
 }
