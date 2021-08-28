@@ -39,3 +39,7 @@
 /home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/System.Collections.Immutable.dll
 /home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/System.ComponentModel.Annotations.dll
 /home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/EFCore.NamingConventions.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Relational.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll

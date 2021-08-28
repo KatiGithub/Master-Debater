@@ -3,7 +3,8 @@ using Npgsql;
 
 namespace backend.lib.database
 {
-    public class database {
+    public class database
+    {
         private Dictionary<string, string> conn_params = new Dictionary<string, string>();
         private string conn_string;
 
@@ -16,14 +17,43 @@ namespace backend.lib.database
             conn_params.Add("database", "MasterDebater");
 
             this.conn_string = "Host=" + this.conn_params["host"] +
-                ";Username=" + this.conn_params["username"] + 
-                ";Password=" + this.conn_params["password"] + 
-                ";Port=" + this.conn_params["port"] + 
-                ";Database=" + this.conn_params["database"] +";";
+                ";Username=" + this.conn_params["username"] +
+                ";Password=" + this.conn_params["password"] +
+                ";Port=" + this.conn_params["port"] +
+                ";Database=" + this.conn_params["database"] + ";";
+
+            NpgsqlConnection.GlobalTypeMapper.UseJsonNet();
         }
 
-        public NpgsqlConnection GetDb() {
-            return new NpgsqlConnection(this.conn_string);
+        public NpgsqlConnection GetDb()
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(this.conn_string);
+            conn.Open();
+            return conn;
         }
+
+        public string GetConnString()
+        {
+            return this.conn_string;
+        }
+
+        public T queryForSingleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
+        {
+            NpgsqlDataReader dataReader = cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
+            T queryresult = rowMapper.mapRow(dataReader);
+
+            return queryresult;
+        }
+
+        // public List<T> queryForMultipleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
+        // {
+        //     NpgsqlDataReader dataReader = cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
+        //     while(dataReader.HasRows) {
+                
+        //     }
+
+        //     return queryresult;
+        // }
+
     }
 }
