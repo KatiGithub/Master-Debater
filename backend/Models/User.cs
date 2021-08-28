@@ -1,22 +1,29 @@
 using Microsoft.EntityFrameworkCore;
+using backend.lib.database;
 
 namespace backend.Models
 {
-    public class User : DbContext {
+    public class User {
 
-        public int userid { get => userid; set => userid = value; }
+        private int _userid;
+        private string _peerid;
+        private string _firebaseuid;
+        private string _email;
+        private string _firstname;
+        private string _lastname;
+
+        public int userid { get => _userid; set => _userid = value; }
+
+        public string peerid { get => _peerid; set => _peerid = value;}
         
-        public string firebaseuid { get => firebaseuid; set => firebaseuid = value;}
+        public string firebaseuid { get => _firebaseuid; set => _firebaseuid = value;}
 
-        public string email { get => email; set => email = value;}
+        public string email { get => _email; set => _email = value;}
 
-        public string firstname { get => firstname; set => firstname = value;}
+        public string firstname { get => _firstname; set => _firstname = value;}
 
-        public string lastname { get => lastname; set => lastname = value;}
+        public string lastname { get => _lastname; set => _lastname = value;}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            
-
-        }
+        public User() {}
     }
 }
