@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Npgsql;
 
 namespace backend.lib.database
@@ -37,12 +38,14 @@ namespace backend.lib.database
             return this.conn_string;
         }
 
-        public T queryForSingleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
+        public async Task<T> queryForSingleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
         {
-            NpgsqlDataReader dataReader = cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
-            T queryresult = rowMapper.mapRow(dataReader);
+            using(NpgsqlDataReader dataReader = await cmd.ExecuteReaderAsync(System.Data.CommandBehavior.SingleResult)) {
+                List<T> queryresult = rowMapper.mapRow(dataReader);
+                T singleObject = queryresult[0];
 
-            return queryresult;
+                return singleObject;
+            }
         }
 
         // public List<T> queryForMultipleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)

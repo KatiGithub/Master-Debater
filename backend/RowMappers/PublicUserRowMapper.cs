@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace backend.RowMappers
 {
-    public class UserRowMapper : RowMapper<User>
+    public class PublicUserRowMapper : RowMapper<User>
     {
         public List<User> mapRow(NpgsqlDataReader dataReader)
         {
@@ -16,8 +16,8 @@ namespace backend.RowMappers
                 User user = new User();
                 
                 user.userid = (int) dataReader.GetValue(0);
-                user.peerid = dataReader.GetValue(1).ToString();
-                user.firebaseuid = dataReader.GetValue(2).ToString();
+                // user.peerid = dataReader.GetValue(1).ToString();
+                // user.firebaseuid = dataReader.GetValue(2).ToString();
                 user.email = dataReader.GetValue(3).ToString();
                 user.firstname = dataReader.GetValue(4).ToString();
                 user.lastname = dataReader.GetValue(5).ToString();
