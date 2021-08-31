@@ -21,8 +21,10 @@ namespace backend.Controllers
 
         // [HttpGet]
         [Route("{id}")]
-        public IActionResult retrieveUserById(int id) {
-            User user = userRepository.retrieveUserById(id);
+        public async Task<IActionResult> retrieveUserById(int id) {
+            Response.Headers.Add("test", "test again");
+
+            User user = await userRepository.retrieveUserById(id);
             return Ok(user);
         }
     }
