@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 // Material Form Controls
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -91,6 +91,7 @@ const firebaseConfig = {
     HeaderComponent
   ],
   imports: [
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,

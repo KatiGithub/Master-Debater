@@ -6,6 +6,12 @@ import { FormControl } from '@angular/forms';
 import { validateEventsArray } from '@angular/fire/firestore';
 import { CallService } from 'src/app/services/CallService/call.service';
 
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
 
 class Format {
   constructor(public value: string) {}
@@ -30,6 +36,13 @@ interface FormatPos {
   styleUrls: ['./communal-room.component.css'],
 })
 export class CommunalRoomComponent implements OnInit {
+
+  tiles: Tile[] = [
+    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
   courtId: string = ''
   preptime = new FormControl('auto')
   format_control = new FormControl()

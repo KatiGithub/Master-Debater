@@ -1,3 +1,9 @@
+import { Injectable } from "@angular/core";
+
+@Injectable({
+    'providedIn': 'root'
+})
+
 export class Court {
     courtid?: Number;
     debate_room?: {

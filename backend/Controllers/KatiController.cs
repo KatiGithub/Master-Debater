@@ -15,15 +15,13 @@ namespace backend.Controllers
         {
         }
 
-        
-
-
         //Redirect from home, get state
         [HttpGet("{state}")]
         public IActionResult GetCurrectState()
         {
             return "your current state is: " + state.ToString();
         }
+        
         //Get court id to enter the room
         [HttpGet("{courtId}")]
         public IActionResult GetCourtID(int courtId)
@@ -56,7 +54,6 @@ namespace backend.Controllers
             return "Speaker ID: " + speakerid;
         }
 
-        
         [HttpGet("{topic}")]
         public IActionResult GetTopic(string topic)
         {
@@ -69,8 +66,6 @@ namespace backend.Controllers
             return prep_time;
         }
 
-        
-
         [HttpGet]
         public String Get() {
             return "hello world";
@@ -80,7 +75,6 @@ namespace backend.Controllers
         public String test() {
             return "test";
         }
-        [HttpGet]
-        public String 
+
     }
 }

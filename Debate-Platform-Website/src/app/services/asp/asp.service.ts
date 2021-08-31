@@ -18,7 +18,9 @@ export class AspService {
     return this.http.get<any>(this.APIURL + "/" + courtId);
   }
   
-  
+  getPrepTime(courtId: string){
+    return
+  }
   
   checkIfHost(courtId: string, userEmail: string): Observable<any>{
     return this.http.get<any>(this.APIURL + "/" + courtId + "/" + userEmail);

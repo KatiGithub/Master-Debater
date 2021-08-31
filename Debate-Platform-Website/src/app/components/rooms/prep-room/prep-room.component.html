@@ -1,17 +1,47 @@
 <mat-toolbar>
   <span>Prep Room</span>
-  <button mat-raised-button color="primary" class="exitButton">
-    Back to Communal Room
-  </button>
 </mat-toolbar>
 <div>
   <mat-card class="timer">
     <h1>{{ this.minutes_left }} : {{ this.seconds_left }}</h1>
   </mat-card>
 
+<!-- <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile
+        *ngFor="let tile of tiles"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color">
+      {{tile.text}}
+    </mat-grid-tile>
+</mat-grid-list> -->
 
+<mat-grid-list cols = "6" rowHeight = "100px">
+  <mat-grid-tile [colspan]="5" [rowspan]="2">
+    <mat-card class="Main-card">
+      {{topic}}
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="5" [rowspan]="2" *ngFor="let speaker of speakers">
+    <mat-card class="form-group">
+      <form [formGroup]="notesForm">
+        <div class="form-group">
+          <label for="notes">
+            <h3 style="font-family:'Roboto', sans-serif; font-weight:100; margin-left: 15%;" >Script Editor</h3>
+          </label>
+          <quill-editor formControlName="notes" style="background-color: white" [modules]="modules"></quill-editor>
+        </div>
+      </form>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
+    <mat-card>
+      <h1>chatBox</h1>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
 
-<mat-card class="Main-card">
+<!-- <mat-card class="Main-card">
   <mat-card-content class="Main-content">
     <div class="left">
       <div class="Motion-box">
@@ -39,4 +69,4 @@
         </div>
     </mat-card>
   </mat-card-content>
-</mat-card>
+</mat-card> -->

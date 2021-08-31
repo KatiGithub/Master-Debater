@@ -36,6 +36,10 @@ const routes: Routes = [
     component: PrepRoomComponent
   },
   {
+    path: 'debate_room',
+    component: DebateRoomComponent,
+  },
+  {
     path: 'debate_room/:court_id',
     component: DebateRoomComponent,
   },

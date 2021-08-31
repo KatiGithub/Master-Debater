@@ -20,5 +20,9 @@
       opacity: 0;
   }
 
-
+.chatbox{
+    width: 20%;
+    position: sticky;
+    height: 100%;
+}
 
