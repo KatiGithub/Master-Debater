@@ -40,7 +40,8 @@ namespace backend.lib.database
 
         public async Task<T> queryForSingleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
         {
-            using(NpgsqlDataReader dataReader = await cmd.ExecuteReaderAsync(System.Data.CommandBehavior.SingleResult)) {
+            using (NpgsqlDataReader dataReader = await cmd.ExecuteReaderAsync(System.Data.CommandBehavior.SingleResult))
+            {
                 List<T> queryresult = rowMapper.mapRow(dataReader);
                 T singleObject = queryresult[0];
 
@@ -48,15 +49,15 @@ namespace backend.lib.database
             }
         }
 
-        // public List<T> queryForMultipleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
-        // {
-        //     NpgsqlDataReader dataReader = cmd.ExecuteReader(System.Data.CommandBehavior.SingleResult);
-        //     while(dataReader.HasRows) {
-                
-        //     }
+        public async Task<List<T>> queryForMultipleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
+        {
+            using (NpgsqlDataReader dataReader = await cmd.ExecuteReaderAsync(System.Data.CommandBehavior.Default))
+            {
+                List<T> queryResult = rowMapper.mapRow(dataReader);
 
-        //     return queryresult;
-        // }
+                return queryResult;
+            }
+        }
 
     }
 }

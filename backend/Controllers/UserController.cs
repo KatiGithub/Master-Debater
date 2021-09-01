@@ -19,7 +19,8 @@ namespace backend.Controllers
 
         private UserRepository userRepository = new UserRepository();
 
-        // [HttpGet]
+        // GET: /user/{id}
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> retrieveUserById(int id) {
             Response.Headers.Add("test", "test again");
