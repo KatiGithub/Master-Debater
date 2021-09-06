@@ -10,7 +10,6 @@ export interface Tile {
   text: string;
 }
 
-
 @Component({
   selector: 'app-debate-room',
   templateUrl: './debate-room.component.html',
@@ -24,21 +23,27 @@ export class DebateRoomComponent implements OnInit {
     {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
     {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
-  DebateForm!: FormGroup;
+
   topic: string = '';
+  notesForm!: FormGroup;
+
  
 
-
-  module ={}
+  modules = {}
   constructor( public court: Court) { }
 
   ngOnInit(): void {
     this.court = new Court;
     
+    this.notesForm = new FormGroup({
+      'notes': new FormControl(null)
+    })
   }
 
   getNextSpeaker(): void {
     
   }
+  
+  
 
 }
