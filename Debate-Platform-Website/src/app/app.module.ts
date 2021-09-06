@@ -44,7 +44,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-import { FlexLayoutModule } from '@angular/flex-layout'; 
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth'
@@ -134,7 +133,6 @@ const firebaseConfig = {
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    FlexLayoutModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,

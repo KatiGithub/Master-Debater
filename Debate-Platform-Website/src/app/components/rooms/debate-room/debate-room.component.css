@@ -1,28 +1,62 @@
- .background-pic{
-    background-image: url("../../../../assets/img/Debate.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: 93%;
+.container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 0.6fr 1fr 0.6fr;
+    grid-template-rows: 1fr;
+    grid-gap: 12px;
+    grid-template-areas:
+    "participants header chatbox"
+    "participants body chatbox";
 }
 
-.icon {
-    background-image: url("../../../../assets/img/Debate.png");
-    background-size: 100%;
-    background-position: 0%;
-    background-repeat:no-repeat;
-    min-width: 100%;
-      min-height: 100%;
-  }
+.headtext{
+    padding-left: 50px;
+}
 
-  .transp{
-      min-width: 100%;
-      min-height: 100%;
-      opacity: 0;
-  }
+.header{
+    display: flex;
+    align-content: center;
+    padding: 30px;
+}
 
+.head{
+    grid-area: header;
+}
+
+.headitem{
+    display: inline-block;
+}
+
+.texteditor{
+    margin-top: 30px;
+}
 .chatbox{
-    width: 20%;
+    grid-area: chatbox;
+    position: fixed;
     position: sticky;
-    height: 100%;
+    height: 100vh;
 }
 
+.chatboxcontent{
+    position: sticky;
+    top: 40px;
+    right: 20px;
+    height: 90%;
+}
+
+.participant {
+    grid-area: participants;
+    height: 100vh;
+}
+
+.participantcontent{
+    position: sticky;
+    right: 20px;
+    height: 90%;
+    margin-top: 60px;
+}
+
+/* .body{
+    grid-area: body;
+    
+} */
