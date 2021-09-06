@@ -1,16 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using backend.lib.database;
+using backend.Models;
+using System.Collections.Generic;
 
 namespace backend.Models
 {
-    public class Speakers {
+    public class Speakers
+    {
         private string _speaking_time;
         private string _position_name;
         private string _position_order;
         private string _start_speaking_time;
         private string _end_speaking_time;
         private int _score;
-        private Poi[] _pois;
+        private List<Poi> _pois;
 
 
         public string speaking_time { get => _speaking_time; set => _speaking_time = value; }
@@ -19,9 +22,9 @@ namespace backend.Models
         public string start_speaking_time { get => _start_speaking_time; set => _start_speaking_time = value; }
         public string end_speaking_time { get => _end_speaking_time; set => _end_speaking_time = value; }
         public int score { get => _score; set => _score = value; }
-        public Poi[] pois { get => _pois; set => _pois = value; }
-        
-        
-        public Speakers() {}
+        public List<Poi> pois { get => _pois; set => _pois = value; }
+
+
+        public Speakers() { }
     }
 }

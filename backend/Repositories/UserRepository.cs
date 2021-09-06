@@ -20,7 +20,7 @@ namespace backend.Repositories
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(query, db.GetDb()))
             {
-                User user = await db.queryForSingleObject(cmd, new PublicUserRowMapper());
+                User user = await db.queryForSingleObjectWithRepo(cmd, new PublicUserRowMapper());
 
                 return user;
             }

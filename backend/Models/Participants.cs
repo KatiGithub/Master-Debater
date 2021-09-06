@@ -5,11 +5,13 @@ namespace backend.Models
 {
     public class Participants {
 
-        private string _userid;
+        private int _userid;
         private Roles _role;
+        private int _courtid;
 
-        public string userid { get => _userid; set => _userid = value; }
-        public Roles role { get => _roleid; set => _roleid = value; }
+        public int userid { get => _userid; set => _userid = value; }
+        public Roles role { get => _role; set => _role = value; } 
+        public int courtid { get => _courtid; set => _courtid = value; }
         public Participants() {}
     }
 }

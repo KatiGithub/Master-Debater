@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Npgsql;
@@ -38,7 +39,7 @@ namespace backend.lib.database
             return this.conn_string;
         }
 
-        public async Task<T> queryForSingleObject<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
+        public async Task<T> queryForSingleObjectWithRepo<T>(NpgsqlCommand cmd, RowMapper<T> rowMapper)
         {
             using (NpgsqlDataReader dataReader = await cmd.ExecuteReaderAsync(System.Data.CommandBehavior.SingleResult))
             {
@@ -59,5 +60,18 @@ namespace backend.lib.database
             }
         }
 
+        public async Task<object> queryForSingleObject(NpgsqlCommand command, Type t, string columnname)
+        {
+            using (NpgsqlDataReader dataReader = await command.ExecuteReaderAsync(System.Data.CommandBehavior.SingleResult))
+            {
+                var queryResult = Activator.CreateInstance(t);
+                
+
+                dataReader.Read();
+                queryResult = dataReader.GetValue(dataReader.GetOrdinal(columnname));
+
+                return queryResult;
+            }
+        }
     }
 }
