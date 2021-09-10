@@ -23,7 +23,7 @@ namespace backend.RowMappers
                 court.team1_chat_id.room_id = !dataReader.IsDBNull(dataReader.GetOrdinal("team1_chat")) ? dataReader.GetInt32(dataReader.GetOrdinal("team1_chat")) : (int?) null;
                 court.team2_chat_id.room_id = !dataReader.IsDBNull(dataReader.GetOrdinal("team2_chat")) ? dataReader.GetInt32(dataReader.GetOrdinal("team2_chat")) : (int?) null;
                 court.adjudicator_chat_id.room_id = !dataReader.IsDBNull(dataReader.GetOrdinal("adjudicator_chat")) ? dataReader.GetInt32(dataReader.GetOrdinal("adjudicator_chat")) : (int?) null;
-
+                
                 lCourt.Add(court);
             }
 

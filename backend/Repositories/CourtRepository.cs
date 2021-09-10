@@ -49,6 +49,7 @@ namespace backend.Repositories
             query = query.Replace("@c", court.general_chat_id.room_id.ToString());
             query = query.Replace("@d", court.team1_chat_id.room_id.ToString());
             query = query.Replace("@e", court.team2_chat_id.room_id.ToString());
+            query = query.Replace("@f", court.adjudicator_chat_id.room_id.ToString());
             query = query.Replace("@g", court.court_token);
 
             using (NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb()))
