@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
+using SignalRChat.Hubs;
 namespace backend
 {
     public class Startup
@@ -25,6 +25,14 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {  
+                builder  
+                .AllowAnyMethod()  
+                .AllowAnyHeader()  
+                .AllowCredentials()  
+                .WithOrigins("http://localhost:4200");  
+            }));  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,9 +47,12 @@ namespace backend
 
             app.UseAuthorization();
 
+            app.UseCors("CorsPolicy");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }

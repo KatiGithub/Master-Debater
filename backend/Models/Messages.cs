@@ -7,7 +7,6 @@ namespace backend.Models
 
         private string _messages;
         private string _time_sent;
-
         private int _chatroomid;
  
         public string messages { get => _messages; set => _messages = value; }
