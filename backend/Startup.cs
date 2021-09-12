@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using backend.Hubs;
+using backend.utils.AuthenticationHandlers;
 
 namespace backend
 {
@@ -27,6 +28,14 @@ namespace backend
         {
             services.AddControllers();
             services.AddSignalR();
+
+            // services.AddAuthentication()
+            //     .AddScheme<ValidateJwtTokenAuthenticationSchemeOptions, ValidateJwtTokenAuthenticationHandler>(ValidateJwtTokenAuthenticationSchemeOptions.name, o => {});
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = ValidateJwtTokenAuthenticationSchemeOptions.name;
+            }).AddScheme<ValidateJwtTokenAuthenticationSchemeOptions, ValidateJwtTokenAuthenticationHandler>(ValidateJwtTokenAuthenticationSchemeOptions.name, o => o.DisplayMessage = "Login");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +48,7 @@ namespace backend
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

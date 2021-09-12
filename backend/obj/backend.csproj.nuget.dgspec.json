@@ -40,6 +40,10 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNet.WebApi": {
               "target": "Package",
               "version": "[5.2.7, )"

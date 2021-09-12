@@ -43,3 +43,12 @@
 /home/kati/dev/projects/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.dll
 /home/kati/dev/projects/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.pdb
 /home/kati/dev/projects/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.genruntimeconfig.cache
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/debate-platform-7bba7-firebase-adminsdk-ipgxy-125a82eba6.json
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/FirebaseAdmin.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Api.Gax.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Api.Gax.Rest.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Apis.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Apis.Auth.PlatformServices.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Apis.Auth.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Apis.Core.dll
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Microsoft.Bcl.AsyncInterfaces.dll
