@@ -44,9 +44,16 @@ namespace backend.lib.database
             using (NpgsqlDataReader dataReader = await cmd.ExecuteReaderAsync(System.Data.CommandBehavior.SingleResult))
             {
                 List<T> queryresult = rowMapper.mapRow(dataReader);
-                T singleObject = queryresult[0];
+                try
+                {
+                    T singleObject = queryresult[0];
 
-                return singleObject;
+                    return singleObject;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return default(T);
+                }
             }
         }
 
@@ -65,13 +72,17 @@ namespace backend.lib.database
             using (NpgsqlDataReader dataReader = await command.ExecuteReaderAsync(System.Data.CommandBehavior.SingleResult))
             {
                 var queryResult = Activator.CreateInstance(t);
-                
+
 
                 dataReader.Read();
                 queryResult = dataReader.GetValue(dataReader.GetOrdinal(columnname));
 
                 return queryResult;
             }
+        }
+
+        public async Task execute(NpgsqlCommand command) {
+            await command.ExecuteNonQueryAsync();
         }
     }
 }

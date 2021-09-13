@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using backend.Repositories;
 using backend.Models;
+using Microsoft.AspNetCore.Authorization;
 //using backend.Models;
 
 namespace backend.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     [ApiController]
     public class CourtController : ControllerBase
     {
