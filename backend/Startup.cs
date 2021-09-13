@@ -9,7 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SignalRChat.Hubs;
+using backend.Hubs;
+
 namespace backend
 {
     public class Startup
@@ -52,7 +53,7 @@ namespace backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

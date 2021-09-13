@@ -65,6 +65,7 @@ import { QuillModule } from 'ngx-quill';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { HeaderComponent } from './components/header/header.component'
 import { RouterModule } from '@angular/router';
+import { SignupComponent } from './components/signup/signup.component';
 
 // Get firebase config from firebase console
 const firebaseConfig = {
@@ -87,7 +88,8 @@ const firebaseConfig = {
     RoomRedirectComponent,
     JudgeComponent,
     VoiceCallComponent,
-    HeaderComponent
+    HeaderComponent,
+    SignupComponent
   ],
   imports: [
     HttpClientModule,

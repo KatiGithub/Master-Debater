@@ -1,0 +1,15 @@
+<div class="container">
+    <mat-card class="cardContainer">
+        <form (ngSubmit)="register()" [formGroup]="signupform">
+            <div>
+                <label for="firstname">First name:</label><br>
+                <input type="text" name="firstname" formControlName="firstname" ngModel>
+            </div>
+            <div>
+                <label for="lastname">Last name:</label><br>
+                <input type="text" name="lastname" formControlName="lastname" ngModel>
+            </div>
+            <button mat-flat-button color="primary" type="submit">Sign Up</button>
+        </form>
+    </mat-card>
+</div>

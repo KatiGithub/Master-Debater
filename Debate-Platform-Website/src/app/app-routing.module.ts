@@ -8,11 +8,16 @@ import { PrepRoomComponent } from './components/rooms/prep-room/prep-room.compon
 import { DebateRoomComponent } from './components/rooms/debate-room/debate-room.component';
 import { JudgeComponent } from './components/rooms/judge/judge.component';
 import { VoiceCallComponent } from './components/voice-call/voice-call.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: 'home',
