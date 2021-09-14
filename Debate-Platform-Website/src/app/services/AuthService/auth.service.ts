@@ -31,10 +31,11 @@ export class AuthService {
     return this.asp.login(
       credentials["token"],
       credentials["email"]
-    );
+    )
   }
-
-  doGoogleLogin() {
+    
+    doGoogleLogin() {
+  
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('email');
@@ -48,7 +49,10 @@ export class AuthService {
               user.getIdToken().then((token) => {
                 this.login(user.email!, token)
               })
-            } else {
+              
+              }
+            
+            else {
               return;
             }
           });
@@ -94,6 +98,9 @@ export class AuthService {
       }
     })
   }
+
+  //this login function (AuthService.login) logs in when entering page
+  //for another login function in AspService, login function runs in the background
 
   login(email: String, token: String){
 

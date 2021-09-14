@@ -46,7 +46,6 @@
 
 .pic-card {
   flex: 0.8;
-  background-image: url("../../../../src/assets/img/art.png");
   background-size: 70%;
   background-position: 80%;
   background-repeat: no-repeat;

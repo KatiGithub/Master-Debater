@@ -12,7 +12,8 @@ export class HttpService {
     let current_user = localStorage.getItem('current_user') as string;
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization:'Bearer' + JSON.parse(current_user)['token']
+      Authorization: JSON.parse(current_user)['token'],
+      'Access-Control-Allow-Origin': 'http://localhost:4200/login'
     });
     console.log(headers);
     return this.http.get(url, {headers: headers, withCredentials: true});

@@ -43,8 +43,9 @@ namespace backend.Controllers
             }
 
             string auth_token = Request.Headers["Authorization"];
+            Console.Write("authentication token is: "+ auth_token);
             FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
-
+            
             try
             {
                 FirebaseToken token = await firebaseAuth.VerifyIdTokenAsync(auth_token);

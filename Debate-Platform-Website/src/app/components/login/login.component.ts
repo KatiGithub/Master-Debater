@@ -17,18 +17,13 @@ export class LoginComponent implements OnInit {
 
   loginWithGoogle(){
     
-    let currentUser = localStorage.getItem('current_user');
     
-    if(currentUser != null)
-    {
-      console.log("Logging in with google");
       this.auth.doGoogleLogin()
       .then((data)=>
       {
         console.log(data);
       })
-    }
-
+    
   }
 
   login(){

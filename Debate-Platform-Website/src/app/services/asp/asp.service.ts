@@ -16,11 +16,11 @@ export class AspService {
   constructor(private http: HttpService, private router: Router) { }
 
   login(token: string, email: string): Promise<Object>{
-    let bodystring = JSON.stringify({
-      "email": email,
-      "token": token
-    })
-    return this.http.post(this.APIURL + "/auth/login", bodystring).toPromise();
+    // let bodystring = JSON.stringify({
+    //   "email": email,
+    //   "token": token
+    // })
+    return this.http.get(this.APIURL + "/auth/login").toPromise();
   }
 
   signUp(credentials: Object){

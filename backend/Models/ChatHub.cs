@@ -6,9 +6,9 @@ namespace SignalRChat.Hubs
 {
     public class ChatHub : Hub<IChatHub>
     {
-        public async Task SendBroadcastAsync(Chats chatMessage)
+        public async Task SendBroadcastAsync(Chats chatMessage, string _user)
         {
-            await Clients.All.MessageReceivedFromHub(chatMessage);
+            await Clients.All.MessageReceivedFromHub(chatMessage, _user);
         }
         public override async Task OnConnectedAsync()
         {
@@ -18,7 +18,7 @@ namespace SignalRChat.Hubs
 
     public interface IChatHub
     {
-        Task MessageReceivedFromHub(Chats chatMessage);
+        Task MessageReceivedFromHub(Chats chatMessage, string user);
         Task NewUserConnected(string message);
     }
 }

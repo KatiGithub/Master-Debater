@@ -9,6 +9,7 @@ import { DebateRoomComponent } from './components/rooms/debate-room/debate-room.
 import { JudgeComponent } from './components/rooms/judge/judge.component';
 import { VoiceCallComponent } from './components/voice-call/voice-call.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AuthGuardService } from './services/AuthGuard/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent  
+    component: HomeComponent  ,
+    canActivate: [AuthGuardService]
   }, 
   {
     path: '',
@@ -30,27 +32,33 @@ const routes: Routes = [
   },
   {
     path: 'courts/:court_id',
-    component: RoomRedirectComponent
+    component: RoomRedirectComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'communal_room/:court_id',
-    component: CommunalRoomComponent
+    component: CommunalRoomComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'prep_room/:court_id',
-    component: PrepRoomComponent
+    component: PrepRoomComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'debate_room',
     component: DebateRoomComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'debate_room/:court_id',
     component: DebateRoomComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'judge_room/:court_id',
-    component: JudgeComponent
+    component: JudgeComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'vc_test',

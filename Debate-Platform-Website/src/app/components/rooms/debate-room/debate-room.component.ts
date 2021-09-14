@@ -23,9 +23,13 @@ export class DebateRoomComponent implements OnInit {
   SpeakerTable: SpeakerProperties[] = [
     {
       team: "1", name: "he", position: 3, status: "d"
+    },
+    {
+      team: "6", name: "zhe", position: 6, status: "o"
     }
   ];
-  speaker = {};
+
+  displayedColumns: string[] = ['teams', 'names', 'positions', 'statuses'];
   modules = {};
   courtId: string = '';
 
