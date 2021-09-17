@@ -28,6 +28,13 @@ namespace backend
         {
             services.AddControllers();
             services.AddSignalR();
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {  
+                builder  
+                .AllowAnyMethod()  
+                .AllowAnyHeader()  
+                .AllowCredentials()  
+                .WithOrigins("http://localhost:4200");  
+            }));  
 
             // services.AddAuthentication()
             //     .AddScheme<ValidateJwtTokenAuthenticationSchemeOptions, ValidateJwtTokenAuthenticationHandler>(ValidateJwtTokenAuthenticationSchemeOptions.name, o => {});
@@ -50,6 +57,8 @@ namespace backend
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

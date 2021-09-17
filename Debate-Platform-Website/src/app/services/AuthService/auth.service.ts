@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AspService } from '../asp/asp.service';
 import firebase from 'firebase/app';
+import { promise } from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,30 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public asp: AspService
   ) { }
 
-  doGoogleLogin() {
+  logout(){
+    localStorage.removeItem('current_user');
+    this.router.navigate(['']);
+  }
+
+  isActivated(): Promise<Object> {
+    let credentials = JSON.parse(localStorage.getItem('current_user')!);
+
+    if(credentials == null){
+      this.logout();
+    }
+    
+    return this.asp.login(
+      credentials["token"],
+      credentials["email"]
+    )
+  }
+    
+    doGoogleLogin() {
+  
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('email');
@@ -27,7 +49,10 @@ export class AuthService {
               user.getIdToken().then((token) => {
                 this.login(user.email!, token)
               })
-            } else {
+              
+              }
+            
+            else {
               return;
             }
           });
@@ -40,6 +65,10 @@ export class AuthService {
         }
       );
     }).catch((error) => {
+      // if(error.code == 'auth/credential-doesnot-exist') {
+      //   this.router.navigate(['signup']);
+      // }
+      // else
       if(error.code == 'auth/account-exists-with-different-credential') {
         let pendingCredentials = error.credential;
         let email = error.email;
@@ -70,7 +99,10 @@ export class AuthService {
     })
   }
 
-  login(email: String, token: String) {
+  //this login function (AuthService.login) logs in when entering page
+  //for another login function in AspService, login function runs in the background
+
+  login(email: String, token: String){
 
     let userauthdata = {
       'email': email,
@@ -85,7 +117,8 @@ export class AuthService {
     console.log(userauthdata['token']);
 
     localStorage.setItem('current_user', JSON.stringify(userauthdata));
-
+    let current_token = localStorage.getItem('current_user')!['token']
+    console.log(current_token);
     this.router.navigate(['home']);
   }
 }

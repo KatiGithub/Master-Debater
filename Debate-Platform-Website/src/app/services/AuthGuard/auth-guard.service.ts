@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,7 +13,24 @@ export class AuthGuardService implements CanActivate {
     public auth: AuthService,
     public router: Router
   ) { }
+  
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    throw new Error('Method not implemented.');
+    this.auth.isActivated()
+    .then((data)=>
+      { console.log("permission passed (authguard)")
+        return true; })
+    .catch((err: HttpErrorResponse)=>
+      { 
+        console.log(err);
+        if(err.error == "User is not registered"){
+          console.log("user not registered, redirecting to signup page");
+          this.auth.logout();
+          this.router.navigate(['signup']);
+        }
+        else if(err.error == "invalid token"){
+          this.auth.logout();
+        }
+      })
+    return false;
+    }
   }
-}

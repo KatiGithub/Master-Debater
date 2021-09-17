@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/AuthService/auth.service';
 
@@ -15,7 +16,17 @@ export class LoginComponent implements OnInit {
 
 
   loginWithGoogle(){
-    console.log("Logging in with google")
-    this.auth.doGoogleLogin()
+    
+    
+      this.auth.doGoogleLogin()
+      .then((data)=>
+      {
+        console.log(data);
+      })
+    
+  }
+
+  login(){
+    console.log("normal logging in not yet implemented")
   }
 }

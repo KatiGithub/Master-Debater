@@ -17,8 +17,8 @@ namespace backend.Models
 
 
         public string speaking_time { get => _speaking_time; set => _speaking_time = value; }
-        public string position_time { get => _position_name; set => _position_name = value; }
-        public string postion_order { get => _position_order; set => _position_order = value; }
+        public string position_name { get => _position_name; set => _position_name = value; }
+        public string position_order { get => _position_order; set => _position_order = value; }
         public string start_speaking_time { get => _start_speaking_time; set => _start_speaking_time = value; }
         public string end_speaking_time { get => _end_speaking_time; set => _end_speaking_time = value; }
         public int score { get => _score; set => _score = value; }
