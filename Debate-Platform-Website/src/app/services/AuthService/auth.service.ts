@@ -113,7 +113,8 @@ export class AuthService {
     console.log(userauthdata);
 
     localStorage.setItem('current_user', JSON.stringify(userauthdata));
-
+    let current_token = localStorage.getItem('current_user')!['token']
+    console.log(current_token);
     this.router.navigate(['home']);
   }
 }

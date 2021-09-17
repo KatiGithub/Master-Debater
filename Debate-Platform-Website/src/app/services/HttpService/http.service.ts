@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class HttpService {
       Authorization: JSON.parse(current_user)['token'],
       'Access-Control-Allow-Origin': 'http://localhost:4200/login'
     });
+    
     console.log(headers);
     return this.http.get(url, {headers: headers, withCredentials: true});
   }

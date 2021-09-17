@@ -11,7 +11,6 @@ import { first, last } from 'rxjs/operators';
 export class AspService {
 
   //endpoints
-
   APIURL = "http://localhost:5000"
   constructor(private http: HttpService, private router: Router) { }
 
@@ -24,7 +23,7 @@ export class AspService {
   }
 
   signUp(credentials: Object){
-    return this.http.post(this.APIURL + "/auth/register", credentials)
+    return this.http.post(this.APIURL + "/auth/signup", credentials)
   }
 
   register(firstname: string, lastname: string){
@@ -32,9 +31,8 @@ export class AspService {
       "firstname": firstname,
       "lastname": lastname
     })
-   return this.http.post(this.APIURL + "/auth/signup", bodystring);
+   return this.http.post(this.APIURL + "/auth/register", bodystring);
   }
-
 
   getCourtHost(courtId: string){
     return this.http.get(this.APIURL + "/" + "courtId" + "/" + courtId);
@@ -51,7 +49,5 @@ export class AspService {
   getSpeaker(courtId: string){
     return this.http.get(this.APIURL + "/" ) as Observable<string>;
   }
-
-  
   
 }

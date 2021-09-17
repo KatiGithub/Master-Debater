@@ -83,6 +83,7 @@ namespace backend.Controllers
             }
         }
 
+        [HttpPost]
         [Route("register")]
         public async Task<IActionResult> register([FromBody] string content) {
             if(!Request.Headers.ContainsKey("Authorization")) {
@@ -102,7 +103,7 @@ namespace backend.Controllers
                 string uid = token.Uid;
 
                 if(await userRepository.checkUserExists(uid)) {
-                    return Unauthorized();
+                    return Unauthorized("User does not exist");
                 }
 
                 UserRecord user_new = await firebaseAuth.GetUserAsync(uid);
