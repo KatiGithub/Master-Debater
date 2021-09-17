@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AspService } from 'src/app/services/asp/asp.service';
 import { AuthService } from 'src/app/services/AuthService/auth.service';
 
@@ -14,7 +15,7 @@ export class SignupComponent implements OnInit {
     firstname: new FormControl(''),
     lastname: new FormControl('')
   });
-  constructor(private authservice: AspService) { }
+  constructor(private authservice: AspService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,8 +25,12 @@ export class SignupComponent implements OnInit {
 
     this.authservice.register(
       this.signupform.value['firstname'],
-      this.signupform.valid['lastname']
-    );
+      this.signupform.value['lastname']
+    ).toPromise().then(() => {
+      this.router.navigate(['home']);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
 }

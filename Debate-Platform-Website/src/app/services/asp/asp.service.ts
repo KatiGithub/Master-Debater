@@ -25,11 +25,6 @@ export class AspService {
   signUp(credentials: Object){
     return this.http.post(this.APIURL + "/auth/signup", credentials)
   }
-<<<<<<< HEAD
-  
-  getPrepTime(courtId: string) {
-    return
-=======
 
   register(firstname: string, lastname: string){
     let bodystring = JSON.stringify({
@@ -41,7 +36,6 @@ export class AspService {
 
   getCourtHost(courtId: string){
     return this.http.get(this.APIURL + "/" + "courtId" + "/" + courtId);
->>>>>>> 6eb560bf9ab1c58fbf9705edac7cee9ab2d4489e
   }
   
   getCourt(courtId: string){

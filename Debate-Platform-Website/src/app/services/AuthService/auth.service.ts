@@ -6,17 +6,16 @@ import firebase from 'firebase/app';
 import { promise } from 'selenium-webdriver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   constructor(
     private router: Router,
     public afAuth: AngularFireAuth,
     public asp: AspService
-  ) { }
+  ) {}
 
-  logout(){
+  logout() {
     localStorage.removeItem('current_user');
     this.router.navigate(['']);
   }
@@ -24,18 +23,14 @@ export class AuthService {
   isActivated(): Promise<Object> {
     let credentials = JSON.parse(localStorage.getItem('current_user')!);
 
-    if(credentials == null){
+    if (credentials == null) {
       this.logout();
     }
-    
-    return this.asp.login(
-      credentials["token"],
-      credentials["email"]
-    )
+
+    return this.asp.login(credentials['token'], credentials['email']);
   }
-    
-    doGoogleLogin() {
-  
+
+  doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('email');
@@ -45,14 +40,11 @@ export class AuthService {
         (res) => {
           console.log(res);
           firebase.auth().onAuthStateChanged((user) => {
-            if(user) {
+            if (user) {
               user.getIdToken().then((token) => {
-                this.login(user.email!, token)
-              })
-              
-              }
-            
-            else {
+                this.login(user.email!, token);
+              });
+            } else {
               return;
             }
           });
@@ -69,7 +61,7 @@ export class AuthService {
       //   this.router.navigate(['signup']);
       // }
       // else
-      if(error.code == 'auth/account-exists-with-different-credential') {
+      if (error.code == 'auth/account-exists-with-different-credential') {
         let pendingCredentials = error.credential;
         let email = error.email;
         console.log(pendingCredentials);
@@ -78,47 +70,51 @@ export class AuthService {
           if (methods[0] == 'facebook.com') {
             let provider = new firebase.auth.FacebookAuthProvider();
             this.afAuth.signInWithPopup(provider).then((res) => {
-                if(res.user!.email == email) {
-                  res!.user!.linkWithCredential(pendingCredentials).then((usercred) => {
+              if (res.user!.email == email) {
+                res!
+                  .user!.linkWithCredential(pendingCredentials)
+                  .then((usercred) => {
                     firebase.auth().onAuthStateChanged((user) => {
-                      if(user) {
+                      if (user) {
                         user.getIdToken().then((token) => {
-                          this.login(user.email!, token)
-                        })
+                          this.login(user.email!, token);
+                        });
                       } else {
                         return;
                       }
                     });
-                    console.log("Connected facebook and google");
-                  })
-                }
+                    console.log('Connected facebook and google');
+                  });
+              }
             });
           }
         });
+      } else {
+        console.error(error);
       }
-    })
+    });
   }
 
   //this login function (AuthService.login) logs in when entering page
   //for another login function in AspService, login function runs in the background
 
-  login(email: String, token: String){
-
+  login(email: String, token: String) {
     let userauthdata = {
-      'email': email,
-      'token': token
+      email: email,
+      token: token,
     };
 
     // Send login req to server with JWT Token in Authorization header
     // 401: Unauthorized, remove current user.
     // 200: Authorized, move to home
 
-    console.log("current user:");
+    console.log('current user:');
     console.log(userauthdata['token']);
 
     localStorage.setItem('current_user', JSON.stringify(userauthdata));
-    let current_token = localStorage.getItem('current_user')!['token']
-    console.log(current_token);
+    let current_token = JSON.parse(localStorage.getItem('current_user')!)['token'];
+    // console.log(current_token);
     this.router.navigate(['home']);
+    console.log("test");
   }
 }

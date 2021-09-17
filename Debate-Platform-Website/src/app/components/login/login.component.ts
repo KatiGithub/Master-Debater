@@ -5,28 +5,20 @@ import { AuthService } from 'src/app/services/AuthService/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  constructor(private auth: AuthService) {}
 
-  constructor(private auth: AuthService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  loginWithGoogle() {
+    this.auth.doGoogleLogin().then((data) => {
+      console.log(data);
+    });
   }
 
-
-  loginWithGoogle(){
-    
-    
-      this.auth.doGoogleLogin()
-      .then((data)=>
-      {
-        console.log(data);
-      })
-    
-  }
-
-  login(){
-    console.log("normal logging in not yet implemented")
+  login() {
+    console.log('normal logging in not yet implemented');
   }
 }

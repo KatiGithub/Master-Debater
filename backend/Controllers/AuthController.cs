@@ -18,6 +18,7 @@ using System.Text.Json;
 namespace backend.Controllers
 {
     [Route("[controller]")]
+    [AllowAnonymous]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -33,7 +34,6 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("login")]
         public async Task<IActionResult> login(string scheme, string optionsMessage)
         {
@@ -72,6 +72,8 @@ namespace backend.Controllers
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         [Route("signup/{email=}")]
         public async Task<IActionResult> signup(string email)
         {
@@ -84,6 +86,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("register")]
         public async Task<IActionResult> register([FromBody] string content) {
             if(!Request.Headers.ContainsKey("Authorization")) {

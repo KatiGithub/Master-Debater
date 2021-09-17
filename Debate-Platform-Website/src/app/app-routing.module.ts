@@ -13,61 +13,62 @@ import { AuthGuardService } from './services/AuthGuard/auth-guard.service';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: SignupComponent,
   },
   {
     path: 'home',
-    component: HomeComponent  ,
-    canActivate: [AuthGuardService]
-  }, 
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    component: HomeComponent,
+    canActivate: [AuthGuardService],
   },
+
   {
     path: 'courts/:court_id',
     component: RoomRedirectComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: 'communal_room/:court_id',
     component: CommunalRoomComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: 'prep_room/:court_id',
     component: PrepRoomComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: 'debate_room',
     component: DebateRoomComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: 'debate_room/:court_id',
     component: DebateRoomComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: 'judge_room/:court_id',
     component: JudgeComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: 'vc_test',
-    component: VoiceCallComponent
-  }
+    component: VoiceCallComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

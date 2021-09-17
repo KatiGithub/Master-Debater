@@ -70,6 +70,9 @@ namespace backend.utils.AuthenticationHandlers
                 return await Task.FromResult(AuthenticateResult.Fail("Invalid JWT Token"));
             } catch(FormatException) {
                 return await Task.FromResult(AuthenticateResult.Fail("Something something"));
+            } catch(Exception ex)
+            {
+                return await Task.FromResult(AuthenticateResult.Fail(ex.ToString()));
             }
         }
     }

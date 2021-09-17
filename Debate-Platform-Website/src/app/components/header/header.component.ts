@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
         this.home_page = false;
       }
 
-      console.log(this.home_page)
+      // console.log(this.home_page)
     })
   }
 
