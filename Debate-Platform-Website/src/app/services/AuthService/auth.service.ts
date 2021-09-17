@@ -77,8 +77,12 @@ export class AuthService {
       'token': token
     };
 
+    // Send login req to server with JWT Token in Authorization header
+    // 401: Unauthorized, remove current user.
+    // 200: Authorized, move to home
+
     console.log("current user:");
-    console.log(userauthdata);
+    console.log(userauthdata['token']);
 
     localStorage.setItem('current_user', JSON.stringify(userauthdata));
 

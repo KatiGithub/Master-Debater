@@ -18,7 +18,7 @@ export class AspService {
     return this.http.get<any>(this.APIURL + "/" + courtId);
   }
   
-  getPrepTime(courtId: string){
+  getPrepTime(courtId: string) {
     return
   }
   
