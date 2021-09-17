@@ -9,13 +9,18 @@ namespace backend.Hubs
     {
         private ChatroomRepository chatroomRepository = new ChatroomRepository();
 
+        // public async Task SendMessage(string message, int chatroomid)
+        // {
+        //     List<string> lsConnectionId = await chatroomRepository.getConnectionIds(chatroomid);
+
+        //     foreach(string connectionid in lsConnectionId) {
+        //         await Clients.Client(connectionid).SendAsync("ReceiveMessage", message);
+        //     }
+        // }
+
         public async Task SendMessage(string message, int chatroomid)
         {
-            List<string> lsConnectionId = await chatroomRepository.getConnectionIds(chatroomid);
-
-            foreach(string connectionid in lsConnectionId) {
-                await Clients.Client(connectionid).SendAsync("ReceiveMessage", message);
-            }
+            
         }
     }
 }
