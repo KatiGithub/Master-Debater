@@ -13,6 +13,9 @@ using backend.Models;
 using backend.Repositories;
 using System.Security.Claims;
 using System.Text.Json;
+using System.Web.Script.Serialization;
+// using Newtonsoft.Json;
+
 //using backend.Models;
 
 namespace backend.Controllers
@@ -41,7 +44,7 @@ namespace backend.Controllers
             {
                 return Unauthorized("No auth token sent");
             }
-
+            
             string auth_token = Request.Headers["Authorization"];
             Console.Write("authentication token is: "+ auth_token);
             FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
@@ -88,13 +91,15 @@ namespace backend.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("register")]
-        public async Task<IActionResult> register([FromBody] string content) {
+        public async Task<IActionResult> register([FromBody] object content) {
             if(!Request.Headers.ContainsKey("Authorization")) {
                 return Unauthorized("no authorization key");
             }
 
-            var values = JsonSerializer.Deserialize<Dictionary<string, string>>(content);
-
+            Console.Write("content: " + content);
+            // Dictionary<string, object> dict = (Dictionary<string, object>)jsSerializer.DeserializeObject(content);
+            // var values = JsonSerializer.Deserialize<Dictionary<string, string>>(content);
+            Console.Write("dictionary: " + dict);
             var auth_token = Request.Headers["Authorization"];
 
             FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
@@ -113,12 +118,12 @@ namespace backend.Controllers
 
                 user.email = user_new.Email;
                 user.firebaseuid = uid;
-                user.firstname = values["firstname"];
-                user.lastname = values["lastname"];
+                // user.firstname = values["firstname"];
+                // user.lastname = values["lastname"];
 
                 return Ok();
-            } catch (Exception) {
-                return Unauthorized();
+            } catch (Exception exeption) {
+                return Unauthorized(exeption.ToString());
             }
         }
     }
