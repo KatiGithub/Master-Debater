@@ -13,6 +13,7 @@ using backend.Models;
 using backend.Repositories;
 using System.Security.Claims;
 using System.Text.Json;
+using System.IO;
 //using backend.Models;
 
 namespace backend.Controllers
@@ -43,9 +44,9 @@ namespace backend.Controllers
             }
 
             string auth_token = Request.Headers["Authorization"];
-            Console.Write("authentication token is: "+ auth_token);
+            Console.Write("authentication token is: " + auth_token);
             FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
-            
+
             try
             {
                 FirebaseToken token = await firebaseAuth.VerifyIdTokenAsync(auth_token);
@@ -77,10 +78,12 @@ namespace backend.Controllers
         [Route("signup/{email=}")]
         public async Task<IActionResult> signup(string email)
         {
-            if(await userRepository.checkUserExistsByEmail(email))
+            if (await userRepository.checkUserExistsByEmail(email))
             {
                 return Ok();
-            } else {
+            }
+            else
+            {
                 return Unauthorized();
             }
         }
@@ -88,37 +91,48 @@ namespace backend.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("register")]
-        public async Task<IActionResult> register([FromBody] string content) {
-            if(!Request.Headers.ContainsKey("Authorization")) {
+        public async Task<IActionResult> register()
+        {
+            if (!Request.Headers.ContainsKey("Authorization"))
+            {
                 return Unauthorized("no authorization key");
             }
 
-            var values = JsonSerializer.Deserialize<Dictionary<string, string>>(content);
+            using (StreamReader stream = new StreamReader(Request.Body))
+            {
+                var values = JsonSerializer.Deserialize<Dictionary<string, string>>(await stream.ReadToEndAsync());
 
-            var auth_token = Request.Headers["Authorization"];
+                var auth_token = Request.Headers["Authorization"];
 
-            FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
-            
-            try {
-                User user = new User();
-                
-                FirebaseToken token = await firebaseAuth.VerifyIdTokenAsync(auth_token);
-                string uid = token.Uid;
+                FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
 
-                if(await userRepository.checkUserExists(uid)) {
-                    return Unauthorized("User does not exist");
+                try
+                {
+                    User user = new User();
+
+                    FirebaseToken token = await firebaseAuth.VerifyIdTokenAsync(auth_token);
+                    string uid = token.Uid;
+
+                    if (await userRepository.checkUserExists(uid))
+                    {
+                        return Unauthorized("User does exist");
+                    }
+
+                    UserRecord user_new = await firebaseAuth.GetUserAsync(uid);
+
+                    user.email = user_new.Email;
+                    user.firebaseuid = uid;
+                    user.firstname = values["firstname"];
+                    user.lastname = values["lastname"];
+
+                    await userRepository.createNewUser(user);
+
+                    return Ok();
                 }
-
-                UserRecord user_new = await firebaseAuth.GetUserAsync(uid);
-
-                user.email = user_new.Email;
-                user.firebaseuid = uid;
-                user.firstname = values["firstname"];
-                user.lastname = values["lastname"];
-
-                return Ok();
-            } catch (Exception) {
-                return Unauthorized();
+                catch (Exception)
+                {
+                    return Unauthorized();
+                }
             }
         }
     }

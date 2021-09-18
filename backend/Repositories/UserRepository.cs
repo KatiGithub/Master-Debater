@@ -69,7 +69,7 @@ namespace backend.Repositories
         {
             string query = @"
             INSERT INTO tblusers(userid, firstname, lastname, email, firebaseuid)
-            VALUES(DEFAULT, '@a', '@b', '@c', 'd');
+            VALUES(DEFAULT, '@a', '@b', '@c', '@d');
             ";
 
             query = query.Replace("@a", user.firstname);
