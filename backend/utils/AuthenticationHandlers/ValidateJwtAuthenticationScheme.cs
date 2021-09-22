@@ -35,7 +35,7 @@ namespace backend.utils.AuthenticationHandlers
                 return await Task.FromResult(AuthenticateResult.Fail("No Authorization header found"));
             }
 
-            string auth_token = Request.Headers["Authorization"];
+            string auth_token = (string) Request.Headers["Authorization"];
             FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
 
             try

@@ -22,10 +22,11 @@ export class HttpService {
   public post(url: string, data: any){
     let current_user = localStorage.getItem('current_user') as string;
     let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:4200/login',
       'Content-Type': 'application/json',
        Authorization: JSON.parse(localStorage.getItem('current_user')!)['token']
     });
-    return this.http.post(url, data, {headers: headers});
+    return this.http.post(url, data, {headers: headers, withCredentials: true});
   }
 
 }
