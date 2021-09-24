@@ -43,7 +43,6 @@
 /home/kati/dev/projects/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.dll
 /home/kati/dev/projects/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.pdb
 /home/kati/dev/projects/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.genruntimeconfig.cache
-/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/debate-platform-7bba7-firebase-adminsdk-ipgxy-125a82eba6.json
 /home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/FirebaseAdmin.dll
 /home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Api.Gax.dll
 /home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/Google.Api.Gax.Rest.dll
@@ -106,3 +105,4 @@ C:/Users/fonjk/Desktop/HackerXProj/Master-Debater/backend/obj/Debug/netcoreapp3.
 C:/Users/fonjk/Desktop/HackerXProj/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.dll
 C:/Users/fonjk/Desktop/HackerXProj/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.pdb
 C:/Users/fonjk/Desktop/HackerXProj/Master-Debater/backend/obj/Debug/netcoreapp3.1/backend.genruntimeconfig.cache
+/home/kati/dev/projects/Master-Debater/backend/bin/Debug/netcoreapp3.1/credentials.json
