@@ -8,7 +8,7 @@ namespace backend.utils
     {
         private static FirebaseApp _firebase = FirebaseApp.Create(new AppOptions()
         {
-            Credential = GoogleCredential.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + "debate-platform-7bba7-firebase-adminsdk-ipgxy-125a82eba6.json")
+            Credential = GoogleCredential.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + "credentials.json")
         });
         private static bool alreadyinit = false;
 
@@ -26,7 +26,7 @@ namespace backend.utils
             {
                 _firebase = FirebaseApp.Create(new AppOptions()
                 {
-                    Credential = GoogleCredential.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + "debate-platform-7bba7-firebase-adminsdk-ipgxy-125a82eba6.json")
+                    Credential = GoogleCredential.FromFile(System.AppDomain.CurrentDomain.BaseDirectory + "credentials.json")
                 });
             }
             else { }

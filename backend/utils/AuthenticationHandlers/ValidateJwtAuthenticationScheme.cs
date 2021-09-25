@@ -36,6 +36,8 @@ namespace backend.utils.AuthenticationHandlers
             }
 
             string auth_token = (string) Request.Headers["Authorization"];
+            Console.WriteLine("authentication token: " + auth_token);
+
             FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
 
             try

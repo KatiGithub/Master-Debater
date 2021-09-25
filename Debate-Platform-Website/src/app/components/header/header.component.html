@@ -2,25 +2,37 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container" *ngIf="home_page">
-    <div class="row">
-        <div id="cssmenu">
-            <ul>
-              <img
-                src="assets/img/Debate Logo fin.png">
-                <li class="active"><a href="#">Debate Rooms</a></li>
-                <li><a href="#">Formats</a></li>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
+<div class="header-container" *ngIf="router.url === '/home'">
+    <mat-toolbar color="accent" class="mat-elevation-z3">
+        <span><img class="icon"
+            src="assets/img/Debate Logo fin.png"
+            ></span>
+        <span class="spacer"></span>
+        <div>
+            <img class="profile-pic" src="../../../assets/img/user.png">
         </div>
-    </div>
+        <p class="name">{{user_name}}</p>
+        <button mat-icon-button aria-label="settings" [matMenuTriggerFor]="menu">
+            <i class="material-icons">settings</i>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="seeProfile()">Profile</button>
+            <button mat-menu-item (click)="logout()">Log Out</button>
+        </mat-menu>
+      </mat-toolbar>
 </div>
 
-<mat-toolbar class="Call-head" *ngIf="!home_page">
-    <ul class="Call-head">
-        <img class="icon"
-        src="assets/img/Debate Logo fin.png"
-        >
-    </ul>
+<mat-toolbar class="Call-head" *ngIf="router.url !== '/home'">
+   
+        <ul class="Call-head">
+            <img class="icon"
+            src="assets/img/Debate Logo fin.png"
+            >
+        </ul>
 </mat-toolbar>
+<!-- 
+<mat-stepper>
+    <mat-step>    
+        <ng-template matStepLabel>Fill out your name</ng-template>
+    </mat-step>
+</mat-stepper> -->

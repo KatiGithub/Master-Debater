@@ -1,10 +1,31 @@
-.body {
+:host {
+    flex-direction: column;
     display: flex;
+}
+.body {
+    display: grid;
+    width: 100%;
     padding-left: 80px;
     padding-top: 50px;
     padding-bottom: 50px;
     height: 100%;
 }
+
+.big-container{
+    width: 100vw;
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 0.6fr 1fr 0.6fr;
+    grid-template-rows: 1fr;
+    grid-gap: 12px;
+    grid-template-areas:
+    "participants header chatbox"
+    "participants body chatbox";
+}
+
 
 .content {
     display: flex;

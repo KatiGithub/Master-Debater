@@ -105,7 +105,8 @@ namespace backend.Controllers
                 var auth_token = Request.Headers["Authorization"];
 
                 FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
-
+                
+                Console.Write("firebaseauth: "+firebaseAuth);
                 try
                 {
                     User user = new User();

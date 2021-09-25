@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -66,16 +66,11 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { HeaderComponent } from './components/header/header.component'
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 // Get firebase config from firebase console
-const firebaseConfig = {
-  apiKey: "AIzaSyDAKxm2VDamOT5SyN6K1TRinfFx7Nk2UAs",
-  authDomain: "debate-platform-7bba7.firebaseapp.com",
-  projectId: "debate-platform-7bba7",
-  storageBucket: "debate-platform-7bba7.appspot.com",
-  messagingSenderId: "900108619027",
-  appId: "1:900108619027:web:ad5c8a8cb094a1adaa9ee6"
-};
+
+import * as data from '../assets/credentials.json';
+const firebaseConfig: any = (data as any).default;
 
 @NgModule({
   declarations: [
@@ -138,7 +133,11 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    FlexLayoutModule,
     QuillModule.forRoot()
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]

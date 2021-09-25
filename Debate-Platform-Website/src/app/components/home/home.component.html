@@ -20,7 +20,7 @@
   </div>
 </div> -->
 
-<div class="midbox">
+<div class="body-container">
   <mat-card class="ex-card">
     <mat-card-content class="title">
       <h1 class="titletext">
@@ -31,16 +31,15 @@
       </h1>
       <p class="text">Your next debate will be...</p>
       <div class="hspace">
-        <mat-form-field style="width: 50%; padding-right: 2%">
+        <mat-form-field style="width: 60%; padding-right: 2%; margin-right: 30px;">
           <input matInput type="text" placeholder="Enter room code here" [formControl]="roomId_formcontrol"/>
         </mat-form-field>
         <button
+          color="accent"
           mat-raised-button
           style="
-            color: aliceblue;
             font-family: 'Roboto', sans-serif;
             font-weight: 100;
-            background-color: #f15a24;
             width: 25%;
             height: 40px;
             font-size: 16px;
@@ -58,17 +57,17 @@
         </div>
         <div style="margin-top: 2%">
           <button
+          color="primary"
             mat-raised-button
             style="
-              color: aliceblue;
               font-family: 'Roboto', sans-serif;
               font-weight: 100;
-              background-color: #fbb03b;
               width: 35%;
               height: 60px;
               font-size: 20px;
               margin-left: 32%;
               border-radius: 10px;
+              margin-top: 50px;
             "
             (click)="createRoom()"
           >
@@ -79,7 +78,6 @@
     </mat-card-content>
   </mat-card>
 
-  <div class="pic-card"></div>
 </div>
 
 <link

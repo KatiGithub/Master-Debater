@@ -491,3 +491,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+#API Key
+credentials.json

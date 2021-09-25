@@ -1,15 +1,21 @@
 <div class="container">
     <mat-card class="cardContainer">
+        <h1>Register</h1>
         <form (ngSubmit)="register()" [formGroup]="signupform">
             <div>
-                <label for="firstname">First name:</label><br>
-                <input type="text" name="firstname" formControlName="firstname" ngModel>
+                <mat-form-field appearance="legacy" class="formfield">
+                    <mat-label>First name: </mat-label>
+                    <input required matInput placeholder="First Name" name="firstname" formControlName="firstname" >
+                </mat-form-field>
+                
             </div>
             <div>
-                <label for="lastname">Last name:</label><br>
-                <input type="text" name="lastname" formControlName="lastname" ngModel>
+                <mat-form-field appearance="legacy" class="formfield">
+                    <mat-label>Last name: </mat-label>
+                    <input required matInput placeholder="Last Name" name="lastname" formControlName="lastname" ngModel >
+                </mat-form-field>
             </div>
-            <button mat-flat-button color="primary" type="submit">Sign Up</button>
+            <button mat-flat-button color="primary" type="submit" class="btn">Sign Up</button>
         </form>
     </mat-card>
 </div>

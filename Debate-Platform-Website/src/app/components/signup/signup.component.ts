@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AspService } from 'src/app/services/asp/asp.service';
 import { AuthService } from 'src/app/services/AuthService/auth.service';
@@ -12,8 +12,11 @@ import { AuthService } from 'src/app/services/AuthService/auth.service';
 export class SignupComponent implements OnInit {
 
   signupform = new FormGroup({
-    firstname: new FormControl(''),
-    lastname: new FormControl('')
+    firstname: new FormControl('', Validators.compose([
+      Validators.pattern('^[a-zA-Z]+$')])),
+    lastname: new FormControl('', Validators.compose([
+      Validators.pattern('^[a-zA-Z]+$')
+    ]))
   });
   constructor(private authservice: AspService, private router: Router) { }
 
@@ -28,6 +31,7 @@ export class SignupComponent implements OnInit {
       this.signupform.value['lastname']
     ).toPromise().then(() => {
       this.router.navigate(['home']);
+      // localStorage.setItem('user-firstname', );
     }).catch((error) => {
       console.log(error);
     });

@@ -112,8 +112,6 @@ export class AuthService {
     console.log(userauthdata['token']);
 
     localStorage.setItem('current_user', JSON.stringify(userauthdata));
-    let current_token = JSON.parse(localStorage.getItem('current_user')!)['token'];
-    // console.log(current_token);
     this.router.navigate(['home']);
     console.log("test");
   }

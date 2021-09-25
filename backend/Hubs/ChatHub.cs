@@ -18,9 +18,6 @@ namespace backend.Hubs
         //     }
         // }
 
-        public async Task SendMessage(string message, int chatroomid)
-        {
-            
-        }
+       
     }
 }

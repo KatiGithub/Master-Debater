@@ -19,13 +19,15 @@ export class HttpService {
     return this.http.get(url, {headers: headers, withCredentials: true});
   }
 
+  
   public post(url: string, data: any){
     let current_user = localStorage.getItem('current_user') as string;
     let headers = new HttpHeaders({
       'Access-Control-Allow-Origin': 'http://localhost:4200/login',
       'Content-Type': 'application/json',
-       Authorization: JSON.parse(localStorage.getItem('current_user')!)['token']
+      Authorization: localStorage.getItem('current_user')!
     });
+    console.log(headers);
     return this.http.post(url, data, {headers: headers, withCredentials: true});
   }
 

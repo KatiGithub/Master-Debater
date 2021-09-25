@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AspService } from 'src/app/services/asp/asp.service';
+import { AuthService } from 'src/app/services/AuthService/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +11,15 @@ import { filter } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
 
+
   constructor(
-    private router: Router
+    public router: Router,
+    private asp: AspService,
+    private auth: AuthService
   ) { }
 
   home_page: Boolean = true;
+  user_name: string = '';
 
   ngOnInit(): void {
     // this.router.events.pipe(filter(event => event instanceof NavigationEnd)
@@ -25,7 +31,7 @@ export class HeaderComponent implements OnInit {
     //     this.home_page = false;
     //   }
     // });
-
+    this.user_name = localStorage.getItem('user-firstname')!;
     this.router.events.subscribe((value) => {
       if(this.router.url == '/home' || this.router.url == '/login') {
         this.home_page = true;
@@ -35,6 +41,14 @@ export class HeaderComponent implements OnInit {
 
       // console.log(this.home_page)
     })
+  }
+
+  logout(): void{
+    this.auth.logout();
+  }
+
+  seeProfile(): void{
+    this.router.navigate(['/profile']);
   }
 
 }
