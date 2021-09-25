@@ -102,7 +102,7 @@ namespace backend.Controllers
             {
                 var values = JsonSerializer.Deserialize<Dictionary<string, string>>(await stream.ReadToEndAsync());
 
-                var auth_token = Request.Headers["Authorization"];
+                var auth_token = Request.Headers["Authorization"][0];
 
                 FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
 
