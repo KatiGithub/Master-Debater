@@ -1,0 +1,95 @@
+<div class="big-container" flexLayout="row" fxFlex>
+  <div [fxFlex] class="small-container">
+    <div class="body">
+    </div>
+    <!-- <mat-card-content class="card">
+      <app-voice-call [host]="checkHost_subscription" [courtId]="this.courtId"></app-voice-call>
+  
+      <form>
+        <div *ngIf="authorized">
+        <div>
+          <div>
+            <h1>Choose Topic:</h1>
+            <mat-form-field class="textfield" appearance="fill">
+              <mat-label>Topic:</mat-label>
+              <input matInput placeholder="Choose Topic..." class="inputTop" [formControl]="topic_control">
+            </mat-form-field>
+          </div>
+          <div class="content">
+            <div>
+              <h4>Select your debate format:</h4>
+              <mat-form-field appearance="fill">
+                <mat-label>Debate Format</mat-label>
+                <mat-select name="format" [formControl]="this.format_control">
+                  <mat-option *ngFor="let format of formats" [value]="format.value">
+                    {{format.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div>
+              <h4>Preparation time:</h4>
+              <mat-form-field appearance="fill">
+                <mat-label>Select time</mat-label>
+                <mat-select name="time" [formControl]="preptime">
+                  <mat-option *ngFor="let time of times" [value]="time.value">
+                    {{time.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+  
+        <div class="content">
+          <div class="table">
+            <h1>Team 1</h1>
+            <table mat-table [dataSource]="Team1" class="mat-elevation-z4" [width]=600>
+              <ng-container matColumnDef="PositionName">
+                <th mat-header-cell *matHeaderCellDef>Position</th>
+                <td mat-cell *matCellDef="let item">{{item['pos']}}</td>
+              </ng-container>
+              <ng-container matColumnDef="SelectionColumn">
+                <th mat-header-cell *matHeaderCellDef>Select</th>
+                <td mat-cell *matCellDef="let item">
+                  <button mat-raised-button color= "primary" (click)="joinTeam(1)">{{toggle ? 'Join':'Leave'}}</button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let emprow; columns: displayedColumns;">{{emprow.PositionName}}</tr>
+            </table>
+          </div>
+          <div class="table">
+            <h1>Team 2</h1>
+            <table mat-table [dataSource]="Team2" class="mat-elevation-z4" [width]=600>
+              <ng-container matColumnDef="PositionName">
+                <th mat-header-cell *matHeaderCellDef>Position</th>
+                <td mat-cell *matCellDef="let opp">{{opp['pos']}}</td>
+              </ng-container>
+              <ng-container matColumnDef="SelectionColumn">
+                <th mat-header-cell *matHeaderCellDef>Select</th>
+                <td mat-cell *matCellDef="let item" >
+                  <button mat-raised-button color= "primary" (click)="joinTeam(2)">{{item.team_member}}</button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let emprow; columns: displayedColumns;">{{emprow.PositionName}}</tr>
+            </table>
+          </div>
+        </div>
+  
+        <div class="buttons">
+          <button mat-button color="primary" (click)="joinTeam(1)">Join Team 1</button>
+          <button mat-button color="primary"(click)="joinTeam(2)">Join Team 2</button>
+          <button mat-raised-button color="primary" class="table">Join As Judge</button>
+          <button mat-raised-button color="danger" style="background-color: red;" *ngIf="authorized" (click)="start()">START</button>
+  
+        </div>
+      </form>
+    </mat-card-content> -->
+  </div>
+  <div [fxFlex="none"] class="voice">
+    <app-voice-call ></app-voice-call>
+  </div>
+
+</div>

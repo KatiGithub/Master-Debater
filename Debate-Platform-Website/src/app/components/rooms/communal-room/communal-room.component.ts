@@ -5,6 +5,8 @@ import { FormatConstants } from '../../../constants/format_constants';
 import { FormControl } from '@angular/forms';
 import { validateEventsArray } from '@angular/fire/firestore';
 import { CallService } from 'src/app/services/CallService/call.service';
+import { DialogBoxComponent } from '../../dialog-box/dialog-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface Tile {
   color: string;
@@ -37,12 +39,24 @@ interface FormatPos {
 })
 export class CommunalRoomComponent implements OnInit {
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  data = [
+    {name: 'Rajesh', email: 'rajesh@gmail.com', status:"judge"},
+    {name: 'Paresh', email: 'paresh@gmail.com', status:"judge"},
+    {name: 'Naresh', email: 'naresh@gmail.com', status:"judge"},
+    {name: 'Suresh', email: 'suresh@gmail.com', status:"judge"},
+    {name: 'Karan', email: 'karan@gmail.com', status:"judge"},
+    {name: 'dummy', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy1', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy2', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy3', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy4', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy5', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy6', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy7', email: 'dummy@gmail.com', status:"judge"},
+    {name: 'dummy8', email: 'dummy@gmail.com', status:"judge"},
   ];
+  displayedColumns2 = ['name', 'email', 'status', 'buttons-remove'];
+
   courtId: string = ''
   preptime = new FormControl('auto')
   format_control = new FormControl()
@@ -55,6 +69,7 @@ export class CommunalRoomComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private firestore: FirestoreService,
     private router: Router,
     private callService: CallService
@@ -115,7 +130,21 @@ export class CommunalRoomComponent implements OnInit {
       this.Team2 = this.OPPOSITION_DATA;
     });
 
+  }
 
+  openDialog(obj){
+    const dialogref = this.dialog.open(DialogBoxComponent, {
+      width: '240px',
+      data: obj
+    })
+
+    dialogref.afterClosed().subscribe(result=>{
+      this.removeParticipant(result.data);
+    });
+  }
+
+  removeParticipant(obj){
+    
   }
 
   displayedColumns: string[] = ['PositionName', 'SelectionColumn'];

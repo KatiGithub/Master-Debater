@@ -21,6 +21,8 @@ export class SignupComponent implements OnInit {
   constructor(private authservice: AspService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log('get current user from storage: ');
+    console.log(localStorage.getItem('current_user')!['token']);
   }
 
   public register(){

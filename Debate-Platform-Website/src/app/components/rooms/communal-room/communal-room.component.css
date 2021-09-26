@@ -1,44 +1,111 @@
-:host {
+/* :host {
     flex-direction: column;
     display: flex;
+    width: 100%;
+} */
+h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
 }
+
+h1{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.buttons{
+    width: 100%;
+    background-color: white;
+}
+.btns{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .body {
     display: grid;
-    width: 100%;
-    padding-left: 80px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    height: 100%;
+    /* width: 100%; */
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-rows: 0.2fr;
+    grid-gap: 25px;
+    grid-template-areas: 
+    "config participants"
+    "team1 team2";   
 }
 
 .big-container{
     width: 100vw;
 }
 
-.container {
-    display: grid;
-    width: 100%;
-    grid-template-columns: 0.6fr 1fr 0.6fr;
-    grid-template-rows: 1fr;
-    grid-gap: 12px;
-    grid-template-areas:
-    "participants header chatbox"
-    "participants body chatbox";
+.small-container{
+    background-color: beige;
 }
 
+.head2{
+    background-color: white;
+}
+
+.team-1{
+    grid-area: team1;
+    padding: 25px;
+    background-color: white;
+}
+
+.team-2{
+    grid-area: team2;
+    padding: 25px;
+    background-color: white;
+}
+
+.configuration{
+    grid-area: config;
+    background-color: white;
+    padding: 25px;
+}
+
+.participants{
+    grid-area: participants;
+    background-color: white;
+}
+.tablescroll{
+    overflow-x: auto;
+    width: 100%;
+}
+
+.participant-container{
+    height: 250px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.progressbar{
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 90%;
+}
 
 .content {
     display: flex;
     justify-content: space-around;
 }
 
-.table {
-    margin: 40px;
+/* .table {
+    margin: 10px;
+} */
 
+.voice {
+    background-color: gray;
+    width: 200px;
+    height: calc(100vh - 60px);
+    /* position: sticky; */
 }
 
 .card {
-    width: 70%;
+
     align-content: center;
     margin: auto;
     
@@ -58,9 +125,8 @@
 
 .textfield{
     width: 100%;
-    margin-bottom: 60px;
 }
 
 .inputTop{
-    width: 70%;
+    width: 100px;
 }

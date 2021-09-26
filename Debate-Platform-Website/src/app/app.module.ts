@@ -70,6 +70,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // Get firebase config from firebase console
 
 import * as data from '../assets/credentials.json';
+import { ProgressbarComponent } from './components/progressbar/progressbar.component';
+import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 const firebaseConfig: any = (data as any).default;
 
 @NgModule({
@@ -84,7 +86,9 @@ const firebaseConfig: any = (data as any).default;
     JudgeComponent,
     VoiceCallComponent,
     HeaderComponent,
-    SignupComponent
+    SignupComponent,
+    ProgressbarComponent,
+    DialogBoxComponent
   ],
   imports: [
     HttpClientModule,

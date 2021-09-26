@@ -43,8 +43,8 @@ namespace backend.Controllers
                 return Unauthorized("No auth token sent");
             }
             
-            string auth_token = Request.Headers["Authorization"];
-            Console.Write("authentication token is: " + auth_token);
+            var auth_token = Request.Headers["Authorization"];
+
             FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
 
             try
@@ -102,11 +102,10 @@ namespace backend.Controllers
             {
                 var values = JsonSerializer.Deserialize<Dictionary<string, string>>(await stream.ReadToEndAsync());
 
-                var auth_token = Request.Headers["Authorization"];
+                var auth_token = Request.Headers["Authorization"][0];
 
                 FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
                 
-                Console.Write("firebaseauth: "+firebaseAuth);
                 try
                 {
                     User user = new User();

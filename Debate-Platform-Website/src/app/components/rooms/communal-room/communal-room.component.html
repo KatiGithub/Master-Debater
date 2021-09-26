@@ -1,10 +1,136 @@
 <div class="big-container" flexLayout="row" fxFlex>
-  <div fxFlex="80" class="body">
-    <mat-card-content class="card">
-      <!-- <app-voice-call [host]="checkHost_subscription" [courtId]="this.courtId"></app-voice-call> -->
+  <div fxFlex class="small-container">
+    <div flexLayout="column" class="head2">
+      <div fxFlex class="progressbar">
+        <app-progressbar ></app-progressbar>
+      </div>
+    </div>
+    <div flexLayout="row">
+      <div fxFlex class="body">
+        <div  class="configuration">
+          <div>
+            <h3>Choose Topic:</h3>
+            <mat-form-field class="textfield" appearance="standard">
+              <mat-label>Topic:</mat-label>
+              <input matInput placeholder="Choose Topic..." class="inputTop" [formControl]="topic_control">
+            </mat-form-field>
+          </div>
+          <div flexLayout="column">
+            <div fxFlex>
+              <h4>Select your debate format:</h4>
+              <mat-form-field appearance="standard">
+                <mat-label>Debate Format</mat-label>
+                <mat-select name="format" [formControl]="this.format_control">
+                  <mat-option *ngFor="let format of formats" [value]="format.value">
+                    {{format.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex>
+              <h4>Preparation time:</h4>
+              <mat-form-field appearance="standard">
+                <mat-label>Select time</mat-label>
+                <mat-select name="time" [formControl]="preptime">
+                  <mat-option *ngFor="let time of times" [value]="time.value">
+                    {{time.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div  class="participants">
+          <div class="participant-container">
+            <table mat-table class="tablescroll" [dataSource]="data">
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+              </ng-container>
+              <ng-container matColumnDef="buttons-remove">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button color= "accent" (click)="openDialog(element)">Remove</button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns2; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+            </table>
+          </div>
+        </div>
+        <div  class="team-1">
+          <div class="table">
+            <h1>Team 1</h1>
+            <table mat-table [dataSource]="Team1" class="table">
+              <ng-container matColumnDef="PositionName">
+                <th mat-header-cell *matHeaderCellDef>Position</th>
+                <td mat-cell *matCellDef="let item">{{item['pos']}}</td>
+              </ng-container>
+              <ng-container matColumnDef="SelectionColumn">
+                <th mat-header-cell *matHeaderCellDef>Select</th>
+                <td mat-cell *matCellDef="let item">
+                  <button mat-raised-button color= "primary" (click)="joinTeam(1)">{{toggle ? 'Join':'Leave'}}</button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let emprow; columns: displayedColumns;">{{emprow.PositionName}}</tr>
+            </table>
+          </div>
+        </div>
+        <div  class="team-2">
+          <div class="table">
+            <h1>Team 2</h1>
+            <table mat-table [dataSource]="Team2" class="table">
+              <ng-container matColumnDef="PositionName">
+                <th mat-header-cell *matHeaderCellDef>Position</th>
+                <td mat-cell *matCellDef="let opp">{{opp['pos']}}</td>
+              </ng-container>
+              <ng-container matColumnDef="SelectionColumn" *ngIf="authorized">
+                <th mat-header-cell *matHeaderCellDef>Select</th>
+                <td mat-cell *matCellDef="let item" >
+                  <button mat-raised-button color= "primary" (click)="joinTeam(2)">{{toggle ? 'Join':'Leave'}}</button>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="SelectionColumn" *ngIf="!authorized">
+                <th mat-header-cell *matHeaderCellDef>Select</th>
+                <td mat-cell *matCellDef="let item" >
+                  <button mat-raised-button color= "primary" (click)="joinTeam(2)">{{toggle ? 'Join':'Join'}}</button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let emprow; columns: displayedColumns;">{{emprow.PositionName}}</tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div flexLayout="column">
+      <div class="buttons" *ngIf="authorized">
+        <button mat-raised-button color="warn" class="btns">Close Room</button>
+        <button mat-raised-button color="warn" class="btns">Start Preparation</button>
+      </div>
+      <div class="buttons" *ngIf="!authorized">
+        <button mat-raised-button color="warn" class="btns">Exit Room</button>
+        <button mat-raised-button color="warn" class="btns">Join as Judge</button>
+      </div>
+      <div class="buttons" *ngIf="!authorized">
+        <button mat-raised-button color="primary" class="btns">Exit Room</button>
+        <button mat-raised-button color="primary" class="btns">Join as Audience</button>
+      </div>
+    </div>
+    <!-- <mat-card-content class="card">
+      <app-voice-call [host]="checkHost_subscription" [courtId]="this.courtId"></app-voice-call>
   
       <form>
-        <!-- <div *ngIf="authorized"> -->
+        <div *ngIf="authorized">
         <div>
           <div>
             <h1>Choose Topic:</h1>
@@ -77,17 +203,16 @@
         </div>
   
         <div class="buttons">
-          <!-- <button mat-button color="primary" (click)="joinTeam(1)">Join Team 1</button>
-          <button mat-button color="primary"(click)="joinTeam(2)">Join Team 2</button> -->
+          <button mat-button color="primary" (click)="joinTeam(1)">Join Team 1</button>
+          <button mat-button color="primary"(click)="joinTeam(2)">Join Team 2</button>
           <button mat-raised-button color="primary" class="table">Join As Judge</button>
           <button mat-raised-button color="danger" style="background-color: red;" *ngIf="authorized" (click)="start()">START</button>
   
         </div>
       </form>
-    </mat-card-content>
+    </mat-card-content> -->
   </div>
-  <div fxFlex="20">
-    <app-voice-call></app-voice-call>
+  <div fxFlex="none" class="voice">
+    <app-voice-call [host]="checkHost_subscription" [courtId]="this.courtId"></app-voice-call>
   </div>
-
 </div>
