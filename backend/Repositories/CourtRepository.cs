@@ -13,7 +13,7 @@ namespace backend.Repositories
 
         private database db = new database();
         private ChatroomRepository chatroomRepository = new ChatroomRepository();
-        public async Task<Court> retrieveCourtById(string court_token)
+        public async Task<Court> retrieveCourtByToken(string court_token)
         {
             string query = @"
             SELECT * FROM tblcourts
@@ -59,6 +59,29 @@ namespace backend.Repositories
                 return new_court.court_token;
             }
 
+        }
+
+        public async Task<bool> userJoinCourt(User user, Court court)
+        {
+            string query = @"
+            INSERT INTO tblparticipants(courtid, userid) VALUES(@a, @b);
+            ";
+
+            query = query.Replace("@a", court.courtid.ToString());
+            query = query.Replace("@b", court.courtid.ToString());
+
+            using(NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb()))
+            {
+                try
+                {
+                    await db.execute(command);
+
+                    return true;
+                } catch(PostgresException)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fonjk\\Desktop\\HackerXProj\\Master-Debater\\backend\\backend.csproj": {}
+    "/home/kati/dev/projects/Master-Debater/backend/backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fonjk\\Desktop\\HackerXProj\\Master-Debater\\backend\\backend.csproj": {
+    "/home/kati/dev/projects/Master-Debater/backend/backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fonjk\\Desktop\\HackerXProj\\Master-Debater\\backend\\backend.csproj",
+        "projectUniqueName": "/home/kati/dev/projects/Master-Debater/backend/backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\fonjk\\Desktop\\HackerXProj\\Master-Debater\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\fonjk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fonjk\\Desktop\\HackerXProj\\Master-Debater\\backend\\obj\\",
+        "projectPath": "/home/kati/dev/projects/Master-Debater/backend/backend.csproj",
+        "packagesPath": "/home/kati/.nuget/packages/",
+        "outputPath": "/home/kati/dev/projects/Master-Debater/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fonjk\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/kati/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.412\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.412/RuntimeIdentifierGraph.json"
         }
       }
     }
