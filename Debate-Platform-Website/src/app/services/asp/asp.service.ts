@@ -37,7 +37,7 @@ export class AspService {
   }
 
   getCourt(courtId: string) {
-    return this.http.get(this.APIURL + '/court/' + courtId);
+    return this.http.get(this.APIURL + '/court/retrieve/' + courtId);
   }
 
   checkIfHost(courtId: string, userEmail: string) {
@@ -49,6 +49,6 @@ export class AspService {
   }
 
   joinCourt(courtId: string) {
-    
+    return this.http.get(this.APIURL + '/court/join/' + courtId);
   }
 }
