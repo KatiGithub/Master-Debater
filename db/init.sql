@@ -5,7 +5,7 @@
 -- Dumped from database version 13.4 (Debian 13.4-1.pgdg100+1)
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-09-08 22:57:12
+-- Started on 2021-10-08 23:05:35
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -17,6 +17,104 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- TOC entry 217 (class 1255 OID 65673)
+-- Name: notify_message(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.notify_message() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $_$
+DECLARE
+	rec RECORD;
+	payload TEXT;
+	column_name TEXT;
+	column_value TEXT;
+	payload_items TEXT[];
+BEGIN
+	CASE TG_OP
+	WHEN 'INSERT' , 'UPDATE' THEN
+		rec := NEW;
+	WHEN 'DELETE' THEN
+		rec := OLD;
+	ELSE
+		RAISE EXCEPTION 'UNKNOWN TG_OP: "%". SHOULD NOT OCCUR!', TG_OP;
+	END CASE;
+	
+	FOREACH column_name IN ARRAY TG_ARGV LOOP
+		EXECUTE format('SELECT $1.%I::TEXT', column_name)
+		INTO column_value
+		USING rec;
+		payload_items := array_append(payload_items, '"' || replace(column_name, '"', '\"') || '":"' || replace(column_value, '"', '\"') || '"');
+	END LOOP;
+	
+	payload := ''
+              || '{'
+              || '"timestamp":"' || CURRENT_TIMESTAMP                    || '",'
+              || '"operation":"' || TG_OP                                || '",'
+              || '"schema":"'    || TG_TABLE_SCHEMA                      || '",'
+              || '"table":"'     || TG_TABLE_NAME                        || '",'
+              || '"data":{'      || array_to_string(payload_items, ',')  || '}'
+              || '}';
+			  
+	PERFORM pg_notify('new_message_inserted', payload);
+	
+	RETURN rec;
+END;
+$_$;
+
+
+ALTER FUNCTION public.notify_message() OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1255 OID 65671)
+-- Name: notify_trigger(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.notify_trigger() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $_$
+DECLARE
+	rec RECORD;
+	payload TEXT;
+	column_name TEXT;
+	column_value TEXT;
+	payload_items TEXT[];
+BEGIN
+	CASE TG_OP
+	WHEN 'INSERT' , 'UPDATE' THEN
+		rec := NEW;
+	WHEN 'DELETE' THEN
+		rec := OLD;
+	ELSE
+		RAISE EXCEPTION 'UNKNOWN TG_OP: "%". SHOULD NOT OCCUR!', TG_OP;
+	END CASE;
+	
+	FOREACH column_name IN ARRAY TG_ARGV LOOP
+		EXECUTE format('SELECT $1.%I::TEXT', column_name)
+		INTO column_value
+		USING rec;
+		payload_items := array_append(payload_items, '"' || replace(column_name, '"', '\"') || '":"' || replace(column_value, '"', '\"') || '"');
+	END LOOP;
+	
+	payload := ''
+              || '{'
+              || '"timestamp":"' || CURRENT_TIMESTAMP                    || '",'
+              || '"operation":"' || TG_OP                                || '",'
+              || '"schema":"'    || TG_TABLE_SCHEMA                      || '",'
+              || '"table":"'     || TG_TABLE_NAME                        || '",'
+              || '"data":{'      || array_to_string(payload_items, ',')  || '}'
+              || '}';
+			  
+	PERFORM pg_notify('db_notification', payload);
+	
+	RETURN rec;
+END;
+$_$;
+
+
+ALTER FUNCTION public.notify_trigger() OWNER TO postgres;
 
 SET default_tablespace = '';
 
@@ -119,7 +217,7 @@ ALTER TABLE public.tblcourts ALTER COLUMN courtid ADD GENERATED ALWAYS AS IDENTI
 --
 
 CREATE TABLE public.tblmessages (
-    messageid bigint NOT NULL,
+    messageid integer NOT NULL,
     chatroomid integer NOT NULL,
     userid integer NOT NULL,
     message text NOT NULL,
@@ -128,6 +226,21 @@ CREATE TABLE public.tblmessages (
 
 
 ALTER TABLE public.tblmessages OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 57489)
+-- Name: tblmessages_messageid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.tblmessages ALTER COLUMN messageid ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.tblmessages_messageid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
 
 --
 -- TOC entry 204 (class 1259 OID 16406)
@@ -170,6 +283,21 @@ CREATE TABLE public.tblroles (
 
 
 ALTER TABLE public.tblroles OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 73862)
+-- Name: tblroles_roleid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.tblroles ALTER COLUMN roleid ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.tblroles_roleid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
 
 --
 -- TOC entry 207 (class 1259 OID 16421)
@@ -236,7 +364,7 @@ ALTER TABLE public.tblusers ALTER COLUMN userid ADD GENERATED ALWAYS AS IDENTITY
 
 
 --
--- TOC entry 2871 (class 2606 OID 16440)
+-- TOC entry 2879 (class 2606 OID 16440)
 -- Name: tblusers email_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -245,7 +373,7 @@ ALTER TABLE ONLY public.tblusers
 
 
 --
--- TOC entry 2873 (class 2606 OID 16442)
+-- TOC entry 2881 (class 2606 OID 16442)
 -- Name: tblusers firebaseuid_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -254,7 +382,7 @@ ALTER TABLE ONLY public.tblusers
 
 
 --
--- TOC entry 2861 (class 2606 OID 16444)
+-- TOC entry 2869 (class 2606 OID 57481)
 -- Name: tblmessages messageid_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -263,7 +391,7 @@ ALTER TABLE ONLY public.tblmessages
 
 
 --
--- TOC entry 2863 (class 2606 OID 16446)
+-- TOC entry 2871 (class 2606 OID 16446)
 -- Name: tblnotes noteid_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -272,7 +400,7 @@ ALTER TABLE ONLY public.tblnotes
 
 
 --
--- TOC entry 2857 (class 2606 OID 24707)
+-- TOC entry 2863 (class 2606 OID 24707)
 -- Name: tblchatroom tblchatroom_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -281,7 +409,7 @@ ALTER TABLE ONLY public.tblchatroom
 
 
 --
--- TOC entry 2859 (class 2606 OID 16450)
+-- TOC entry 2867 (class 2606 OID 16450)
 -- Name: tblcourts tblcourts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -290,7 +418,7 @@ ALTER TABLE ONLY public.tblcourts
 
 
 --
--- TOC entry 2865 (class 2606 OID 16452)
+-- TOC entry 2873 (class 2606 OID 16452)
 -- Name: tblroles tblroles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -299,7 +427,7 @@ ALTER TABLE ONLY public.tblroles
 
 
 --
--- TOC entry 2867 (class 2606 OID 16454)
+-- TOC entry 2875 (class 2606 OID 16454)
 -- Name: tblspeakers tblspeakers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -308,7 +436,7 @@ ALTER TABLE ONLY public.tblspeakers
 
 
 --
--- TOC entry 2875 (class 2606 OID 16456)
+-- TOC entry 2883 (class 2606 OID 16456)
 -- Name: tblusers tblusers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -317,7 +445,7 @@ ALTER TABLE ONLY public.tblusers
 
 
 --
--- TOC entry 2869 (class 2606 OID 16458)
+-- TOC entry 2877 (class 2606 OID 16458)
 -- Name: tbltopic_candidate topic_candidate_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -326,7 +454,31 @@ ALTER TABLE ONLY public.tbltopic_candidate
 
 
 --
--- TOC entry 2885 (class 2606 OID 24708)
+-- TOC entry 2864 (class 1259 OID 49286)
+-- Name: courtid_index; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX courtid_index ON public.tblcourts USING btree (courtid);
+
+
+--
+-- TOC entry 2865 (class 1259 OID 49287)
+-- Name: courttoken_index; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX courttoken_index ON public.tblcourts USING btree (court_token);
+
+
+--
+-- TOC entry 2902 (class 2620 OID 65689)
+-- Name: tblmessages messages_notify; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER messages_notify AFTER INSERT ON public.tblmessages FOR EACH ROW EXECUTE FUNCTION public.notify_message('messageid');
+
+
+--
+-- TOC entry 2893 (class 2606 OID 24708)
 -- Name: tblmessages chatroomid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -335,7 +487,7 @@ ALTER TABLE ONLY public.tblmessages
 
 
 --
--- TOC entry 2888 (class 2606 OID 16464)
+-- TOC entry 2896 (class 2606 OID 16464)
 -- Name: tblparticipants courtid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -344,7 +496,7 @@ ALTER TABLE ONLY public.tblparticipants
 
 
 --
--- TOC entry 2886 (class 2606 OID 16469)
+-- TOC entry 2894 (class 2606 OID 16469)
 -- Name: tblnotes courtid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -353,7 +505,7 @@ ALTER TABLE ONLY public.tblnotes
 
 
 --
--- TOC entry 2891 (class 2606 OID 16474)
+-- TOC entry 2899 (class 2606 OID 16474)
 -- Name: tbltopic_candidate courtid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -362,7 +514,7 @@ ALTER TABLE ONLY public.tbltopic_candidate
 
 
 --
--- TOC entry 2876 (class 2606 OID 16479)
+-- TOC entry 2884 (class 2606 OID 16479)
 -- Name: tblcourt_speaker_users courtid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -371,7 +523,7 @@ ALTER TABLE ONLY public.tblcourt_speaker_users
 
 
 --
--- TOC entry 2882 (class 2606 OID 24735)
+-- TOC entry 2890 (class 2606 OID 24735)
 -- Name: tblcourts fk_adjudicator_chat; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -380,7 +532,7 @@ ALTER TABLE ONLY public.tblcourts
 
 
 --
--- TOC entry 2892 (class 2606 OID 41100)
+-- TOC entry 2900 (class 2606 OID 41100)
 -- Name: tblchatmembers fk_chatroomid; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -389,7 +541,7 @@ ALTER TABLE ONLY public.tblchatmembers
 
 
 --
--- TOC entry 2879 (class 2606 OID 24720)
+-- TOC entry 2887 (class 2606 OID 24720)
 -- Name: tblcourts fk_general_chat; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -398,7 +550,7 @@ ALTER TABLE ONLY public.tblcourts
 
 
 --
--- TOC entry 2880 (class 2606 OID 24725)
+-- TOC entry 2888 (class 2606 OID 24725)
 -- Name: tblcourts fk_team1_chat; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -407,7 +559,7 @@ ALTER TABLE ONLY public.tblcourts
 
 
 --
--- TOC entry 2881 (class 2606 OID 24730)
+-- TOC entry 2889 (class 2606 OID 24730)
 -- Name: tblcourts fk_team2_chat; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -416,7 +568,7 @@ ALTER TABLE ONLY public.tblcourts
 
 
 --
--- TOC entry 2883 (class 2606 OID 24740)
+-- TOC entry 2891 (class 2606 OID 24740)
 -- Name: tblcourts fk_topicid; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -425,7 +577,7 @@ ALTER TABLE ONLY public.tblcourts
 
 
 --
--- TOC entry 2893 (class 2606 OID 41105)
+-- TOC entry 2901 (class 2606 OID 41105)
 -- Name: tblchatmembers fk_userid; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -434,7 +586,7 @@ ALTER TABLE ONLY public.tblchatmembers
 
 
 --
--- TOC entry 2889 (class 2606 OID 16484)
+-- TOC entry 2897 (class 2606 OID 16484)
 -- Name: tblparticipants roleid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -443,7 +595,7 @@ ALTER TABLE ONLY public.tblparticipants
 
 
 --
--- TOC entry 2877 (class 2606 OID 16489)
+-- TOC entry 2885 (class 2606 OID 16489)
 -- Name: tblcourt_speaker_users speakerid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -452,7 +604,7 @@ ALTER TABLE ONLY public.tblcourt_speaker_users
 
 
 --
--- TOC entry 2884 (class 2606 OID 16494)
+-- TOC entry 2892 (class 2606 OID 16494)
 -- Name: tblmessages userid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -461,7 +613,7 @@ ALTER TABLE ONLY public.tblmessages
 
 
 --
--- TOC entry 2890 (class 2606 OID 16499)
+-- TOC entry 2898 (class 2606 OID 16499)
 -- Name: tblparticipants userid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -470,7 +622,7 @@ ALTER TABLE ONLY public.tblparticipants
 
 
 --
--- TOC entry 2887 (class 2606 OID 16504)
+-- TOC entry 2895 (class 2606 OID 16504)
 -- Name: tblnotes userid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -479,7 +631,7 @@ ALTER TABLE ONLY public.tblnotes
 
 
 --
--- TOC entry 2878 (class 2606 OID 16509)
+-- TOC entry 2886 (class 2606 OID 16509)
 -- Name: tblcourt_speaker_users userid_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -487,7 +639,7 @@ ALTER TABLE ONLY public.tblcourt_speaker_users
     ADD CONSTRAINT userid_fk FOREIGN KEY (userid) REFERENCES public.tblusers(userid);
 
 
--- Completed on 2021-09-08 22:57:13
+-- Completed on 2021-10-08 23:05:35
 
 --
 -- PostgreSQL database dump complete
