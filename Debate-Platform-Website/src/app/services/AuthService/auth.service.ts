@@ -108,11 +108,12 @@ export class AuthService {
     // 401: Unauthorized, remove current user.
     // 200: Authorized, move to home
 
-    console.log('current user:');
-    console.log(userauthdata['token']);
     let authtoken = userauthdata['token']!;
     authtoken = authtoken.substring(1, authtoken.length - 1);
     localStorage.setItem('current_user', JSON.stringify(userauthdata['token']));
+    console.log('current user:');
+    console.log(localStorage.getItem('current_user'));
+    console.log(localStorage.getItem('current_user')!.substring(1, localStorage.getItem('current_user')!.length-1));
     this.router.navigate(['home']);
     console.log("test");
   }

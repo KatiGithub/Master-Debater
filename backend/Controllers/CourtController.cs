@@ -8,6 +8,8 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using FirebaseAdmin.Auth;
 using backend.utils;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 //using backend.Models;
 
 namespace backend.Controllers
@@ -35,7 +37,9 @@ namespace backend.Controllers
         public async Task<ActionResult<string>> createCourt()
         {
             string court_token = await courtRepository.createCourt();
-            return Ok(court_token);
+            //this took hours omg
+            string json_court_token = JsonSerializer.Serialize(court_token);
+            return Ok(json_court_token);
         }
 
         [HttpGet("join/{court_token}")]

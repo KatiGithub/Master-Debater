@@ -36,7 +36,16 @@ export class AspService {
     return this.http.get(this.APIURL + '/' + 'courtId' + '/' + courtId);
   }
 
+  // async function createCourt(): Promise {
+    
+  // } 
+  createCourt(){
+    return this.http.post(this.APIURL + '/court/create', {responseType: 'json'});
+  }
+
   getCourt(courtId: string) {
+    // courtId = courtId.substring(1, courtId.length-1)
+    // console.log(courtId);
     return this.http.get(this.APIURL + '/court/retrieve/' + courtId);
   }
 

@@ -16,11 +16,14 @@ export class RoomRedirectComponent implements OnInit {
     private AspService: AspService
   ) {}
 
+  courtToken: string = '';
   courtId: string = '';
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.courtId = params.court_id;
+      this.courtToken = params.court_id;
+      console.log("court token");
+      console.log(this.courtToken)
       // this.db.collection('courts').doc(this.courtId)
       //   .get().toPromise().then((value) => {
       //     let returned_state = value.data()
@@ -39,12 +42,14 @@ export class RoomRedirectComponent implements OnInit {
       //     }
       //   })
 
-      this.AspService.getCourt(this.courtId)
+      this.AspService.getCourt(this.courtToken)
         .toPromise()
         .then((value) => {
-          
-          let current_state = value['current_state'];
-
+          console.log(value);
+          let result = JSON.parse(JSON.stringify(value))
+          let current_state = result.current_state;
+          console.log(current_state);
+          this.courtId = result.courtid;
           if (current_state == 0) {
             this.router.navigate(['communal_room/' + this.courtId]);
           } else if (current_state == 1) {
