@@ -36,12 +36,21 @@ export class AspService {
     return this.http.get(this.APIURL + '/' + 'courtId' + '/' + courtId);
   }
 
+  // async function createCourt(): Promise {
+    
+  // } 
+  createCourt(){
+    return this.http.post(this.APIURL + '/court/create', {responseType: 'json'});
+  }
+
   getCourt(courtId: string) {
+    // courtId = courtId.substring(1, courtId.length-1)
+    // console.log(courtId);
     return this.http.get(this.APIURL + '/court/retrieve/' + courtId);
   }
 
-  checkIfHost(courtId: string, userEmail: string) {
-    return this.http.get(this.APIURL + '/' + courtId + '/' + userEmail);
+  checkIfHost(courtToken: string) {
+    return this.http.get(this.APIURL + '/participant/checkhost/' +courtToken) as Observable<boolean>;
   }
 
   getSpeaker(courtId: string) {
@@ -51,4 +60,5 @@ export class AspService {
   joinCourt(courtId: string) {
     return this.http.get(this.APIURL + '/court/join/' + courtId);
   }
+
 }

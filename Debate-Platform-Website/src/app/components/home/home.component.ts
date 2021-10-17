@@ -48,11 +48,41 @@ export class HomeComponent implements OnInit {
   createRoom() {
     let court = new Court();
     console.log(court);
-    this.db
-      .collection('courts')
-      .add(Object.assign({}, court))
-      .then((value) => {
-        this.router.navigate(['courts/' + value.id]);
-      });
+
+    this.AspService.createCourt()
+      .toPromise()
+      .then((value)=>{
+        console.log("court token:")
+        console.log(value);
+        
+        localStorage.setItem('courttoken', JSON.parse(JSON.stringify(value)));
+        
+        this.router.navigate(['courts/' + value]);
+        // this.AspService.getCourt(JSON.stringify(value))
+        // .toPromise()
+        // .then((values)=>{
+        //   console.log(values);
+        //   let result = JSON.parse(JSON.stringify(values))
+        //   console.log(result.courtid.toString());
+        // })
+        // .catch((err)=>{
+        //   console.log(err)
+        // })
+      })
+      .catch((err)=>
+      {
+        console.log(err); 
+      })
+
+      // this.db
+      //   .collection('courts')
+      //   .add(Object.assign({}, court))
+      //   //ngong
+      //   .then((value) => {
+      //     console.log("returned from angularfirebase db: ")
+      //     console.log(value)
+      //     this.router.navigate(['courts/' + value.id]);
+      //   });
   }
+    
 }

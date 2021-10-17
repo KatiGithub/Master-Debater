@@ -8,6 +8,8 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using FirebaseAdmin.Auth;
 using backend.utils;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 //using backend.Models;
 
 namespace backend.Controllers
@@ -65,7 +67,7 @@ namespace backend.Controllers
                 User user = await userRepository.retrieveByFirebaseUid(uid);
                 Court court = await courtRepository.retrieveCourtByToken(court_token);
 
-                if (await courtRepository.userJoinCourt(user, court))
+                if (await courtRepository.userJoinCourt(user, court, false))
                 {
                     return Ok();
                 }
@@ -83,7 +85,8 @@ namespace backend.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            // return Ok();
         }
+
     }
 }

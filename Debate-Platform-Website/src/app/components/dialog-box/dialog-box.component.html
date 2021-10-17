@@ -1,1 +1,15 @@
-<p>dialog-box works!</p>
+<div *ngIf="type == 'start-warning'">
+    <div>
+        <p>Start preparation</p>
+        <button mat-raised-button color="warn" class="btns" (click)="start()">OK</button>
+        <button mat-raised-button color="primary" class="btns" (click)="cancel()">Cancel</button>
+    </div>
+</div>
+
+<div *ngIf="type == 'remove-warning'">
+    <div>
+        <p>Remove {{user}}?</p>
+        <button mat-raised-button color="warn" class="btns" (click)="remove()">Yes</button>
+        <button mat-raised-button color="primary" class="btns" (click)="cancel()">Cancel</button>
+    </div>
+</div>

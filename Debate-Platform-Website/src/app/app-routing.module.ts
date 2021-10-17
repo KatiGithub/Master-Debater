@@ -28,38 +28,38 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
 
   {
     path: 'courts/:court_id',
     component: RoomRedirectComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'communal_room/:court_id',
     component: CommunalRoomComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'prep_room/:court_id',
     component: PrepRoomComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'debate_room',
     component: DebateRoomComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'debate_room/:court_id',
     component: DebateRoomComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'judge_room/:court_id',
     component: JudgeComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'vc_test',

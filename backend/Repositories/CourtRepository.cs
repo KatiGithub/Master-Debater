@@ -4,6 +4,7 @@ using backend.Models;
 using backend.RowMappers;
 using Npgsql;
 using backend.utils;
+using System.Diagnostics;
 
 namespace backend.Repositories
 {
@@ -63,7 +64,8 @@ namespace backend.Repositories
 
         }
 
-        public async Task<bool> userJoinCourt(User user, Court court)
+
+        public async Task<bool> userJoinCourt(User user, Court court, bool host)
         {
             try {
                 await participantRepository.insertNewAudience(court, user);
@@ -72,5 +74,12 @@ namespace backend.Repositories
                 return false;
             }
         }
+
+        // public async Task<bool> setCourtHost(string email) {
+        //     string query = @"INSERT INTO tblparticipants(";
+
+        //     query = query.Replace("@a", )
+        // } 
+
     }
 }

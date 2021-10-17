@@ -21,7 +21,20 @@ namespace backend.Repositories
                 List<Participants> lsParticipants = await db.queryForMultipleObject(command, new ParticipantsRowMapper());
                 return lsParticipants;
             }
-        } 
+        }
+
+        public async Task<int> checkIfHost(string courtid, User user){
+            string query = @"SELECT roleid FROM tblparticipants WHERE courtid = @a AND userid = @b";
+            query = query.Replace("@a", courtid.ToString());
+            query = query.Replace("@b", user.userid.ToString());
+            
+            using(NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb()))
+            {
+                int roleid = (int)await db.queryForSingleObject(command, typeof(int), "roleid");
+                
+                return roleid;
+            }
+        }
 
         public Participants getParticipantByUserid(int userid) {
             return null;
