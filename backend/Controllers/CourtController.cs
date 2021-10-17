@@ -37,9 +37,37 @@ namespace backend.Controllers
         public async Task<ActionResult<string>> createCourt()
         {
             string court_token = await courtRepository.createCourt();
-            //this took hours omg
             string json_court_token = JsonSerializer.Serialize(court_token);
-            return Ok(json_court_token);
+            
+            string auth_token = Request.Headers["Authorization"];
+            FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
+
+            try
+            {
+                FirebaseToken token = await firebaseAuth.VerifyIdTokenAsync(auth_token);
+                string uid = token.Uid;
+
+                User user = await userRepository.retrieveByFirebaseUid(uid);
+                Court court = await courtRepository.retrieveCourtByToken(court_token);
+
+                if (await courtRepository.userJoinCourt(user, court, true))
+                {
+                    return Ok(json_court_token);
+                }
+                else
+                {
+                    return Ok("ok but there's an error here!");
+                }
+            }
+            catch (FirebaseAuthException)
+            {
+                return Unauthorized();
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
         }
 
         [HttpGet("join/{court_token}")]
@@ -56,7 +84,7 @@ namespace backend.Controllers
                 User user = await userRepository.retrieveByFirebaseUid(uid);
                 Court court = await courtRepository.retrieveCourtByToken(court_token);
 
-                if (await courtRepository.userJoinCourt(user, court))
+                if (await courtRepository.userJoinCourt(user, court, false))
                 {
                     return Ok();
                 }
@@ -74,7 +102,8 @@ namespace backend.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            // return Ok();
         }
+
     }
 }

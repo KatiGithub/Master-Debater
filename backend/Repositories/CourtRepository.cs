@@ -4,6 +4,7 @@ using backend.Models;
 using backend.RowMappers;
 using Npgsql;
 using backend.utils;
+using System.Diagnostics;
 
 namespace backend.Repositories
 {
@@ -61,14 +62,23 @@ namespace backend.Repositories
 
         }
 
-        public async Task<bool> userJoinCourt(User user, Court court)
+
+        public async Task<bool> userJoinCourt(User user, Court court, bool host)
         {
+            
             string query = @"
-            INSERT INTO tblparticipants(courtid, userid) VALUES(@a, @b);
+            INSERT INTO tblparticipants(courtid, userid, roleid) VALUES(@a, @b, @c);
             ";
 
             query = query.Replace("@a", court.courtid.ToString());
-            query = query.Replace("@b", court.courtid.ToString());
+            query = query.Replace("@b", user.userid.ToString());
+            
+            if(host) {
+                query = query.Replace("@c", "1");
+            }
+            else {
+                query = query.Replace("@c", "2");
+            }
 
             using(NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb()))
             {
@@ -83,5 +93,12 @@ namespace backend.Repositories
                 }
             }
         }
+
+        // public async Task<bool> setCourtHost(string email) {
+        //     string query = @"INSERT INTO tblparticipants(";
+
+        //     query = query.Replace("@a", )
+        // } 
+
     }
 }

@@ -6,7 +6,8 @@ import { FormControl } from '@angular/forms';
 import { validateEventsArray } from '@angular/fire/firestore';
 import { CallService } from 'src/app/services/CallService/call.service';
 import { DialogBoxComponent } from '../../dialog-box/dialog-box.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { AspService } from 'src/app/services/asp/asp.service';
 
 export interface Tile {
   color: string;
@@ -61,9 +62,9 @@ export class CommunalRoomComponent implements OnInit {
   preptime = new FormControl('auto')
   format_control = new FormControl()
   topic_control = new FormControl()
-  debate_link: string = ''
   public POSITION_DATA: FormatPos[] = [];
   public OPPOSITION_DATA: FormatPos[] = [];
+  authorized: Boolean = false;
 
   checkHost_subscription!: Promise<boolean>;
   
@@ -72,37 +73,46 @@ export class CommunalRoomComponent implements OnInit {
     private dialog: MatDialog,
     private firestore: FirestoreService,
     private router: Router,
-    private callService: CallService
+    private callService: CallService,
+    private asp: AspService
   ) {
     this.route.params.subscribe((params: Params) => {
       this.courtId = params.court_id;
-      this.debate_link = location.origin + "/court_id/" + this.courtId;
-      let checkHost = firestore.checkIfHost(this.courtId).then((value) => {
-        this.authorized = value;
-        return value;
-      });
+      // this.courtId = localStorage.getItem('courttoken')!;
+      console.log(this.courtId);
+      let checkHost = asp.checkIfHost(this.courtId)
+        .toPromise()
+        .then((value) => {
+          this.authorized = value;
+          console.log("authorize status:")
+          console.log(value);
+          return value;
+      })
+      // .catch((err)=>{
+      //   console.log(err);
+      // })
 
       this.checkHost_subscription = checkHost;
     });
 
-    this.firestore.checkForChange(this.courtId).subscribe((value) => {
-      let current_document = JSON.parse(JSON.stringify(value.payload.data()))
+    // this.firestore.checkForChange(this.courtId).subscribe((value) => {
+    //   let current_document = JSON.parse(JSON.stringify(value.payload.data()))
 
-      console.log(current_document)
+    //   console.log(current_document)
 
-      if(current_document['state'] != 0) {
-        this.router.navigate(['courts/' + this.courtId])
-      }
+    //   if(current_document['state'] != 0) {
+    //     this.router.navigate(['courts/' + this.courtId])
+    //   }
 
-      this.firestore.getCurrentTeams(this.courtId).then((value) => {
-        console.log(value)
-        for(let x in this.Team1) {
-          this.Team1[x].team_member = value['team1'][x]
-          this.Team2[x].team_member = value['team2'][x]
-        }
-      })
+    //   this.firestore.getCurrentTeams(this.courtId).then((value) => {
+    //     console.log(value)
+    //     for(let x in this.Team1) {
+    //       this.Team1[x].team_member = value['team1'][x]
+    //       this.Team2[x].team_member = value['team2'][x]
+    //     }
+    //   })
       
-    })
+    // })
   
     this.preptime.valueChanges.subscribe((value: number) => {
       console.log(value)
@@ -133,14 +143,30 @@ export class CommunalRoomComponent implements OnInit {
   }
 
   openDialog(obj){
-    const dialogref = this.dialog.open(DialogBoxComponent, {
-      width: '240px',
-      data: obj
-    })
+    
+    const dialogConfig = new MatDialogConfig();
+      
+    dialogConfig.disableClose = false;
+    dialogConfig.width = '300px'
+      
+    if(obj == "start_warning"){
+       dialogConfig.data = {
+        type: 'start-warning'
+      };
+    }
 
-    dialogref.afterClosed().subscribe(result=>{
-      this.removeParticipant(result.data);
-    });
+    else{
+      dialogConfig.data = {
+       type: 'remove-warning',
+       user: obj.name
+      };
+    }
+
+    const dialogref = this.dialog.open(DialogBoxComponent,dialogConfig);
+
+    dialogref.afterClosed().subscribe(result => {
+      console.log(result);
+    })
   }
 
   removeParticipant(obj){
@@ -151,7 +177,6 @@ export class CommunalRoomComponent implements OnInit {
   Team1: any[] = [];
   Team2: any[] = [];
   
-  authorized: Boolean = false;
   
   ngOnInit(): void {
     for (let x in FormatConstants.formats) {

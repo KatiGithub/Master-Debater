@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div  class="participants">
+        <div  class="participants" *ngIf="authorized">
           <div class="participant-container">
             <table mat-table class="tablescroll" [dataSource]="data">
               <ng-container matColumnDef="name">
@@ -115,7 +115,7 @@
     <div flexLayout="column">
       <div class="buttons" *ngIf="authorized">
         <button mat-raised-button color="warn" class="btns">Close Room</button>
-        <button mat-raised-button color="warn" class="btns">Start Preparation</button>
+        <button mat-raised-button color="warn" class="btns" (click)="openDialog('start_warning')" >Start Preparation</button>
       </div>
       <div class="buttons" *ngIf="!authorized">
         <button mat-raised-button color="warn" class="btns">Exit Room</button>

@@ -54,6 +54,9 @@ export class HomeComponent implements OnInit {
       .then((value)=>{
         console.log("court token:")
         console.log(value);
+        
+        localStorage.setItem('courttoken', JSON.parse(JSON.stringify(value)));
+        
         this.router.navigate(['courts/' + value]);
         // this.AspService.getCourt(JSON.stringify(value))
         // .toPromise()
