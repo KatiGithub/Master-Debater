@@ -34,8 +34,21 @@ namespace backend.Controllers
         [HttpPost("create")]
         public async Task<ActionResult<string>> createCourt()
         {
-            string court_token = await courtRepository.createCourt();
-            return Ok(court_token);
+            string auth_token = Request.Headers["Authorization"];
+            FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
+
+            
+            try {
+                FirebaseToken token = await firebaseAuth.VerifyIdTokenAsync(auth_token);
+                string uid = token.Uid;
+
+                User user = await userRepository.retrieveByFirebaseUid(uid);
+
+                string court_token = await courtRepository.createCourt(user);
+                return Ok(court_token);
+            } catch(FirebaseAuthException) {
+                return Unauthorized();
+            }
         }
 
         [HttpGet("join/{court_token}")]

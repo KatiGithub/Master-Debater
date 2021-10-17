@@ -26,5 +26,27 @@ namespace backend.Repositories
         public Participants getParticipantByUserid(int userid) {
             return null;
         }
+
+        public async Task insertOriginalHost(Court court, User user) {
+            string query = "INSERT INTO tblparticipants(courtid, userid, role) VALUES(@a, @b, 1);";
+
+            query = query.Replace("@a", court.courtid.ToString());
+            query = query.Replace("@b", user.userid.ToString());
+
+            using(NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb())) {
+                await db.execute(command);
+            }
+        }
+
+        public async Task insertNewAudience(Court court, User user) {
+            string query = "INSERT INTO tblparticipants(courtid, userid, role) VALEUS(@a, @b, 2);";
+
+            query = query.Replace("@a", court.courtid.ToString());
+            query = query.Replace("@b", user.userid.ToString());
+            
+            using(NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb())) {
+                await db.execute(command);
+            }
+        }
     }
 }

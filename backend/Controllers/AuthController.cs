@@ -135,5 +135,22 @@ namespace backend.Controllers
                 }
             }
         }
+
+        [HttpGet("checkhost/court_token")]
+        public async Task<IActionResult> checkHost(string court_token) {
+            string auth_token = Request.Headers["Authorization"];
+            
+            FirebaseAuth firebaseAuth = Firebase.GetFirebaseAuth();
+
+            FirebaseToken firebaseToken = await firebaseAuth.VerifyIdTokenAsync(auth_token);
+            string uid = firebaseToken.Uid;
+
+            if(await userRepository.checkUserHost(court_token, uid)) {
+                return Ok();
+            } else {
+                return Unauthorized();
+            }
+
+        }
     }
 }

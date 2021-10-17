@@ -82,5 +82,21 @@ namespace backend.Repositories
                 await db.execute(command);
             }
         }
+
+        public async Task<Boolean> checkUserHost(string court_token, string uid) {
+            string query = @"
+            SELECT COUNT() FROM tblcourt
+            JOIN tblparticipants WHERE tblcourt.courtid = tblparticipants.courtid
+            JOIN tbluser WHERE tbluser.userid = tblparticipants.userid
+            WHERE tbluser.firebaseuid = '@a' AND tblcourt.court_token = '@b' AND tblparticipants.role = 'host';
+            ";
+
+            query = query.Replace("@a", uid);
+            query = query.Replace("@b", court_token);
+
+            using(NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb())) {
+                return ((int) await db.queryForSingleObject(command, typeof(int), "COUNT") > 0);
+            }
+        }
     }
 }

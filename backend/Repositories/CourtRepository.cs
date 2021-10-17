@@ -13,6 +13,7 @@ namespace backend.Repositories
 
         private database db = new database();
         private ChatroomRepository chatroomRepository = new ChatroomRepository();
+        private ParticipantRepository participantRepository = new ParticipantRepository();
         public async Task<Court> retrieveCourtByToken(string court_token)
         {
             string query = @"
@@ -29,7 +30,7 @@ namespace backend.Repositories
             }
         }
 
-        public async Task<string> createCourt()
+        public async Task<string> createCourt(User user)
         {
             // Create court chatrooms
             Court court = new Court();
@@ -55,6 +56,7 @@ namespace backend.Repositories
             using (NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb()))
             {
                 Court new_court = await db.queryForSingleObjectWithRepo(command, new CourtRowMapper());
+                await participantRepository.insertOriginalHost(new_court, user);
 
                 return new_court.court_token;
             }
@@ -63,24 +65,11 @@ namespace backend.Repositories
 
         public async Task<bool> userJoinCourt(User user, Court court)
         {
-            string query = @"
-            INSERT INTO tblparticipants(courtid, userid) VALUES(@a, @b);
-            ";
-
-            query = query.Replace("@a", court.courtid.ToString());
-            query = query.Replace("@b", court.courtid.ToString());
-
-            using(NpgsqlCommand command = new NpgsqlCommand(query, db.GetDb()))
-            {
-                try
-                {
-                    await db.execute(command);
-
-                    return true;
-                } catch(PostgresException)
-                {
-                    return false;
-                }
+            try {
+                await participantRepository.insertNewAudience(court, user);
+                return true;
+            } catch(System.Exception) {
+                return false;
             }
         }
     }
